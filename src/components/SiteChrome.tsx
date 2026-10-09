@@ -74,17 +74,17 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-3 sm:px-6">
         <BackButton />
         <Brand />
-        <nav aria-label="Main" className="ml-auto hidden xl:block">
+        <nav aria-label="Main" className="ml-auto hidden 2xl:block">
           <ul className="flex items-center gap-1"><NavItems /></ul>
         </nav>
-        <Button variant="outline" size="sm" onClick={() => setLang(lang === "en" ? "bn" : "en")} className="ml-auto shrink-0 xl:ml-0" aria-label={t("lang.label")}>
+        <Button variant="outline" size="sm" onClick={() => setLang(lang === "en" ? "bn" : "en")} className="ml-auto shrink-0 2xl:ml-0" aria-label={t("lang.label")}>
           <Languages aria-hidden /> {t("lang.toggle")}
         </Button>
         <ThemeToggle />
         <div className="hidden sm:block"><AuthButton /></div>
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="shrink-0 xl:hidden" aria-label={t("nav.menu")}><Menu aria-hidden /></Button>
+            <Button variant="outline" size="icon" className="shrink-0 2xl:hidden" aria-label={t("nav.menu")}><Menu aria-hidden /></Button>
           </SheetTrigger>
           <SheetContent className="glass-panel border-border bg-background/95 backdrop-blur-xl">
             <SheetHeader><SheetTitle><Brand /></SheetTitle></SheetHeader>
