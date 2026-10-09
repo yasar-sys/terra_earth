@@ -23,7 +23,7 @@ function readColor(token: string) {
   const ctx = canvas.getContext('2d'); if (!ctx) return '';
   ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue(token).trim();
   ctx.fillRect(0, 0, 1, 1); const p = ctx.getImageData(0, 0, 1, 1).data;
-  return `rgba(${p[0]},${p[1]},${p[2]},${p[3] / 255})`;
+  return `rgba(${p[0]},${p[1]},${p[2]},${(p[3] ?? 255) / 255})`;
 }
 const escapeHtml = (text: string) => text.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] ?? c));
 
@@ -47,6 +47,10 @@ export default function GlobeExplorer({ variable, onSelectDistrict, hexMode = fa
   useEffect(() => { if (!ready) return; setSpin(!matchMedia('(prefers-reduced-motion: reduce)').matches); }, [ready]);
   useEffect(() => {
     const g = ref.current; if (!g || !ready) return;
+    g.pointOfView({ ...g.pointOfView(), altitude: Math.max(1.85, 2.35 * size.h / size.w - .65) }, 450);
+  }, [ready, size.w, size.h]);
+  useEffect(() => {
+    const g = ref.current; if (!g || !ready) return;
     const controls = g.controls() as { autoRotate: boolean; autoRotateSpeed: number; enableDamping: boolean; dampingFactor: number; minDistance: number; maxDistance: number };
     controls.autoRotate = spin; controls.autoRotateSpeed = .28; controls.enableDamping = true; controls.dampingFactor = .08; controls.minDistance = 130; controls.maxDistance = 600;
   }, [spin, ready]);
@@ -59,14 +63,14 @@ export default function GlobeExplorer({ variable, onSelectDistrict, hexMode = fa
   const selected = points.filter(p => p.id === selectedRegionalId);
   const bounds = useMemo(() => { const values = gridPoints.map(x => x.value); return values.length ? { min: Math.min(...values), max: Math.max(...values) } : { min: 0, max: 1 }; }, [gridPoints]);
   function select(lat: number, lon: number) { const location = coordinateLocation(lat, lon); registerEvidence(location, getCached(location.id) ?? { district: location.id, variables: {} }); onSelectDistrict(location.id); }
-  function home() { ref.current?.pointOfView({ lat: 18, lng: 25, altitude: size.w < 600 ? 2.25 : 1.85 }, 800); }
+  function home() { ref.current?.pointOfView({ lat: 18, lng: 25, altitude: Math.max(1.85, 2.35 * size.h / size.w - .65) }, 800); }
   function zoom(factor: number) { const g = ref.current; if (!g) return; const pov = g.pointOfView(); g.pointOfView({ ...pov, altitude: Math.min(4.8, Math.max(.35, pov.altitude * factor)) }, 350); }
   const tooltip = (p: { name?: string; lat: number; lng: number; value?: number | undefined }) => `<div class="globe-tooltip"><strong>${escapeHtml(p.name ?? coordinatesLabel(p.lat, p.lng))}</strong><br/>${escapeHtml(p.value === undefined || !gridUnit ? L('Open NASA evidence', 'NASA তথ্য খুলুন') : `${p.value.toFixed(2)} ${gridUnit}`)}${gridCaption ? `<br/>${escapeHtml(gridCaption)}` : ''}</div>`;
   return <div ref={wrap} className="earth-stage relative h-full w-full">
     <div className="earth-stage-caption"><Globe2 aria-hidden /><span>{L('EARTH EXPLORER', 'পৃথিবী অনুসন্ধান')}</span><span className="earth-live-dot" aria-hidden /></div>
     <Globe ref={ref} width={size.w} height={size.h} backgroundColor="rgba(0,0,0,0)"
       globeImageUrl={night ? nightAsset.url : dayAsset.url} bumpImageUrl={topologyAsset.url}
-      showAtmosphere atmosphereColor={colors.atmosphere || undefined} atmosphereAltitude={.17} showGraticules={graticules}
+      showAtmosphere {...(colors.atmosphere ? { atmosphereColor: colors.atmosphere } : {})} atmosphereAltitude={.17} showGraticules={graticules}
       onGlobeReady={() => { setReady(true); home(); }} onGlobeClick={({ lat, lng }) => select(lat, lng)}
       pointsData={hexMode ? [] : points} pointLat="lat" pointLng="lng" pointAltitude={.003} pointRadius={.18}
       pointColor={() => colors.pin} pointLabel={p => tooltip(p as typeof points[number])}
