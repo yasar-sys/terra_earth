@@ -60,7 +60,7 @@ export const districts = [...(districtList as District[]), ...globalLocations]
   .slice()
   .sort((a, b) => a.name.localeCompare(b.name));
 
-const modules = import.meta.glob<CachedDistrict>("../data/cache/*.json", {
+const modules = import.meta.glob<CachedDistrict>(["../data/cache/*.json", "../data/global-cache/*.json"], {
   eager: true,
   import: "default",
 });
