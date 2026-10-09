@@ -9,9 +9,9 @@ import { safeAuthNext, usesLovableAuthBroker } from "@/lib/auth-host";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({ meta: [
-    { title: "Sign in — TerraBangla" },
-    { name: "description", content: "Sign in securely to save TerraBangla climate conversations." },
-    { property: "og:title", content: "Sign in — TerraBangla" },
+    { title: "Sign in — Terra Earth" },
+    { name: "description", content: "Sign in securely to save Terra Earth climate conversations." },
+    { property: "og:title", content: "Sign in — Terra Earth" },
     { property: "og:description", content: "Save your climate questions and return to them anytime." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
@@ -64,7 +64,7 @@ function AuthPage() {
   return <div className="mx-auto flex min-h-[65vh] max-w-lg items-center px-4 py-12">
     <section className="panel w-full p-7 text-center">
       <ShieldCheck className="mx-auto h-10 w-10 text-accent" aria-hidden />
-      <h1 className="mt-4 font-display text-3xl text-foreground">TerraBangla</h1>
+      <h1 className="mt-4 font-display text-3xl text-foreground">Terra Earth</h1>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{lang === "bn" ? "আপনার জলবায়ু কথোপকথন নিরাপদে সংরক্ষণ করতে Google দিয়ে সাইন ইন করুন।" : "Sign in with Google to securely save and revisit your climate conversations."}</p>
       <Button className="mt-6 w-full" onClick={signIn} disabled={busy}><LogIn aria-hidden />{busy ? (lang === "bn" ? "পরীক্ষা করছি…" : "Checking…") : (lang === "bn" ? "Google দিয়ে চালিয়ে যান" : "Continue with Google")}</Button>
       {error ? <p role="alert" className="mt-3 text-sm text-destructive">{error}</p> : null}

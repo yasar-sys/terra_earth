@@ -10,8 +10,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({ meta: [
-    { title: "Admin workspace — TerraBangla" }, { name: "description", content: "Restricted TerraBangla content administration." },
-    { property: "og:title", content: "Admin workspace — TerraBangla" }, { property: "og:description", content: "Restricted administration workspace." },
+    { title: "Admin workspace — Terra Earth" }, { name: "description", content: "Restricted Terra Earth content administration." },
+    { property: "og:title", content: "Admin workspace — Terra Earth" }, { property: "og:description", content: "Restricted administration workspace." },
     { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }, { name: "robots", content: "noindex" },
   ] }), component: AdminPage,
 });
@@ -32,7 +32,7 @@ function AdminPage() {
     } catch (e) { setError(e instanceof Error ? e.message : String(e)); }
   }
   if (error && !data) return <div className="mx-auto min-h-[60vh] max-w-xl px-4 py-14"><section className="panel p-6"><h1 className="font-display text-2xl">Admin workspace</h1><p role="alert" className="mt-3 text-sm text-destructive">{error}</p></section></div>;
-  return <div className="mx-auto max-w-7xl px-3 py-8 sm:px-6"><h1 className="font-display text-4xl">Admin workspace</h1><p className="mt-2 text-sm text-muted-foreground">Restricted to the approved TerraBangla administrator.</p>{notice ? <p role="status" className="mt-3 text-sm text-stable">{notice}</p> : null}{error ? <p role="alert" className="mt-3 text-sm text-destructive">{error}</p> : null}
+  return <div className="mx-auto max-w-7xl px-3 py-8 sm:px-6"><h1 className="font-display text-4xl">Admin workspace</h1><p className="mt-2 text-sm text-muted-foreground">Restricted to the approved Terra Earth administrator.</p>{notice ? <p role="status" className="mt-3 text-sm text-stable">{notice}</p> : null}{error ? <p role="alert" className="mt-3 text-sm text-destructive">{error}</p> : null}
     <Tabs defaultValue="districts" className="mt-6"><TabsList className="grid h-auto w-full grid-cols-2 lg:grid-cols-5"><TabsTrigger value="districts"><FileText className="mr-2 h-4 w-4" />District content</TabsTrigger><TabsTrigger value="announcements"><Bell className="mr-2 h-4 w-4" />Announcements</TabsTrigger><TabsTrigger value="chat"><MessageSquare className="mr-2 h-4 w-4" />Chat review</TabsTrigger><TabsTrigger value="uploads"><Database className="mr-2 h-4 w-4" />Data files</TabsTrigger><TabsTrigger value="quiz"><HelpCircle className="mr-2 h-4 w-4" />Quiz</TabsTrigger></TabsList>
       <TabsContent value="districts"><AdminForm onSubmit={(e) => void submit("content", e)}><SelectDistrict /><Input name="headingEn" required placeholder="English heading" /><Input name="headingBn" required placeholder="বাংলা শিরোনাম" /><Textarea name="bodyEn" required placeholder="English content" /><Textarea name="bodyBn" required placeholder="বাংলা বিষয়বস্তু" /><Publish /></AdminForm><Records rows={data?.content} /></TabsContent>
       <TabsContent value="announcements"><AdminForm onSubmit={(e) => void submit("announcement", e)}><Input name="titleEn" required placeholder="English title" /><Input name="titleBn" required placeholder="বাংলা শিরোনাম" /><Textarea name="bodyEn" required placeholder="English announcement" /><Textarea name="bodyBn" required placeholder="বাংলা ঘোষণা" /><Publish /></AdminForm><Records rows={data?.announcements} /></TabsContent>

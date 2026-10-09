@@ -11,15 +11,15 @@ import { MessageResponse } from "@/components/ai-elements/message";
 export const Route = createFileRoute("/reference")({
   head: () => ({
     meta: [
-      { title: "Reference & Research — TerraBangla" },
+      { title: "Reference & Research — Terra Earth" },
       {
         name: "description",
-        content: "Scientific references, NASA Space Apps documentation, and project video for TerraBangla.",
+        content: "Scientific references, NASA Space Apps documentation, and project video for Terra Earth.",
       },
-      { property: "og:title", content: "Reference, research & project video — TerraBangla" },
+      { property: "og:title", content: "Reference, research & project video — Terra Earth" },
       {
         property: "og:description",
-        content: "How MEC TERRA_DETECTORS built TerraBangla for NASA Space Apps, with research methods, source documentation and project video.",
+        content: "How MEC TERRA_DETECTORS built Terra Earth for NASA Space Apps, with research methods, source documentation and project video.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -32,8 +32,8 @@ const RESEARCH_LINKS = [
   {
     title: "NASA POWER Project",
     bnTitle: "NASA POWER প্রকল্প",
-    description: "Monthly air temperature, precipitation and solar-radiation observations used by TerraBangla.",
-    bnDescription: "টেরা বাংলায় ব্যবহৃত মাসিক বায়ুর তাপমাত্রা, বৃষ্টিপাত ও সৌর বিকিরণ পর্যবেক্ষণ।",
+    description: "Monthly air temperature, precipitation and solar-radiation observations used by Terra Earth.",
+    bnDescription: "টেরা আর্থয় ব্যবহৃত মাসিক বায়ুর তাপমাত্রা, বৃষ্টিপাত ও সৌর বিকিরণ পর্যবেক্ষণ।",
     url: "https://power.larc.nasa.gov/",
   },
   {
@@ -46,8 +46,8 @@ const RESEARCH_LINKS = [
   {
     title: "NASA Space Apps Challenge",
     bnTitle: "NASA Space Apps Challenge",
-    description: "The global challenge programme for which MEC TERRA_DETECTORS created TerraBangla.",
-    bnDescription: "যে বৈশ্বিক চ্যালেঞ্জের জন্য MEC TERRA_DETECTORS টেরা বাংলা তৈরি করেছে।",
+    description: "The global challenge programme for which MEC TERRA_DETECTORS created Terra Earth.",
+    bnDescription: "যে বৈশ্বিক চ্যালেঞ্জের জন্য MEC TERRA_DETECTORS টেরা আর্থ তৈরি করেছে।",
     url: "https://www.spaceappschallenge.org/",
   },
   {
@@ -102,8 +102,8 @@ function ReferencePage() {
         <h1 className="mt-3 font-display text-4xl font-bold leading-tight text-foreground sm:text-6xl">{t("reference.title")}</h1>
         <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground">
           {L(
-            "The challenge connection, research method, source documentation and presentation evidence behind TerraBangla.",
-            "টেরা বাংলার পেছনের চ্যালেঞ্জ-সংযোগ, গবেষণা পদ্ধতি, উৎসের নথি ও উপস্থাপনার প্রমাণ।",
+            "The challenge connection, research method, source documentation and presentation evidence behind Terra Earth.",
+            "টেরা আর্থর পেছনের চ্যালেঞ্জ-সংযোগ, গবেষণা পদ্ধতি, উৎসের নথি ও উপস্থাপনার প্রমাণ।",
           )}
         </p>
       </header>
@@ -116,8 +116,8 @@ function ReferencePage() {
         <div className="mt-5 sm:mt-0">
           <p className="text-sm leading-7 text-muted-foreground">
             {lang === "bn"
-              ? "MEC TERRA_DETECTORS নাসা স্পেস অ্যাপস চ্যালেঞ্জ ২০২৬-এর ‘Be An Earth System Trend Detective!’ চ্যালেঞ্জের জন্য টেরা বাংলা তৈরি করেছে। প্রকল্পটি NASA Earth-observation রেকর্ডকে বাংলাদেশের ৬৪ জেলার অনুসন্ধানযোগ্য জলবায়ু প্রমাণে রূপ দেয়—কোনো অনুপস্থিত মান বানানো ছাড়া।"
-              : "MEC TERRA_DETECTORS built TerraBangla for the NASA Space Apps Challenge 2026 challenge, ‘Be An Earth System Trend Detective!’. It turns NASA Earth-observation records into explorable climate evidence for all 64 districts of Bangladesh—without inventing missing values."}
+              ? "MEC TERRA_DETECTORS নাসা স্পেস অ্যাপস চ্যালেঞ্জ ২০২৬-এর ‘Be An Earth System Trend Detective!’ চ্যালেঞ্জের জন্য টেরা আর্থ তৈরি করেছে। প্রকল্পটি NASA Earth-observation রেকর্ডকে বাংলাদেশের ৬৪ জেলার অনুসন্ধানযোগ্য জলবায়ু প্রমাণে রূপ দেয়—কোনো অনুপস্থিত মান বানানো ছাড়া।"
+              : "MEC TERRA_DETECTORS built Terra Earth for the NASA Space Apps Challenge 2026 challenge, ‘Be An Earth System Trend Detective!’. It turns NASA Earth-observation records into explorable climate evidence for all 64 districts of Bangladesh—without inventing missing values."}
           </p>
           <div className="mt-5 flex flex-wrap gap-2 text-xs font-medium text-foreground">
             <span className="rounded-full border border-border bg-elevated px-3 py-1.5">Bangladesh</span>
@@ -137,7 +137,7 @@ function ReferencePage() {
               <iframe
                 className="h-full w-full"
                 src={YOUTUBE_VIDEO_URL}
-                title={L("TerraBangla project presentation", "টেরা বাংলা প্রকল্প উপস্থাপনা")}
+                title={L("Terra Earth project presentation", "টেরা আর্থ প্রকল্প উপস্থাপনা")}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
@@ -215,8 +215,8 @@ function ReferencePage() {
             <h2 className="font-display text-2xl text-foreground">{L("Documentation scope", "ডকুমেন্টেশনের পরিধি")}</h2>
             <p className="mt-2 max-w-3xl text-sm leading-7 text-muted-foreground">
               {L(
-                "The documentation covers the 3D globe workflow, all 64 district records, five climate variables, provenance, heatmap exports, statistical comparison, the grounded AI Evidence Lab, the children’s learning studio, accessibility and PWA installation.",
-                "ডকুমেন্টেশনে 3D গ্লোবের ধাপ, ৬৪ জেলার রেকর্ড, পাঁচটি জলবায়ু চলক, provenance, heatmap export, পরিসংখ্যানগত তুলনা, grounded AI Evidence Lab, শিশুদের শেখার স্টুডিও, accessibility ও PWA installation অন্তর্ভুক্ত।",
+                "The documentation covers the worldwide 3D globe workflow, searchable coordinate records and original Bangladesh evidence, five climate variables, provenance, heatmap exports, statistical comparison, the grounded AI Evidence Lab, the children’s learning studio, accessibility and PWA installation.",
+                "ডকুমেন্টেশনে বিশ্বব্যাপী 3D গ্লোব, অনুসন্ধানযোগ্য স্থানাঙ্ক ও মূল বাংলাদেশের রেকর্ড, পাঁচটি জলবায়ু চলক, provenance, heatmap export, পরিসংখ্যানগত তুলনা, grounded AI Evidence Lab, শিশুদের শেখার স্টুডিও, accessibility ও PWA installation অন্তর্ভুক্ত।",
               )}
             </p>
           </div>

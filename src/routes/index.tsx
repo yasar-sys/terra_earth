@@ -4,7 +4,7 @@ import { Maximize2, Minimize2 } from "lucide-react";
 import { GlobeStage } from "@/components/GlobeStage";
 import { DistrictPicker } from "@/components/DistrictPicker";
 import { HomeSplash } from "@/components/HomeSplash";
-import { coveredDistrictIds } from "@/lib/climate";
+import { districts, coveredDistrictIds } from "@/lib/climate";
 import { useLang } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { SouthAsiaComparison } from "@/components/SouthAsiaComparison";
@@ -13,17 +13,17 @@ import type { VariableKey } from "@/lib/climate";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "TerraBangla — Bangladesh Climate Trend Explorer" },
+      { title: "Terra Earth — Global Climate Trend Explorer" },
       {
         name: "description",
         content:
-          "Spin a 3D Earth, fly into Bangladesh and inspect real NASA vegetation, temperature, solar and rainfall trends for all 64 districts.",
+          "Explore the whole Earth and search worldwide countries and cities for real NASA vegetation, temperature, solar and rainfall evidence.",
       },
-      { property: "og:title", content: "TerraBangla — Bangladesh Climate Trend Explorer" },
+      { property: "og:title", content: "Terra Earth — Global Climate Trend Explorer" },
       {
         property: "og:description",
         content:
-          "Mann-Kendall and Theil-Sen trend tests on cached NASA POWER and MODIS records, district by district.",
+          "Mann-Kendall and Theil-Sen trend tests on cached NASA POWER and MODIS records, location by location.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -107,12 +107,12 @@ function Landing() {
           {t("app.tagline")}
         </p>
         <p className="mt-2 text-xs text-muted-foreground">
-          {covered} / 64 {t("globe.districts")} · {t("hero.cta")}
+          {covered} / {districts.length} {t("globe.districts")} · {t("hero.cta")}
         </p>
-        <Button className="cta-pulse mt-5 rounded-full px-6" onClick={() => setPhase("bangladesh")}>{lang === "bn" ? "অনুসন্ধান শুরু করুন" : "Start investigating"}</Button>
+        <Button className="cta-pulse mt-5 rounded-full px-6" onClick={() => document.getElementById("picker-heading")?.scrollIntoView({behavior:"smooth"})}>{lang === "bn" ? "অনুসন্ধান শুরু করুন" : "Start investigating"}</Button>
       </section>
 
-      <section className="mx-auto mt-4 max-w-7xl px-3 sm:px-6">
+      <section className="mx-auto mt-4 max-w-7xl px-3 sm:px-6"><DistrictPicker />
         <div
           ref={frameRef}
           className={`globe-frame relative mt-3 overflow-hidden border border-border bg-elevated ${
@@ -161,8 +161,8 @@ function Landing() {
         </div>
         <p className="mt-2 text-xs text-muted-foreground">
           {lang === "bn"
-            ? "গ্লোব মাউস বা টাচ দিয়ে ঘোরানো যায়; কীবোর্ড ব্যবহারকারীরা নিচের তালিকা থেকে জেলা বেছে নিতে পারেন।"
-            : "The globe is mouse and touch driven; keyboard users can select any district from the list below."}
+            ? "গ্লোব মাউস বা টাচ দিয়ে ঘোরানো যায়; কীবোর্ড ব্যবহারকারীরা নিচের তালিকা থেকে দেশ বা শহর বেছে নিতে পারেন।"
+            : "The globe is mouse and touch driven; keyboard users can search any country or city from the list below."}
         </p>
       </section>
 
@@ -184,9 +184,7 @@ function Landing() {
         }}
       />
 
-      <section className="mx-auto mt-6 max-w-7xl px-3 pb-4 sm:px-6">
-        <DistrictPicker />
-      </section>
+
     </div>
   );
 }

@@ -38,7 +38,7 @@ export function exportGridCsv(data: GridExport, filename: string) {
     `# Dataset: ${data.datasetId}`,
     `# Source: ${data.sourceUrl}`,
     `# Retrieved: ${data.retrieved}`,
-    ["nearest_district", "lat", "lng", ...years.map(String), "theil_sen_per_decade", "mann_kendall_p", "significant_0_05"].join(","),
+    ["sample_location", "lat", "lng", ...years.map(String), "theil_sen_per_decade", "mann_kendall_p", "significant_0_05"].join(","),
     ...data.cells.map((c) =>
       [
         q(c.place),
@@ -60,7 +60,7 @@ export async function exportGridPdf(data: GridExport, filename: string) {
   const ascii = (s: string) => s.replace(/[^\x20-\x7E]/g, "");
   let y = 14;
   pdf.setFontSize(14);
-  pdf.text(ascii(`TerraBangla - ${data.variableLabel} (${data.unit})`), 10, y);
+  pdf.text(ascii(`Terra Earth - ${data.variableLabel} (${data.unit})`), 10, y);
   pdf.setFontSize(8);
   for (const line of [
     `Dataset: ${data.datasetId}`,
@@ -72,7 +72,7 @@ export async function exportGridPdf(data: GridExport, filename: string) {
   }
   y += 8;
   const cols = [55, 22, 22, 35, 35, 35, 35, 38];
-  const head = ["Nearest district", "Lat", "Lng", "First year", "Last year", "Mean", "Trend/decade", "p (sig.)"];
+  const head = ["Sample location", "Lat", "Lng", "First year", "Last year", "Mean", "Trend/decade", "p (sig.)"];
   const drawRow = (vals: string[], bold = false) => {
     pdf.setFont("helvetica", bold ? "bold" : "normal");
     let x = 10;

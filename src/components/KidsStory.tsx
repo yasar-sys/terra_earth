@@ -1,3 +1,5 @@
+import { useLocationEvidence } from "@/lib/location-evidence";
+import { Link } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
@@ -23,21 +25,21 @@ import {
   type StorySound,
   type StoryText,
 } from "@/lib/kids-story";
-import earth from "@/assets/story/story-earth.jpg";
-import nightScene from "@/assets/story/scenes/night.jpg";
-import guideScene from "@/assets/story/scenes/guide.jpg";
-import deltaScene from "@/assets/story/scenes/delta.jpg";
-import signalsScene from "@/assets/story/scenes/signals.jpg";
-import greenScene from "@/assets/story/scenes/green.jpg";
-import landScene from "@/assets/story/scenes/land.jpg";
-import airScene from "@/assets/story/scenes/air.jpg";
-import sunScene from "@/assets/story/scenes/sun.jpg";
-import rainScene from "@/assets/story/scenes/rain.jpg";
-import dotsScene from "@/assets/story/scenes/dots.jpg";
-import testScene from "@/assets/story/scenes/test.jpg";
-import rateScene from "@/assets/story/scenes/rate.jpg";
-import journalScene from "@/assets/story/scenes/journal.jpg";
-import challengeScene from "@/assets/story/scenes/challenge.jpg";
+import earth from "@/assets/global-story/earth.jpg";
+import nightScene from "@/assets/global-story/earth.jpg";
+import guideScene from "@/assets/global-story/guide.jpg";
+import deltaScene from "@/assets/global-story/landscapes.jpg";
+import signalsScene from "@/assets/global-story/signals.jpg";
+import greenScene from "@/assets/global-story/forest.jpg";
+import landScene from "@/assets/global-story/land.jpg";
+import airScene from "@/assets/global-story/city.jpg";
+import sunScene from "@/assets/global-story/sun.jpg";
+import rainScene from "@/assets/global-story/rain.jpg";
+import dotsScene from "@/assets/global-story/dots.jpg";
+import testScene from "@/assets/global-story/test.jpg";
+import rateScene from "@/assets/global-story/rate.jpg";
+import journalScene from "@/assets/global-story/evidence.jpg";
+import challengeScene from "@/assets/global-story/future.jpg";
 import celebrating from "@/assets/mascot/celebrating.png.asset.json";
 import encouraging from "@/assets/mascot/encouraging.png.asset.json";
 import idle from "@/assets/mascot/idle.png.asset.json";
@@ -90,9 +92,9 @@ const MOODS: Record<string, StoryMood> = {
 
 type ReviewQuestion = { q: StoryText; o: StoryText[]; a: number; w: StoryText; scene?: string };
 const BUILT_IN_QUESTIONS: [ReviewQuestion, ...ReviewQuestion[]] = [
-  { scene: "dots", q: { en: "Why is a line between only the first and last year not enough?", bn: "শুধু প্রথম ও শেষ বছরের মাঝে রেখা টানা কেন যথেষ্ট নয়?" }, o: [{ en: "Every year between them also matters", bn: "মাঝের প্রতিটি বছরও গুরুত্বপূর্ণ" }, { en: "The last year is always wrong", bn: "শেষ বছর সবসময় ভুল" }, { en: "Lines cannot be drawn on maps", bn: "মানচিত্রে রেখা আঁকা যায় না" }], a: 0, w: { en: "Two dots are not a trend: TerraBangla uses every annual observation in the selected period.", bn: "দুটি বিন্দু প্রবণতা নয়: টেরাবাংলা নির্বাচিত সময়ের প্রতিটি বার্ষিক পর্যবেক্ষণ ব্যবহার করে।" } },
-  { scene: "green", q: { en: "In Satkhira, what does NDVI help Tara compare?", bn: "সাতক্ষীরায় NDVI তারাকে কী তুলনা করতে সাহায্য করে?" }, o: [{ en: "River depth", bn: "নদীর গভীরতা" }, { en: "Plant greenness", bn: "উদ্ভিদের সবুজের পরিমাণ" }, { en: "A photograph of every leaf", bn: "প্রতিটি পাতার ছবি" }], a: 1, w: { en: "NDVI is a greenness signal—not a photograph of every leaf.", bn: "NDVI সবুজের একটি সংকেত—প্রতিটি পাতার ছবি নয়।" } },
-  { scene: "air", q: { en: "Are Rajshahi's land temperature and Dhaka's air temperature the same kind of record?", bn: "রাজশাহীর ভূপৃষ্ঠের তাপমাত্রা আর ঢাকার বায়ুর তাপমাত্রা কি একই ধরনের রেকর্ড?" }, o: [{ en: "Yes, the names are similar", bn: "হ্যাঁ, নাম কাছাকাছি" }, { en: "Only at night", bn: "শুধু রাতে" }, { en: "No, they are measured separately", bn: "না, এগুলো আলাদাভাবে মাপা হয়" }], a: 2, w: { en: "Land temperature comes from MODIS; air temperature comes from NASA POWER. Similar names do not mean identical evidence.", bn: "ভূপৃষ্ঠের তাপমাত্রা আসে MODIS থেকে; বায়ুর তাপমাত্রা NASA POWER থেকে। নাম কাছাকাছি হলেও প্রমাণ এক নয়।" } },
+  { scene: "dots", q: { en: "Why is a line between only the first and last year not enough?", bn: "শুধু প্রথম ও শেষ বছরের মাঝে রেখা টানা কেন যথেষ্ট নয়?" }, o: [{ en: "Every year between them also matters", bn: "মাঝের প্রতিটি বছরও গুরুত্বপূর্ণ" }, { en: "The last year is always wrong", bn: "শেষ বছর সবসময় ভুল" }, { en: "Lines cannot be drawn on maps", bn: "মানচিত্রে রেখা আঁকা যায় না" }], a: 0, w: { en: "Two dots are not a trend: Terra Earth uses every annual observation in the selected period.", bn: "দুটি বিন্দু প্রবণতা নয়: টেরা আর্থ নির্বাচিত সময়ের প্রতিটি বার্ষিক পর্যবেক্ষণ ব্যবহার করে।" } },
+  { scene: "green", q: { en: "In Brazil, what does NDVI help Tara compare?", bn: "ব্রাজিলে NDVI তারাকে কী তুলনা করতে সাহায্য করে?" }, o: [{ en: "River depth", bn: "নদীর গভীরতা" }, { en: "Plant greenness", bn: "উদ্ভিদের সবুজের পরিমাণ" }, { en: "A photograph of every leaf", bn: "প্রতিটি পাতার ছবি" }], a: 1, w: { en: "NDVI is a greenness signal—not a photograph of every leaf.", bn: "NDVI সবুজের একটি সংকেত—প্রতিটি পাতার ছবি নয়।" } },
+  { scene: "air", q: { en: "Are Cairo's land temperature and Tokyo's air temperature the same kind of record?", bn: "কায়রোর ভূপৃষ্ঠের তাপমাত্রা আর টোকিওর বায়ুর তাপমাত্রা কি একই ধরনের রেকর্ড?" }, o: [{ en: "Yes, the names are similar", bn: "হ্যাঁ, নাম কাছাকাছি" }, { en: "Only at night", bn: "শুধু রাতে" }, { en: "No, they are measured separately", bn: "না, এগুলো আলাদাভাবে মাপা হয়" }], a: 2, w: { en: "Land temperature comes from MODIS; air temperature comes from NASA POWER. Similar names do not mean identical evidence.", bn: "ভূপৃষ্ঠের তাপমাত্রা আসে MODIS থেকে; বায়ুর তাপমাত্রা NASA POWER থেকে। নাম কাছাকাছি হলেও প্রমাণ এক নয়।" } },
   { scene: "rain", q: { en: "Rafi says heavy rain today is…", bn: "রাফি বলে, আজকের ভারী বৃষ্টি হলো…" }, o: [{ en: "Weather", bn: "আবহাওয়া" }, { en: "A climate trend", bn: "জলবায়ুর প্রবণতা" }, { en: "A satellite error", bn: "স্যাটেলাইটের ভুল" }], a: 0, w: { en: "One day is weather; a pattern across many years is the evidence we test for climate.", bn: "একদিনের ঘটনা আবহাওয়া; বহু বছরের ধরনই জলবায়ুর জন্য পরীক্ষিত প্রমাণ।" } },
   { scene: "test", q: { en: "What does the Mann–Kendall test check?", bn: "Mann–Kendall পরীক্ষা কী যাচাই করে?" }, o: [{ en: "A satellite's speed", bn: "স্যাটেলাইটের গতি" }, { en: "The direction of change through time", bn: "সময়ের সঙ্গে পরিবর্তনের দিক" }, { en: "The colour of the map", bn: "মানচিত্রের রং" }], a: 1, w: { en: "Mann–Kendall checks direction, and the p-value helps decide whether the pattern is clear.", bn: "Mann–Kendall দিক যাচাই করে, আর p-value বুঝতে সাহায্য করে ধরনটি স্পষ্ট কি না।" } },
   { scene: "test", q: { en: "If the evidence is not statistically significant, what is the honest conclusion?", bn: "প্রমাণ পরিসংখ্যানগতভাবে তাৎপর্যপূর্ণ না হলে সৎ সিদ্ধান্ত কী?" }, o: [{ en: "A dramatic change", bn: "বড় পরিবর্তন" }, { en: "Delete the data", bn: "তথ্য মুছে ফেলো" }, { en: "No clear change", bn: "স্পষ্ট পরিবর্তন নেই" }], a: 2, w: { en: "The honest answer is no clear change—even when the two endpoints differ.", bn: "সৎ উত্তর হলো স্পষ্ট পরিবর্তন নেই—দুই শেষবিন্দু আলাদা হলেও।" } },
@@ -294,7 +296,8 @@ export function KidsStory() {
   const scene = KIDS_STORY[active] ?? KIDS_STORY[0];
   const mood = MOODS[scene.id] ?? "encouraging";
   const localize = (value: StoryText) => value[lang];
-  const analysis = useMemo(() => scene.evidence ? analyzeVariable(scene.evidence.districtId, scene.evidence.variable) : null, [scene]);
+  const locationEvidence = useLocationEvidence(scene.evidence?.districtId ?? "dhaka", false);
+  const analysis = useMemo(() => scene.evidence ? analyzeVariable(scene.evidence.districtId, scene.evidence.variable) : null, [scene, locationEvidence.version]);
   const district = useMemo(() => scene.evidence ? getDistrict(scene.evidence.districtId) : null, [scene]);
 
   const playScene = useCallback((target: StoryScene) => {
@@ -317,7 +320,7 @@ export function KidsStory() {
   }, [playScene, stop]);
 
   useEffect(() => {
-    if (!window.localStorage.getItem("mec-lang")) setLang("bn");
+
     const stored = Number(sessionStorage.getItem("tb-story-scene") ?? 0);
     if (Number.isFinite(stored)) setActive(Math.min(Math.max(stored, 0), KIDS_STORY.length - 1));
   }, [setLang]);
@@ -345,11 +348,11 @@ export function KidsStory() {
 
   if (!started) return (
     <section className="story-gate">
-      <img src={earth} alt="Tara and Rafi look toward Earth and Bangladesh" width={1536} height={1024} />
+      <img src={earth} alt="Tara and Rafi explore planet Earth" width={1536} height={1024} />
       <div>
-        <p>{lang === "bn" ? "টেরাবাংলা কমিক যাত্রা" : "A TerraBangla comic journey"}</p>
+        <p>{lang === "bn" ? "টেরা আর্থ কমিক যাত্রা" : "A Terra Earth comic journey"}</p>
         <h1>{lang === "bn" ? "প্রমাণের খাতা" : "The Evidence Journal"}</h1>
-        <p>{lang === "bn" ? "তারা, রাফি আর নীলের সঙ্গে বাংলাদেশের জলবায়ু প্রমাণের গল্প আবিষ্কার করো। প্রতিটি নতুন দৃশ্যে চরিত্র, কণ্ঠ ও পটভূমি বদলাবে।" : "Join Tara, Rafi and Neel through Bangladesh's climate evidence. Every new scene changes its character, voice and setting."}</p>
+        <p>{lang === "bn" ? "তারা, রাফি ও নীলের সঙ্গে ব্রাজিলের বন থেকে টোকিও, নাইরোবি ও অস্ট্রেলিয়ার প্রমাণ খুঁজে দেখো।" : "Join Tara, Rafi and Neel across continents, from Brazil’s forests to Tokyo, Nairobi and Australia. Follow the records, not guesses."}</p>
         <Button size="lg" onClick={() => { setStarted(true); playScene(scene); window.scrollTo({ top: 0, behavior: "auto" }); }}><Play />{lang === "bn" ? "গল্প শুরু করো" : "Start story"}</Button>
       </div>
     </section>
@@ -403,6 +406,7 @@ export function KidsStory() {
             <Button variant="outline" disabled={active === 0} onClick={() => go(active - 1)}><ArrowLeft />{lang === "bn" ? "আগের দৃশ্য" : "Previous"}</Button>
             <Button onClick={() => go(active + 1)}>{active === KIDS_STORY.length - 1 ? (lang === "bn" ? "শেষের প্রশ্ন" : "Final review") : (lang === "bn" ? "পরের দৃশ্য" : "Next")}<ArrowRight /></Button>
           </nav>
+          {scene.evidence ? <Button asChild variant="outline"><Link to="/district/$districtId" params={{districtId:scene.evidence.districtId}}>{lang === "bn" ? "এই স্থানের NASA প্রমাণ খুলুন" : "Open this location’s NASA evidence"}</Link></Button> : null}
         </article>
       </section>
       <BackToTop />

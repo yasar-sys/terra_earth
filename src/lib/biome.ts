@@ -52,14 +52,14 @@ export function classifyBiome(districtId: string): BiomeVerdict {
   const t = dirOf(tempSource?.result ?? null);
   const r = dirOf(rain?.result ?? null);
 
-  if (!tempSource && !veg) {
+  if (!tempSource || !veg || !rain) {
     return {
       label: "unknown",
       labelKey: "district.nodata",
       inputs,
       explanation: {
-        en: "Not enough cached variables to classify this district's biome trend yet.",
-        bn: "এই জেলার বায়োম প্রবণতা নির্ধারণ করার জন্য এখনও পর্যাপ্ত সংরক্ষিত উপাত্ত নেই।",
+        en: "All three signals (vegetation, temperature and rainfall) are required to classify this location's biome trend yet.",
+        bn: "এই স্থানের বায়োম প্রবণতা নির্ধারণ করার জন্য এখনও পর্যাপ্ত সংরক্ষিত উপাত্ত নেই।",
       },
     };
   }

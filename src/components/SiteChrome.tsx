@@ -25,7 +25,7 @@ function Brand() {
       <img className="site-brand-logo" src={terraBanglaLogo.url} alt="" width={768} height={768} />
       <span className="min-w-0">
         <span className="block truncate font-display text-lg font-semibold text-foreground">{t("app.title")}</span>
-        <span className="block truncate text-[10px] uppercase text-muted-foreground">Bangladesh climate evidence</span>
+        <span className="block truncate text-[10px] uppercase text-muted-foreground">Global climate evidence</span>
       </span>
     </Link>
   );
@@ -130,7 +130,7 @@ export function SiteFooter() {
           <Link to="/admin" className="mt-2 inline-block text-sm text-muted-foreground hover:underline">Admin</Link>
         </div>
       </div>
-      <div className="border-t border-border/70 px-3 py-3 text-center text-[11px] text-muted-foreground">MEC TERRA_DETECTORS · Bangladesh · 2026</div>
+      <div className="border-t border-border/70 px-3 py-3 text-center text-[11px] text-muted-foreground">MEC TERRA_DETECTORS · Worldwide · 2026</div>
     </footer>
   );
 }

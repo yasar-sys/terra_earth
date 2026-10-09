@@ -6,10 +6,10 @@ import { useLang } from "@/lib/i18n";
 export const Route = createFileRoute("/auth-callback")({
   ssr: false,
   head: () => ({ meta: [
-    { title: "Signing you in — TerraBangla" },
-    { name: "description", content: "Completing your secure TerraBangla sign-in." },
-    { property: "og:title", content: "Signing you in — TerraBangla" },
-    { property: "og:description", content: "Completing your secure TerraBangla sign-in." },
+    { title: "Signing you in — Terra Earth" },
+    { name: "description", content: "Completing your secure Terra Earth sign-in." },
+    { property: "og:title", content: "Signing you in — Terra Earth" },
+    { property: "og:description", content: "Completing your secure Terra Earth sign-in." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
   ] }),
@@ -59,7 +59,7 @@ function AuthCallback() {
 
   return <div className="mx-auto flex min-h-[60vh] max-w-lg items-center px-4 py-12">
     <section className="panel w-full p-7 text-center">
-      <h1 className="font-display text-2xl text-foreground">TerraBangla</h1>
+      <h1 className="font-display text-2xl text-foreground">Terra Earth</h1>
       <p aria-live="polite" className="mt-3 text-sm leading-6 text-muted-foreground">
         {error ? error : lang === "bn" ? "সাইন ইন সম্পূর্ণ করছি…" : "Completing your sign-in…"}
       </p>

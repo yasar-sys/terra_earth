@@ -18,13 +18,13 @@ import { useLang } from "@/lib/i18n";
 export const Route = createFileRoute("/how-it-works")({
   head: () => ({
     meta: [
-      { title: "How we know — TerraBangla" },
+      { title: "How we know — Terra Earth" },
       {
         name: "description",
         content:
-          "A plain-language guide to how TerraBangla turns NASA satellite records into tested climate trends: NDVI, land temperature, Mann-Kendall, Theil-Sen, p-values and provenance.",
+          "A plain-language guide to how Terra Earth turns NASA satellite records into tested climate trends: NDVI, land temperature, Mann-Kendall, Theil-Sen, p-values and provenance.",
       },
-      { property: "og:title", content: "How we know — TerraBangla" },
+      { property: "og:title", content: "How we know — Terra Earth" },
       {
         property: "og:description",
         content:
@@ -74,8 +74,8 @@ const METHOD_STEPS = [
     step: "1",
     title: "Keep a fixed copy of the record",
     bnTitle: "রেকর্ডের একটি স্থির কপি রাখা",
-    body: "Before any analysis, TerraBangla saves a copy of the NASA observations for each district. Every page and every visitor reads the same saved numbers, so results cannot quietly change between visits.",
-    bnBody: "বিশ্লেষণের আগে প্রতিটি জেলার নাসা পর্যবেক্ষণের একটি কপি সংরক্ষণ করা হয়। প্রতিটি পাতা ও প্রতিটি দর্শক একই সংরক্ষিত সংখ্যা দেখে, তাই ভিজিটের মাঝে ফলাফল নীরবে বদলাতে পারে না।",
+    body: "Before any analysis, Terra Earth saves a copy of the NASA observations for each location. Every page and every visitor reads the same saved numbers, so results cannot quietly change between visits.",
+    bnBody: "বিশ্লেষণের আগে প্রতিটি স্থানের নাসা পর্যবেক্ষণের একটি কপি সংরক্ষণ করা হয়। প্রতিটি পাতা ও প্রতিটি দর্শক একই সংরক্ষিত সংখ্যা দেখে, তাই ভিজিটের মাঝে ফলাফল নীরবে বদলাতে পারে না।",
   },
   {
     icon: TrendingUp,
@@ -114,8 +114,8 @@ const METHOD_STEPS = [
     step: "6",
     title: "Admit the gaps",
     bnTitle: "শূন্যস্থান স্বীকার করা",
-    body: "When a district has no cached record, the page says “Data not yet available” instead of guessing. An honest blank teaches more than an invented number.",
-    bnBody: "কোনো জেলার সংরক্ষিত রেকর্ড না থাকলে পাতাটি অনুমান না করে বলে “উপাত্ত এখনও পাওয়া যায়নি”। সৎ শূন্যস্থান বানানো সংখ্যার চেয়ে বেশি শেখায়।",
+    body: "When a location has no cached record, the page says “Data not yet available” instead of guessing. An honest blank teaches more than an invented number.",
+    bnBody: "কোনো স্থানের সংরক্ষিত রেকর্ড না থাকলে পাতাটি অনুমান না করে বলে “উপাত্ত এখনও পাওয়া যায়নি”। সৎ শূন্যস্থান বানানো সংখ্যার চেয়ে বেশি শেখায়।",
   },
 ];
 
@@ -174,8 +174,8 @@ const HONESTY = [
   {
     title: "Pictures are not evidence",
     bnTitle: "ছবি প্রমাণ নয়",
-    body: "Comic art, mascots and district scenery exist to explain and welcome. Only the charts and provenance panels carry measured claims.",
-    bnBody: "কমিক অঙ্কন, মাসকট ও জেলার দৃশ্য ব্যাখ্যা ও স্বাগতের জন্য। মাপা দাবি বহন করে শুধু চার্ট ও তথ্য-উৎস প্যানেল।",
+    body: "Comic art, mascots and location scenery exist to explain and welcome. Only the charts and provenance panels carry measured claims.",
+    bnBody: "কমিক অঙ্কন, মাসকট ও স্থানের দৃশ্য ব্যাখ্যা ও স্বাগতের জন্য। মাপা দাবি বহন করে শুধু চার্ট ও তথ্য-উৎস প্যানেল।",
   },
   {
     title: "Places, not national averages",
@@ -206,8 +206,8 @@ function HowItWorksPage() {
         </h1>
         <p className="mt-4 text-base leading-7 text-muted-foreground">
           {L(
-            "Every number on TerraBangla comes from NASA satellites and is checked with fixed statistical tests before it reaches a chart. This guide explains each idea in everyday words — no equations required.",
-            "টেরা বাংলার প্রতিটি সংখ্যা নাসার স্যাটেলাইট থেকে আসে এবং চার্টে পৌঁছানোর আগে নির্দিষ্ট পরিসংখ্যান পরীক্ষায় যাচাই হয়। এই দিকনির্দেশে প্রতিটি ধারণা রোজকার ভাষায় ব্যাখ্যা করা হলো — কোনো সমীকরণ লাগবে না।",
+            "Every number on Terra Earth comes from NASA satellites and is checked with fixed statistical tests before it reaches a chart. This guide explains each idea in everyday words — no equations required.",
+            "টেরা আর্থর প্রতিটি সংখ্যা নাসার স্যাটেলাইট থেকে আসে এবং চার্টে পৌঁছানোর আগে নির্দিষ্ট পরিসংখ্যান পরীক্ষায় যাচাই হয়। এই দিকনির্দেশে প্রতিটি ধারণা রোজকার ভাষায় ব্যাখ্যা করা হলো — কোনো সমীকরণ লাগবে না।",
           )}
         </p>
       </header>
@@ -218,8 +218,8 @@ function HowItWorksPage() {
         </h2>
         <p className="mt-2 max-w-3xl text-sm leading-7 text-muted-foreground">
           {L(
-            "Two NASA instruments feed every district page: MODIS Terra for vegetation and land-surface temperature, and NASA POWER for air temperature, rainfall and sunlight.",
-            "প্রতিটি জেলা পাতায় দুটি নাসা যন্ত্রের তথ্য থাকে: সবুজতা ও ভূ-পৃষ্ঠের তাপমাত্রার জন্য MODIS Terra, আর বায়ুর তাপমাত্রা, বৃষ্টি ও সূর্যালোকের জন্য NASA POWER।",
+            "Two NASA instruments feed every location page: MODIS Terra for vegetation and land-surface temperature, and NASA POWER for air temperature, rainfall and sunlight.",
+            "প্রতিটি স্থান পাতায় দুটি নাসা যন্ত্রের তথ্য থাকে: সবুজতা ও ভূ-পৃষ্ঠের তাপমাত্রার জন্য MODIS Terra, আর বায়ুর তাপমাত্রা, বৃষ্টি ও সূর্যালোকের জন্য NASA POWER।",
           )}
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -320,8 +320,8 @@ function HowItWorksPage() {
       <section className="mt-14 border-t border-border pt-8">
         <p className="text-sm leading-7 text-muted-foreground">
           {L(
-            "Ready to investigate yourself? Open any district from the globe, or see the full dataset list on Data & Methods.",
-            "নিজে অনুসন্ধান করতে প্রস্তুত? গ্লোব থেকে যেকোনো জেলা খুলুন, বা উপাত্ত ও পদ্ধতি পাতায় পূর্ণ ডেটাসেট তালিকা দেখুন।",
+            "Ready to investigate yourself? Open any location from the globe, or see the full dataset list on Data & Methods.",
+            "নিজে অনুসন্ধান করতে প্রস্তুত? গ্লোব থেকে যেকোনো স্থান খুলুন, বা উপাত্ত ও পদ্ধতি পাতায় পূর্ণ ডেটাসেট তালিকা দেখুন।",
           )}{" "}
           <Link to="/about" className="text-primary underline">
             {L("Data & Methods", "উপাত্ত ও পদ্ধতি")}

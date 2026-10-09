@@ -1,3 +1,6 @@
+import { LocationSearch } from "@/components/LocationSearch";
+import { useLocationEvidence } from "@/lib/location-evidence";
+import { districts, getCached, getDistrict } from "@/lib/climate";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { GlobeStage } from "@/components/GlobeStage";
@@ -17,13 +20,13 @@ import lstGrid from "@/data/grid/lst.json";
 export const Route = createFileRoute("/heatmap")({
   head: () => ({
     meta: [
-      { title: "Gridded NASA heatmap of Bangladesh — TerraBangla" },
+      { title: "Worldwide NASA sample map — Terra Earth" },
       {
         name: "description",
         content:
-          "Data-driven hex-bin heatmap of Bangladesh built from cached NASA POWER temperature, rainfall and solar grids plus MODIS vegetation and land surface temperature.",
+          "Worldwide NASA coordinate samples and preserved Bangladesh grids, with temperature, rainfall, sunlight, vegetation and land-temperature evidence.",
       },
-      { property: "og:title", content: "Gridded NASA heatmap of Bangladesh" },
+      { property: "og:title", content: "Worldwide NASA sample map" },
       {
         property: "og:description",
         content: "Switch between temperature, rainfall and sunlight grids computed from cached NASA data.",
@@ -63,7 +66,15 @@ function HeatmapPage() {
   const L = (en: string, bn: string) => (lang === "bn" ? bn : en);
   const [variable, setVariable] = useState<keyof typeof GRIDS>("temperature");
   const [mode, setMode] = useState<"year" | "trend">("year");
-  const grid = GRIDS[variable];
+  const [scope,setScope] = useState<"world"|"bangladesh">("world");
+  const [selected,setSelected] = useState("india");
+  const evidence = useLocationEvidence(selected, variable === "ndvi" || variable === "lst");
+  const globalGrid = useMemo(() => {
+    const records = [...districts, ...(!districts.some(d=>d.id === selected) && getDistrict(selected) ? [getDistrict(selected)].filter((d): d is NonNullable<typeof d> => !!d) : [])].flatMap(d => { const v = d.id.startsWith("g_") && !evidence.hydrated ? undefined : getCached(d.id)?.variables[variable]; return v ? [{location:d,variable:v}] : []; });
+    const first = records[0]?.variable;
+    return {variable,unit:first?.unit ?? "",cells:records.map(r => ({lat:r.location.lat,lng:r.location.lon,annual:r.variable.annual})),provenance:{dataset_id:"NASA_GLOBAL_POINT_COLLECTION",source_url:"https://power.larc.nasa.gov/",retrieved:first?.provenance.retrieved ?? "",mode:"cache" as const}};
+  },[variable,evidence.version,selected,evidence.hydrated]);
+  const grid = scope === "world" ? globalGrid : GRIDS[variable];
   const isSat = variable === "ndvi" || variable === "lst";
   const years = useMemo(
     () => [...new Set(grid.cells.flatMap((c) => Object.keys(c.annual)))].map(Number).sort((a, b) => a - b),
@@ -117,11 +128,11 @@ function HeatmapPage() {
   return (
     <div className="mx-auto max-w-7xl px-3 py-8 sm:px-6">
       <h1 className="font-display text-3xl text-foreground sm:text-4xl">
-        {L("Gridded heatmap of Bangladesh", "বাংলাদেশের গ্রিড হিটম্যাপ")}
+        {L("Worldwide evidence map", "বিশ্বের প্রমাণ মানচিত্র")}
       </h1>
       <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
         {L(
-          isSat
+          scope === "world" ? "Loaded coordinate samples worldwide. Unmeasured areas remain empty; these points do not imply continuous global coverage or national averages." : isSat
             ? `Each hexagon aggregates real NASA MODIS satellite samples (${grid.cells.length} sites, one per district). No values are interpolated — colour and height come only from cached measurements.`
             : `Each hexagon aggregates real NASA POWER grid cells (0.5° × 0.625°). ${grid.cells.length} cells cover the country. Colour and height come only from cached values.`,
           isSat
@@ -130,6 +141,9 @@ function HeatmapPage() {
         )}
       </p>
 
+      <div className="mt-5 grid gap-4 sm:grid-cols-2"><LocationSearch onSelect={id=>{setSelected(id);setScope("world");}} /><div className="flex items-end gap-2"><Button variant={scope === "world" ? "default" : "outline"} onClick={()=>setScope("world")}>Worldwide samples</Button><Button variant={scope === "bangladesh" ? "default" : "outline"} onClick={()=>setScope("bangladesh")}>Bangladesh grid</Button></div></div>
+      {evidence.isFetching ? <p role="status" className="mt-3 text-accent">Loading NASA map sample…</p> : null}
+      {evidence.data?.warnings.map(w=><p key={w} className="mt-2 text-xs text-accent">{w}</p>)}
       <div className="mt-5 flex flex-wrap items-end gap-3">
         <fieldset className="flex flex-wrap gap-2">
           <legend className="sr-only">{L("Variable", "সূচক")}</legend>
@@ -175,9 +189,9 @@ function HeatmapPage() {
         <div className="panel h-[420px] overflow-hidden sm:h-[560px]">
           <GlobeStage
             variable={variable as VariableKey}
-            phase="bangladesh"
+            phase="world"
             onPhaseChange={() => {}}
-            onSelectDistrict={() => {}}
+            onSelectDistrict={(id) => {setSelected(id); setScope("world");}}
             hexMode
             gridPoints={points}
             gridUnit={unit}
@@ -227,10 +241,10 @@ function HeatmapPage() {
               title={L(LABELS[variable].en, LABELS[variable].bn)}
               payload={{ variable, unit, mode, year: mode === "year" ? activeYear : null, n_cells: points.length, provenance: grid.provenance, points: points.slice(0, 20) }}
             />
-            <Button type="button" variant="outline" size="sm" onClick={() => exportGridCsv(buildExport(), `terrabangla-${variable}-cells.csv`)}>
+            <Button type="button" variant="outline" size="sm" onClick={() => exportGridCsv(buildExport(), `terra-earth-${variable}-cells.csv`)}>
               {L("Download CSV", "CSV ডাউনলোড")}
             </Button>
-            <Button type="button" variant="outline" size="sm" onClick={() => void exportGridPdf(buildExport(), `terrabangla-${variable}-cells.pdf`)}>
+            <Button type="button" variant="outline" size="sm" onClick={() => void exportGridPdf(buildExport(), `terra-earth-${variable}-cells.pdf`)}>
               {L("Download PDF", "PDF ডাউনলোড")}
             </Button>
           </div>

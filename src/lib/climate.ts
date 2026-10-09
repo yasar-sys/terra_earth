@@ -7,10 +7,11 @@
  * A district with no cached file resolves to `null` and the UI shows an honest
  * "data not yet available" state — never a fabricated number.
  */
+import { globalLocations, parseGlobalLocation, type GlobalLocation } from "./global-locations";
 import districtList from "@/data/districts.json";
 import { analyzeSeries, type TrendResult } from "@/lib/stats";
 
-export interface District {
+export interface District extends GlobalLocation {
   id: string;
   name: string;
   bn: string;
@@ -55,7 +56,7 @@ export const VARIABLE_LABEL_KEY: Record<VariableKey, string> = {
   precipitation: "var.precipitation",
 };
 
-export const districts = (districtList as District[])
+export const districts = [...(districtList as District[]), ...globalLocations]
   .slice()
   .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -65,13 +66,15 @@ const modules = import.meta.glob<CachedDistrict>("../data/cache/*.json", {
 });
 
 const cache = new Map<string, CachedDistrict>();
+const dynamicLocations = new Map<string, GlobalLocation>();
 for (const [path, doc] of Object.entries(modules)) {
-  const id = path.split("/").pop()!.replace(/\.json$/, "");
+  const id = path.split("/").pop()?.replace(/\.json$/, "");
+  if (!id) continue;
   cache.set(id, doc);
 }
 
 export function getDistrict(id: string): District | undefined {
-  return districts.find((d) => d.id === id);
+  return dynamicLocations.get(id) ?? districts.find((d) => d.id === id) ?? parseGlobalLocation(id);
 }
 
 export function getCached(id: string): CachedDistrict | null {
@@ -213,3 +216,13 @@ export function nearestDistrict(lat: number, lng: number): District | undefined 
   }
   return best;
 }
+
+/** Register only observations fetched and validated by our NASA server loader. */
+export function registerEvidence(location: GlobalLocation, document: CachedDistrict) {
+ if (location.id.startsWith("g_")) dynamicLocations.set(location.id, location);
+ else if (!districts.some(x => x.id === location.id)) districts.push(location);
+ cache.set(location.id, document);
+}
+
+const regionalModules = import.meta.glob<{id:string;name:string;bn:string;lat:number;lon:number;variables:CachedDistrict["variables"]}>("../data/south-asia/*.json",{eager:true,import:"default"});
+for (const point of Object.values(regionalModules)) registerEvidence({...point,division:point.name,sample_type:"capital representative point"},{district:point.id,variables:point.variables});

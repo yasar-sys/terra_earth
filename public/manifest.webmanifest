@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "TerraBangla — Bangladesh Climate Trend Explorer",
-  "short_name": "TerraBangla",
-  "description": "Explore data-backed NASA climate trends across all 64 districts of Bangladesh — vegetation, temperature, rainfall and sunlight, with a kids' climate game.",
+  "name": "Terra Earth — Global Climate Trend Explorer",
+  "short_name": "Terra Earth",
+  "description": "Explore data-backed NASA climate trends across locations worldwide of Global — vegetation, temperature, rainfall and sunlight, with a kids' climate game.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

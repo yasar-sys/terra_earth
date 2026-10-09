@@ -19,6 +19,8 @@ export const explainStudentTrend = createServerFn({ method: "POST" })
     }
 
     const { analyzeVariable, getDistrict, VARIABLE_LABEL_KEY } = await import("./climate");
+    const { ensureGlobalEvidence } = await import("./global-climate.server");
+    await ensureGlobalEvidence(data.districtId, data.variable === "ndvi" || data.variable === "lst");
     const district = getDistrict(data.districtId);
     const analysis = analyzeVariable(data.districtId, data.variable, {
       start: Math.min(data.start, data.end),
@@ -44,7 +46,7 @@ export const explainStudentTrend = createServerFn({ method: "POST" })
       fetch: gateway.fetch,
     });
     const facts = {
-      district: district.name,
+      location: {name: district.name, latitude: district.lat, longitude: district.lon, sample_scope: "representative coordinate, not national average"},
       variable: VARIABLE_LABEL_KEY[data.variable],
       unit: analysis.unit,
       period: analysis.result.period,
@@ -62,7 +64,7 @@ export const explainStudentTrend = createServerFn({ method: "POST" })
     const language = data.lang === "bn" ? "Bangla" : "English";
     const result = streamText({
       model: provider.responses("openai/gpt-6-astra"),
-      system: `You are a careful Earth-science coach for students aged 8–18. Answer in ${language}. Use only the supplied computed evidence for numerical claims. Never calculate, change, or invent a value. Clearly distinguish measured evidence from plausible mechanisms. Never claim causation from a trend. If the student's claim conflicts with the evidence, say so kindly. Keep the answer under 230 words. Use exactly these short headings: Evidence, Possible explanation, Follow-up comparison. The follow-up must name one useful Bangladesh district comparison and one variable, but must not invent that district's result. Mention that the comparison should be checked in the app.`,
+      system: `You are a careful Earth-science coach for students aged 8–18. Answer in ${language}. Use only the supplied computed evidence for numerical claims. Never calculate, change, or invent a value. Clearly distinguish measured evidence from plausible mechanisms. Never claim causation from a trend. If the student's claim conflicts with the evidence, say so kindly. Keep the answer under 230 words. Use exactly these short headings: Evidence, Possible explanation, Follow-up comparison. The follow-up must name one useful worldwide location comparison and one variable, but must not invent that district's result. Mention that the comparison should be checked in the app.`,
       prompt: `Student observation: ${observation}\n\nComputed evidence (authoritative JSON):\n${JSON.stringify(facts)}`,
       providerOptions: {
         openai: {

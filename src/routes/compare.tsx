@@ -1,3 +1,5 @@
+import { LocationSearch } from "@/components/LocationSearch";
+import { useLocationEvidence } from "@/lib/location-evidence";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useRef, useState } from "react";
 import { Download, FileCheck2, LoaderCircle } from "lucide-react";
@@ -27,13 +29,13 @@ export const Route = createFileRoute("/compare")({
   }),
   head: () => ({
     meta: [
-      { title: "Compare district trends — TerraBangla" },
+      { title: "Compare worldwide trends — Terra Earth" },
       {
         name: "description",
         content:
-          "Compare two Bangladesh districts, or two variables in one district, over any year range with Theil-Sen trend lines.",
+          "Compare two locations worldwide, or two variables at one location, over any year range with Theil-Sen trend lines.",
       },
-      { property: "og:title", content: "Compare district trends" },
+      { property: "og:title", content: "Compare worldwide trends" },
       {
         property: "og:description",
         content: "Pick a year range and compare trends with per-line significance reported honestly.",
@@ -58,12 +60,16 @@ function ComparePage() {
   const search = Route.useSearch();
   const { t, lang } = useLang();
   const L = (en: string, bn: string) => (lang === "bn" ? bn : en);
-  const bounds = yearBounds();
+  const bounds = {min: 2001, max: 2024};
   const [mode, setMode] = useState<"districts" | "variables">("districts");
   const [a, setA] = useState(search.districtA ?? "dhaka");
-  const [b, setB] = useState(search.districtB ?? "chattogram");
+  const [b, setB] = useState(search.districtB ?? "india");
+
   const [v1, setV1] = useState<VariableKey>("temperature");
   const [v2, setV2] = useState<VariableKey>("precipitation");
+  const needsModis = [v1, ...(mode === "variables" ? [v2] : [])].some(v=>v === "ndvi" || v === "lst");
+  const evidenceA = useLocationEvidence(a, needsModis);
+  const evidenceB = useLocationEvidence(b, needsModis);
   const [start, setStart] = useState(bounds.min);
   const [end, setEnd] = useState(bounds.max);
   const [exporting, setExporting] = useState(false);
@@ -90,10 +96,10 @@ function ComparePage() {
       key: `l${i}`,
       districtName: dName(s.d),
       label: mode === "districts" ? dName(s.d) : t(VARIABLE_LABEL_KEY[s.v]),
-      analysis: analyzeVariable(s.d, s.v, range),
+      analysis: s.d.startsWith("g_") && !evidenceA.hydrated ? null : analyzeVariable(s.d, s.v, range),
     }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode, a, b, v1, v2, range.start, range.end, lang]);
+  }, [mode, a, b, v1, v2, range.start, range.end, lang, evidenceA.version, evidenceB.version, evidenceA.hydrated]);
 
   const chartData = useMemo(() => {
     const years: number[] = [];
@@ -148,7 +154,7 @@ function ComparePage() {
   const varOptions = (id: string) => {
     const av = availableVariables(id);
     return VARIABLE_KEYS.map((k) => (
-      <option key={k} value={k} disabled={!av.includes(k)}>
+      <option key={k} value={k}>
         {t(VARIABLE_LABEL_KEY[k])}
         {av.includes(k) ? "" : ` (${L("no data", "তথ্য নেই")})`}
       </option>
@@ -159,7 +165,7 @@ function ComparePage() {
     if (!reportRef.current) return;
     setExporting(true);
     try {
-      await exportComparisonPdf(reportRef.current, `TerraBangla-comparison-${a}-${mode === "districts" ? b : v2}.pdf`);
+      await exportComparisonPdf(reportRef.current, `Terra Earth-comparison-${a}-${mode === "districts" ? b : v2}.pdf`);
     } finally {
       setExporting(false);
     }
@@ -167,8 +173,9 @@ function ComparePage() {
   const districtSelect = (value: string, set: (v: string) => void, label: string) => (
     <label className="flex flex-col gap-1 text-xs text-muted-foreground">
       {label}
+      <LocationSearch label={label + " — country or city"} onSelect={set} />
       <select className={sel} value={value} onChange={(e) => set(e.target.value)}>
-        {districts.map((d) => (
+        {[...districts, ...(!districts.some(d=>d.id === value) && getDistrict(value) ? [getDistrict(value)].filter((d): d is NonNullable<typeof d> => !!d) : [])].map((d) => (
           <option key={d.id} value={d.id}>
             {lang === "bn" ? d.bn : d.name}
           </option>
@@ -196,6 +203,8 @@ function ComparePage() {
         </Button>
       </div>
 
+      {evidenceA.isFetching || evidenceB.isFetching ? <p role="status" className="mt-4 text-accent">Loading NASA observations…</p> : null}
+      {[...(evidenceA.data?.warnings ?? []), ...(evidenceB.data?.warnings ?? [])].map((w,i)=><p key={i} className="mt-2 text-xs text-accent">{w}</p>)}
       <div className="panel mt-5 flex flex-wrap items-end gap-3 p-4">
         <div role="radiogroup" aria-label={L("Comparison mode", "তুলনার ধরন")} className="flex flex-wrap gap-2">
           {(["districts", "variables"] as const).map((m) => (
@@ -210,8 +219,8 @@ function ComparePage() {
             </button>
           ))}
         </div>
-        {districtSelect(a, setA, mode === "districts" ? L("District A", "জেলা ক") : L("District", "জেলা"))}
-        {mode === "districts" && districtSelect(b, setB, L("District B", "জেলা খ"))}
+        {districtSelect(a, setA, mode === "districts" ? L("Location A", "জেলা ক") : L("Location", "স্থান"))}
+        {mode === "districts" && districtSelect(b, setB, L("Location B", "জেলা খ"))}
         <label className="flex flex-col gap-1 text-xs text-muted-foreground">
           {mode === "districts" ? L("Variable", "সূচক") : L("Variable 1", "সূচক ১")}
           <select className={sel} value={v1} onChange={(e) => setV1(e.target.value as VariableKey)}>
@@ -243,7 +252,7 @@ function ComparePage() {
       <div ref={reportRef} className="comparison-report mt-5 p-3 sm:p-5">
         <div className="report-only mb-5 border-b border-border pb-4">
           <p className="flex items-center gap-2 text-xs font-semibold uppercase text-accent"><FileCheck2 aria-hidden /> {t("compare.report")}</p>
-          <h2 className="mt-2 font-display text-2xl text-foreground">TerraBangla</h2>
+          <h2 className="mt-2 font-display text-2xl text-foreground">Terra Earth</h2>
           <p className="mt-1 text-sm text-muted-foreground">{lines.map((line) => line.label).join(" · ")} · {range.start}–{range.end}</p>
         </div>
       <div className="h-[360px] sm:h-[440px]" role="img" aria-label={verdict}>
