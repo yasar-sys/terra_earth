@@ -53,7 +53,7 @@ export const Route = createFileRoute("/api/chat")({
       const { geocodeQuestion } = await import("@/lib/geocode.server");
       for (const location of await geocodeQuestion(userText)) { registerEvidence(location,getCached(location.id) ?? {district:location.id,variables:{}}); if (!mentioned.some(x=>x.id===location.id)) mentioned.push(location); }
     }
-    const chosenList = (mentioned.length ? mentioned : districts.filter((district) => district.id === "dhaka")).slice(0, 6);
+    const chosenList = mentioned.slice(0, 6);
     const { ensureGlobalEvidence } = await import("@/lib/global-climate.server");
     await Promise.all(chosenList.map(chosen => ensureGlobalEvidence(chosen.id, body.variable === "ndvi" || body.variable === "lst")));
     const range = body.yearStart !== undefined && body.yearEnd !== undefined ? { start: body.yearStart, end: body.yearEnd } : undefined;

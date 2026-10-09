@@ -8,7 +8,7 @@ const pending = new Map<string, Promise<EvidenceResponse>>();
 const loaded = new Map<string, { result: EvidenceResponse; time: number }>();
 export interface EvidenceResponse { location: GlobalLocation; document: CachedDistrict; warnings: string[] }
 async function json(url: string): Promise<any> {
-  const response = await fetch(url, { headers: { Accept: 'application/json' } });
+  const response = await fetch(url, { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(30000) });
   if (!response.ok) throw new Error(`NASA returned ${response.status}`);
   return response.json();
 }

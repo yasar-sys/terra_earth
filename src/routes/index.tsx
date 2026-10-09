@@ -107,7 +107,7 @@ function Landing() {
           {t("app.tagline")}
         </p>
         <p className="mt-2 text-xs text-muted-foreground">
-          {covered} / {districts.length} {t("globe.districts")} · {t("hero.cta")}
+          {lang === "bn" ? "বিশ্বব্যাপী দেশ, শহর বা স্থানাঙ্ক খুঁজুন · যেখানে পাওয়া যায় NASA পর্যবেক্ষণ লোড হয়" : "Search worldwide countries, cities or coordinates · NASA observations load where available"}
         </p>
         <Button className="cta-pulse mt-5 rounded-full px-6" onClick={() => document.getElementById("picker-heading")?.scrollIntoView({behavior:"smooth"})}>{lang === "bn" ? "অনুসন্ধান শুরু করুন" : "Start investigating"}</Button>
       </section>
