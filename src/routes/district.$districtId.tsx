@@ -1,4 +1,9 @@
+import { useLocationEvidence } from "@/lib/location-evidence";
+import { coordinatesLabel } from "@/lib/global-locations";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
+import { DistrictLearning } from "@/components/DistrictLearning";
 import { TrendCard } from "@/components/TrendCard";
 import { ProvenanceButton } from "@/components/ProvenanceDrawer";
 import { classifyBiome } from "@/lib/biome";
@@ -22,11 +27,11 @@ export const Route = createFileRoute("/district/$districtId")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "District unavailable — TerraBangla" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Location unavailable — Terra Earth" }, { name: "robots", content: "noindex" }],
       };
     }
-    const title = `${loaderData.name} climate trends — TerraBangla`;
-    const description = `NASA-derived vegetation, temperature, solar and rainfall trends for ${loaderData.name} district, ${loaderData.division} division, Bangladesh.`;
+    const title = `${loaderData.name} climate trends — Terra Earth`;
+    const description = `NASA-derived vegetation, temperature, solar and rainfall trends for ${loaderData.name}, ${loaderData.division}, at its named sample coordinates.`;
     return {
       meta: [
         { title },
@@ -41,7 +46,7 @@ export const Route = createFileRoute("/district/$districtId")({
   component: DistrictDetail,
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-3 py-16 text-center sm:px-6">
-      <h1 className="font-display text-2xl text-foreground">District not found</h1>
+      <h1 className="font-display text-2xl text-foreground">Location not found</h1>
       <Link to="/" className="mt-4 inline-block text-primary underline">
         Back to the globe
       </Link>
@@ -52,8 +57,11 @@ export const Route = createFileRoute("/district/$districtId")({
 function DistrictDetail() {
   const { districtId } = Route.useParams();
   const { t, lang } = useLang();
-  const district = getDistrict(districtId)!;
-  const cachedAnalyses = VARIABLE_KEYS.map((key) => analyzeVariable(districtId, key)).filter(
+  const [includeModis, setIncludeModis] = useState(false);
+  const evidence = useLocationEvidence(districtId, includeModis);
+  const district = getDistrict(districtId);
+  if (!district) return null;
+  const cachedAnalyses = VARIABLE_KEYS.map((key) => districtId.startsWith("g_") && !evidence.hydrated ? null : analyzeVariable(districtId, key)).filter(
     (a): a is NonNullable<typeof a> => a !== null,
   );
   // Admin-uploaded files fill in variables the NASA cache does not have yet.
@@ -79,7 +87,7 @@ function DistrictDetail() {
         <div>
           <h1 className="font-display text-3xl text-foreground sm:text-4xl">{name}</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            {district.division} · {district.lat.toFixed(3)}°N, {district.lon.toFixed(3)}°E
+            {district.division} · {coordinatesLabel(district.lat, district.lon)}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -100,14 +108,17 @@ function DistrictDetail() {
         </div>
       </header>
 
-      {analyses.length === 0 ? (
+      <p className="mt-3 text-xs text-muted-foreground">{lang === "bn" ? "এই স্থানাঙ্কের নমুনা; দেশের গড় নয়।" : "Evidence at this sample coordinate — not a country-wide average."}</p>
+      {districtId.startsWith("g_") ? <div className="mt-4 flex flex-wrap items-center gap-3"><Button variant="outline" onClick={() => setIncludeModis(true)} disabled={includeModis || evidence.isFetching}>{lang === "bn" ? "MODIS উদ্ভিদ ও ভূপৃষ্ঠের তথ্য লোড করুন" : "Load MODIS vegetation & land temperature"}</Button>{evidence.isFetching ? <p role="status" className="text-sm text-accent">{lang === "bn" ? "NASA রেকর্ড লোড হচ্ছে…" : "Loading NASA records…"}</p> : null}{evidence.isError ? <Button variant="outline" onClick={() => void evidence.refetch()}>Retry NASA</Button> : null}</div> : null}
+      {evidence.data?.warnings.map(w => <p key={w} role="status" className="mt-2 text-xs text-accent">{w}</p>)}
+      {analyses.length === 0 && !evidence.isFetching ? (
         <section className="panel mt-6 p-6">
           <h2 className="font-display text-xl text-accent">{t("district.nodata")}</h2>
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
             {t("district.nodata.detail")}
           </p>
         </section>
-      ) : (
+      ) : analyses.length > 0 ? (
         <>
           <section aria-labelledby="biome-heading" className="panel mt-6 p-4 sm:p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
@@ -143,16 +154,17 @@ function DistrictDetail() {
             ))}
           </div>
 
+          <DistrictLearning districtId={districtId} variable={available.includes("temperature") ? "temperature" : available[0] ?? "temperature"} />
           <StudentInsight
             districtId={districtId}
-            variable={available.includes("temperature") ? "temperature" : available[0]!}
-            start={analyses[0]!.result.period.start}
-            end={analyses[0]!.result.period.end}
+            variable={available.includes("temperature") ? "temperature" : available[0] ?? "temperature"}
+            start={analyses[0]?.result.period.start ?? 2015}
+            end={analyses[0]?.result.period.end ?? 2024}
           />
 
           {available.length < VARIABLE_KEYS.length ? (
             <p className="mt-4 text-xs text-muted-foreground">
-              {lang === "bn" ? "এখনও সংরক্ষিত হয়নি: " : "Not cached yet for this district: "}
+              {lang === "bn" ? "এখনও সংরক্ষিত হয়নি: " : "Not available for this location: "}
               {VARIABLE_KEYS.filter((k) => !available.includes(k))
                 .map((k) => t(VARIABLE_LABEL_KEY[k]))
                 .join(", ")}
@@ -160,7 +172,7 @@ function DistrictDetail() {
             </p>
           ) : null}
         </>
-      )}
+      ) : null}
     </div>
   );
 }

@@ -44,6 +44,7 @@
 - [x] Add 14 unique comic scenes, scene-specific character motion, and layered ambient sound
 - [x] Remove all artificial overlays and effects from around the kids character
 - [x] Add the bilingual "How we know" plain-language methods guide route
-- [ ] Rename the application Terra Earth across pages and install identity
-- [ ] Expand cached climate evidence, location discovery, comparisons, maps, learning, saved items, and AI to worldwide locations
-- [ ] Verify worldwide navigation, real evidence, comparisons, and metadata
+- [x] Rename the application Terra Earth across pages and install identity
+- [x] Expand cached climate evidence, location discovery, comparisons, maps, learning, saved items, and AI to worldwide locations
+- [x] Verify worldwide navigation, real evidence, comparisons, CSV/PDF downloads, all 14 story scenes, bilingual guide, and metadata
+- [ ] Verify authenticated global favorites, profile saving, and private chat with a signed-in account (no auth users currently available)

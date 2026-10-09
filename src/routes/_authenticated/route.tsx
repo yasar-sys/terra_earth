@@ -4,10 +4,10 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/_authenticated")({
   ssr: false,
   head: () => ({ meta: [
-    { title: "Secure workspace — TerraBangla" },
-    { name: "description", content: "Your secure TerraBangla evidence conversations and administration workspace." },
-    { property: "og:title", content: "Secure workspace — TerraBangla" },
-    { property: "og:description", content: "Private, user-owned climate evidence tools from TerraBangla." },
+    { title: "Secure workspace — Terra Earth" },
+    { name: "description", content: "Your secure Terra Earth evidence conversations and administration workspace." },
+    { property: "og:title", content: "Secure workspace — Terra Earth" },
+    { property: "og:description", content: "Private, user-owned climate evidence tools from Terra Earth." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
   ] }),

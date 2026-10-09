@@ -7,8 +7,8 @@ import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/_authenticated/chat/")({
   head: () => ({ meta: [
-    { title: "Ask TerraBangla — Climate assistant" }, { name: "description", content: "Ask evidence-aware questions about Bangladesh climate trends." },
-    { property: "og:title", content: "Ask TerraBangla" }, { property: "og:description", content: "Saved, evidence-aware climate conversations." },
+    { title: "Ask Terra Earth — Climate assistant" }, { name: "description", content: "Ask evidence-aware questions about Bangladesh climate trends." },
+    { property: "og:title", content: "Ask Terra Earth" }, { property: "og:description", content: "Saved, evidence-aware climate conversations." },
     { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: ChatHome,

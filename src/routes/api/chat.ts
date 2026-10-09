@@ -3,13 +3,13 @@ import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import type { UIMessage } from "ai";
 import type { Database } from "@/integrations/supabase/types";
-import { streamTerraBanglaChat } from "@/lib/chat-gateway.server";
+import { streamTerraEarthChat } from "@/lib/chat-gateway.server";
 
 const variableSchema = z.enum(["ndvi", "lst", "temperature", "solar", "precipitation"]);
 const bodySchema = z.object({
   conversationId: z.string().uuid(),
   messages: z.array(z.any()),
-  districtId: z.string().min(1).max(80).optional(),
+  districtId: z.string().min(1).max(100).optional(),
   variable: variableSchema.optional(),
   yearStart: z.number().int().min(1900).max(2100).optional(),
   yearEnd: z.number().int().min(1900).max(2100).optional(),
@@ -44,16 +44,22 @@ export const Route = createFileRoute("/api/chat")({
       await supabase.from("conversations").update({ title: userText.slice(0, 64) || "Climate question" }).eq("id", body.conversationId);
     }
 
-    const { districts, analyzeVariable, VARIABLE_KEYS } = await import("@/lib/climate");
+    const { districts, getDistrict, registerEvidence, getCached, analyzeVariable, VARIABLE_KEYS } = await import("@/lib/climate");
     const normalized = userText.toLowerCase();
-    const explicitDistrict = body.districtId ? districts.find((district) => district.id === body.districtId) : undefined;
-    if (body.districtId && !explicitDistrict) return new Response("Unknown district selection.", { status: 400 });
+    const explicitDistrict = body.districtId ? getDistrict(body.districtId) : undefined;
+    if (body.districtId && !explicitDistrict) return new Response("Unknown location selection.", { status: 400 });
     const mentioned = explicitDistrict ? [explicitDistrict] : districts.filter((district) => normalized.includes(district.name.toLowerCase()) || normalized.includes(district.id.replace(/-/g, " ")) || (district.bn && userText.includes(district.bn)));
-    const chosenList = (mentioned.length ? mentioned : districts.filter((district) => district.id === "dhaka")).slice(0, 6);
+    if (!explicitDistrict) {
+      const { geocodeQuestion } = await import("@/lib/geocode.server");
+      for (const location of await geocodeQuestion(userText)) { registerEvidence(location,getCached(location.id) ?? {district:location.id,variables:{}}); if (!mentioned.some(x=>x.id===location.id)) mentioned.push(location); }
+    }
+    const chosenList = mentioned.slice(0, 6);
+    const { ensureGlobalEvidence } = await import("@/lib/global-climate.server");
+    await Promise.all(chosenList.map(chosen => ensureGlobalEvidence(chosen.id, body.variable === "ndvi" || body.variable === "lst")));
     const range = body.yearStart !== undefined && body.yearEnd !== undefined ? { start: body.yearStart, end: body.yearEnd } : undefined;
     const variables = body.variable ? [body.variable] : VARIABLE_KEYS;
     const evidence = chosenList.map((chosen) => ({
-      district: { id: chosen.id, name: chosen.name, name_bn: chosen.bn },
+      district: { id: chosen.id, name: chosen.name, name_bn: chosen.bn, latitude: chosen.lat, longitude: chosen.lon, sample_scope: "coordinate point, not national average" },
       facts: variables.map((variable) => analyzeVariable(chosen.id, variable, range)).flatMap((analysis) => analysis ? [{
         variable: analysis.variable,
         unit: analysis.unit,
@@ -70,7 +76,7 @@ export const Route = createFileRoute("/api/chat")({
     const climateContext = JSON.stringify({
       evidence_scope: "newest user message only; do not use it to judge or retract earlier turns",
       newest_user_message: userText,
-      mode: explicitDistrict ? "scope set by the user's filters" : "open question: districts detected from the user's message (Dhaka used as an example only if none was named)",
+      mode: explicitDistrict ? "scope set by the user's filters" : "open question: locations detected from the user's message (Dhaka used as an example only if none was named)",
       districts_detected_from_question: !explicitDistrict && mentioned.length > 0,
       selected_variable: body.variable ?? "all available variables",
       selected_period: range ?? "full cached period",
@@ -78,7 +84,7 @@ export const Route = createFileRoute("/api/chat")({
       server_recomputed_evidence: evidence,
     });
 
-    return streamTerraBanglaChat(request, messages, climateContext, async (completed) => {
+    return streamTerraEarthChat(request, messages, climateContext, async (completed) => {
       const assistant = [...completed].reverse().find((message) => message.role === "assistant");
       const content = assistant ? messageText(assistant).slice(0, 12000) : "";
       if (!content) return;

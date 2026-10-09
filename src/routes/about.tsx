@@ -32,13 +32,13 @@ const DATASETS = [
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "Data & methods — TerraBangla" },
+      { title: "Data & methods — Terra Earth" },
       {
         name: "description",
         content:
-          "Every dataset, statistic and honesty rule behind the Bangladesh Trend Detective: Mann-Kendall, Theil-Sen, offline caches and provenance.",
+          "Every dataset, statistic and honesty rule behind the worldwide Terra Earth explorer: Mann-Kendall, Theil-Sen, offline caches and provenance.",
       },
-      { property: "og:title", content: "Data & methods — TerraBangla" },
+      { property: "og:title", content: "Data & methods — Terra Earth" },
       {
         property: "og:description",
         content: "Mann-Kendall, Theil-Sen, cached NASA sources and the no-fabricated-data rule.",
@@ -60,12 +60,13 @@ function AboutPage() {
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
         {lang === "bn"
           ? "প্রতিটি সংখ্যা সংরক্ষিত নাসা উপাত্ত থেকে গণনা করা হয়। প্রবণতা পরীক্ষা Mann-Kendall এবং ঢাল Theil-Sen পদ্ধতিতে নির্ণীত। কোনো সংখ্যা মডেল দিয়ে বানানো হয় না।"
-          : "Every number on this site is computed from cached NASA observations. Trend significance uses the Mann-Kendall test; the rate of change uses the Theil-Sen estimator. No number is ever produced by a language model, and districts without cached data say so instead of showing estimates."}
+          : "Every number on this site is computed from cached NASA observations. Trend significance uses the Mann-Kendall test; the rate of change uses the Theil-Sen estimator. No number is ever produced by a language model, and locations without cached data say so instead of showing estimates."}
       </p>
       <p className="mt-2 text-sm text-muted-foreground">
-        {covered} / {districts.length} districts currently have cached time series.
+        {covered} / {districts.length} locations currently have cached time series.
       </p>
 
+      <p className="mt-3 text-sm text-muted-foreground">{lang === "bn" ? "বিশ্বের দেশ ও শহর অনুসন্ধান করে ২০১৫–২০২৪ NASA রেকর্ড লোড করা যায়। প্রতিটি নমুনা নির্দিষ্ট স্থানাঙ্কের; দেশের গড় নয়। POWER বছরে ১২টি মাস এবং MODIS অন্তত ৮টি পর্যবেক্ষণ চায়।" : "Worldwide country and city searches load NASA records for 2015–2024 at the selected coordinate. Samples are not national averages. POWER annual values require 12 valid months; MODIS annual values require at least 8 valid composites. The original Bangladesh boundaries and caches remain available as regional evidence."}</p>
       <h2 className="mt-8 font-display text-xl text-foreground">Datasets</h2>
       <ul className="mt-3 space-y-3">
         {DATASETS.map((d) => (
@@ -88,7 +89,7 @@ function AboutPage() {
 
       <h2 className="mt-8 font-display text-xl text-foreground">Team</h2>
       <p className="mt-2 text-sm text-muted-foreground">
-        TerraBangla · NASA Space Apps Challenge 2026, Bangladesh · challenge “Be An Earth
+        Terra Earth · NASA Space Apps Challenge 2026, Worldwide · challenge “Be An Earth
         System Trend Detective!” · Apache-2.0 licensed.
       </p>
     </div>

@@ -1,0 +1,71 @@
+{
+ "district": "g_-33.8688_151.2093_sydney",
+ "variables": {
+  "temperature": {
+   "unit": "°C",
+   "label": "Air temperature (2 m)",
+   "annual": {
+    "2015": 18.685833333333335,
+    "2016": 19.219166666666666,
+    "2017": 19.263333333333332,
+    "2018": 18.824166666666667,
+    "2019": 19.274166666666666,
+    "2020": 18.544999999999998,
+    "2021": 18.218333333333334,
+    "2022": 18.3025,
+    "2023": 19.266666666666666,
+    "2024": 19.349999999999998
+   },
+   "provenance": {
+    "dataset_id": "NASA_POWER_MONTHLY_AG",
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=-33.8688&longitude=151.2093&start=2015&end=2024&format=JSON",
+    "retrieved": "2026-10-09T15:29:55.818762+00:00",
+    "mode": "cache"
+   }
+  },
+  "solar": {
+   "unit": "kWh/m²/day",
+   "label": "All-sky solar radiation",
+   "annual": {
+    "2015": 4.60462962962963,
+    "2016": 4.811111111111111,
+    "2017": 4.710416666666666,
+    "2018": 4.800694444444444,
+    "2019": 4.926388888888889,
+    "2020": 4.438425925925926,
+    "2021": 4.562268518518519,
+    "2022": 4.484027777777778,
+    "2023": 4.879166666666667,
+    "2024": 4.521527777777778
+   },
+   "provenance": {
+    "dataset_id": "NASA_POWER_MONTHLY_AG",
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=-33.8688&longitude=151.2093&start=2015&end=2024&format=JSON",
+    "retrieved": "2026-10-09T15:29:55.818873+00:00",
+    "mode": "cache"
+   }
+  },
+  "precipitation": {
+   "unit": "mm/day",
+   "label": "Precipitation",
+   "annual": {
+    "2015": 2.5524999999999998,
+    "2016": 2.2399999999999998,
+    "2017": 1.9083333333333334,
+    "2018": 1.8241666666666667,
+    "2019": 1.37,
+    "2020": 3.3408333333333338,
+    "2021": 2.7741666666666664,
+    "2022": 4.221666666666667,
+    "2023": 2.0675,
+    "2024": 2.2408333333333332
+   },
+   "provenance": {
+    "dataset_id": "NASA_POWER_MONTHLY_AG",
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=-33.8688&longitude=151.2093&start=2015&end=2024&format=JSON",
+    "retrieved": "2026-10-09T15:29:55.818994+00:00",
+    "mode": "cache"
+   }
+  }
+ }
+}

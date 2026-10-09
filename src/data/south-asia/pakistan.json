@@ -74,23 +74,24 @@
   },
   "solar": {
    "annual": {
-    "2015": 17.0925,
-    "2016": 17.7583,
-    "2017": 17.26,
-    "2018": 17.4567,
-    "2019": 16.7875,
-    "2020": 17.2325,
-    "2021": 17.9125,
-    "2022": 17.1542,
-    "2023": 17.1017,
-    "2024": 17.2708
+    "2015": 4.747917,
+    "2016": 4.932861,
+    "2017": 4.794444,
+    "2018": 4.849083,
+    "2019": 4.663194,
+    "2020": 4.786806,
+    "2021": 4.975694,
+    "2022": 4.765056,
+    "2023": 4.750472,
+    "2024": 4.797444
    },
    "label": "All-sky solar radiation",
    "provenance": {
     "dataset_id": "NASA_POWER_MONTHLY_AG_V9",
     "mode": "cache",
     "retrieved": "2026-10-01T22:07:32.040398+00:00",
-    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=33.6844&longitude=73.0479&start=2015&end=2024&format=JSON"
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=33.6844&longitude=73.0479&start=2015&end=2024&format=JSON",
+    "solar_conversion": "NASA AG MJ/m²/day divided by 3.6 to kWh/m²/day"
    },
    "unit": "kWh/m²/day"
   },

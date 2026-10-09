@@ -1,5 +1,6 @@
 export interface ExportCell {
   place: string;
+  provenance?: {dataset_id:string;source_url:string;retrieved:string};
   lat: number;
   lng: number;
   annual: Record<string, number>;
@@ -38,7 +39,7 @@ export function exportGridCsv(data: GridExport, filename: string) {
     `# Dataset: ${data.datasetId}`,
     `# Source: ${data.sourceUrl}`,
     `# Retrieved: ${data.retrieved}`,
-    ["nearest_district", "lat", "lng", ...years.map(String), "theil_sen_per_decade", "mann_kendall_p", "significant_0_05"].join(","),
+    ["sample_location", "lat", "lng", ...years.map(String), "theil_sen_per_decade", "mann_kendall_p", "significant_0_05", "dataset_id", "source_url", "retrieved"].join(","),
     ...data.cells.map((c) =>
       [
         q(c.place),
@@ -48,6 +49,9 @@ export function exportGridCsv(data: GridExport, filename: string) {
         c.trend ? c.trend.slope_per_decade.toFixed(4) : "",
         c.trend ? c.trend.p_value.toFixed(4) : "",
         c.trend ? String(c.trend.significant) : "",
+        q(c.provenance?.dataset_id ?? data.datasetId),
+        q(c.provenance?.source_url ?? data.sourceUrl),
+        q(c.provenance?.retrieved ?? data.retrieved),
       ].join(","),
     ),
   ];
@@ -60,7 +64,7 @@ export async function exportGridPdf(data: GridExport, filename: string) {
   const ascii = (s: string) => s.replace(/[^\x20-\x7E]/g, "");
   let y = 14;
   pdf.setFontSize(14);
-  pdf.text(ascii(`TerraBangla - ${data.variableLabel} (${data.unit})`), 10, y);
+  pdf.text(ascii(`Terra Earth - ${data.variableLabel} (${data.unit})`), 10, y);
   pdf.setFontSize(8);
   for (const line of [
     `Dataset: ${data.datasetId}`,
@@ -72,7 +76,7 @@ export async function exportGridPdf(data: GridExport, filename: string) {
   }
   y += 8;
   const cols = [55, 22, 22, 35, 35, 35, 35, 38];
-  const head = ["Nearest district", "Lat", "Lng", "First year", "Last year", "Mean", "Trend/decade", "p (sig.)"];
+  const head = ["Sample location", "Lat", "Lng", "First year", "Last year", "Mean", "Trend/decade", "p (sig.)"];
   const drawRow = (vals: string[], bold = false) => {
     pdf.setFont("helvetica", bold ? "bold" : "normal");
     let x = 10;
@@ -94,7 +98,7 @@ export async function exportGridPdf(data: GridExport, filename: string) {
     const mean = vals.reduce((s, v) => s + v, 0) / (vals.length || 1);
     const f = ys[0], l = ys[ys.length - 1];
     drawRow([
-      ascii(c.place),
+      ascii(c.place).slice(0,28),
       c.lat.toFixed(2),
       c.lng.toFixed(2),
       f !== undefined ? `${f}: ${c.annual[String(f)]!.toFixed(3)}` : "-",
@@ -103,6 +107,10 @@ export async function exportGridPdf(data: GridExport, filename: string) {
       c.trend ? c.trend.slope_per_decade.toFixed(4) : "-",
       c.trend ? `${c.trend.p_value.toFixed(4)}${c.trend.significant ? " *" : ""}` : "-",
     ]);
+  }
+  if(data.cells.some(c=>c.provenance)) {
+    pdf.addPage(); y=14; pdf.setFontSize(9); pdf.text("Sample provenance (coordinate observations, not national averages)",10,y); y+=8;
+    for(const c of data.cells) { if(!c.provenance)continue; const lines=pdf.splitTextToSize(ascii(`${c.place} (${c.lat}, ${c.lng}) | ${c.provenance.dataset_id} | ${c.provenance.retrieved} | ${c.provenance.source_url}`),277); if(y+lines.length*4>195){pdf.addPage();y=14;} pdf.setFontSize(7);pdf.text(lines,10,y);y+=lines.length*4+4;}
   }
   y += 3;
   pdf.setFontSize(7);

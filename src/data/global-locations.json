@@ -1,0 +1,2502 @@
+[
+ {
+  "id": "g_33.0000_65.0000_af",
+  "name": "Afghanistan",
+  "bn": "Afghanistan",
+  "division": "Asia",
+  "lat": 33,
+  "lon": 65,
+  "country": "Afghanistan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_41.0000_20.0000_al",
+  "name": "Albania",
+  "bn": "Albania",
+  "division": "Europe",
+  "lat": 41,
+  "lon": 20,
+  "country": "Albania",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_28.0000_3.0000_dz",
+  "name": "Algeria",
+  "bn": "Algeria",
+  "division": "Africa",
+  "lat": 28,
+  "lon": 3,
+  "country": "Algeria",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-14.3333_-170.0000_as",
+  "name": "American Samoa",
+  "bn": "American Samoa",
+  "division": "Oceania",
+  "lat": -14.33333333,
+  "lon": -170,
+  "country": "American Samoa",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_42.5000_1.5000_ad",
+  "name": "Andorra",
+  "bn": "Andorra",
+  "division": "Europe",
+  "lat": 42.5,
+  "lon": 1.5,
+  "country": "Andorra",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-12.5000_18.5000_ao",
+  "name": "Angola",
+  "bn": "Angola",
+  "division": "Africa",
+  "lat": -12.5,
+  "lon": 18.5,
+  "country": "Angola",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_18.2500_-63.1667_ai",
+  "name": "Anguilla",
+  "bn": "Anguilla",
+  "division": "Americas",
+  "lat": 18.25,
+  "lon": -63.16666666,
+  "country": "Anguilla",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-90.0000_0.0000_aq",
+  "name": "Antarctica",
+  "bn": "Antarctica",
+  "division": "Antarctic",
+  "lat": -90,
+  "lon": 0,
+  "country": "Antarctica",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_17.0500_-61.8000_ag",
+  "name": "Antigua and Barbuda",
+  "bn": "Antigua and Barbuda",
+  "division": "Americas",
+  "lat": 17.05,
+  "lon": -61.8,
+  "country": "Antigua and Barbuda",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-34.0000_-64.0000_ar",
+  "name": "Argentina",
+  "bn": "Argentina",
+  "division": "Americas",
+  "lat": -34,
+  "lon": -64,
+  "country": "Argentina",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_40.0000_45.0000_am",
+  "name": "Armenia",
+  "bn": "Armenia",
+  "division": "Asia",
+  "lat": 40,
+  "lon": 45,
+  "country": "Armenia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_12.5000_-69.9667_aw",
+  "name": "Aruba",
+  "bn": "Aruba",
+  "division": "Americas",
+  "lat": 12.5,
+  "lon": -69.96666666,
+  "country": "Aruba",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-27.0000_133.0000_au",
+  "name": "Australia",
+  "bn": "Australia",
+  "division": "Oceania",
+  "lat": -27,
+  "lon": 133,
+  "country": "Australia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_47.3333_13.3333_at",
+  "name": "Austria",
+  "bn": "Austria",
+  "division": "Europe",
+  "lat": 47.33333333,
+  "lon": 13.33333333,
+  "country": "Austria",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_40.5000_47.5000_az",
+  "name": "Azerbaijan",
+  "bn": "Azerbaijan",
+  "division": "Asia",
+  "lat": 40.5,
+  "lon": 47.5,
+  "country": "Azerbaijan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_24.2500_-76.0000_bs",
+  "name": "Bahamas",
+  "bn": "Bahamas",
+  "division": "Americas",
+  "lat": 24.25,
+  "lon": -76,
+  "country": "Bahamas",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_26.0000_50.5500_bh",
+  "name": "Bahrain",
+  "bn": "Bahrain",
+  "division": "Asia",
+  "lat": 26,
+  "lon": 50.55,
+  "country": "Bahrain",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_24.0000_90.0000_bd",
+  "name": "Bangladesh",
+  "bn": "Bangladesh",
+  "division": "Asia",
+  "lat": 24,
+  "lon": 90,
+  "country": "Bangladesh",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_13.1667_-59.5333_bb",
+  "name": "Barbados",
+  "bn": "Barbados",
+  "division": "Americas",
+  "lat": 13.16666666,
+  "lon": -59.53333333,
+  "country": "Barbados",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_53.0000_28.0000_by",
+  "name": "Belarus",
+  "bn": "Belarus",
+  "division": "Europe",
+  "lat": 53,
+  "lon": 28,
+  "country": "Belarus",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_50.8333_4.0000_be",
+  "name": "Belgium",
+  "bn": "Belgium",
+  "division": "Europe",
+  "lat": 50.83333333,
+  "lon": 4,
+  "country": "Belgium",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_17.2500_-88.7500_bz",
+  "name": "Belize",
+  "bn": "Belize",
+  "division": "Americas",
+  "lat": 17.25,
+  "lon": -88.75,
+  "country": "Belize",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_9.5000_2.2500_bj",
+  "name": "Benin",
+  "bn": "Benin",
+  "division": "Africa",
+  "lat": 9.5,
+  "lon": 2.25,
+  "country": "Benin",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_32.3333_-64.7500_bm",
+  "name": "Bermuda",
+  "bn": "Bermuda",
+  "division": "Americas",
+  "lat": 32.33333333,
+  "lon": -64.75,
+  "country": "Bermuda",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_27.5000_90.5000_bt",
+  "name": "Bhutan",
+  "bn": "Bhutan",
+  "division": "Asia",
+  "lat": 27.5,
+  "lon": 90.5,
+  "country": "Bhutan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-17.0000_-65.0000_bo",
+  "name": "Bolivia",
+  "bn": "Bolivia",
+  "division": "Americas",
+  "lat": -17,
+  "lon": -65,
+  "country": "Bolivia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_44.0000_18.0000_ba",
+  "name": "Bosnia and Herzegovina",
+  "bn": "Bosnia and Herzegovina",
+  "division": "Europe",
+  "lat": 44,
+  "lon": 18,
+  "country": "Bosnia and Herzegovina",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-22.0000_24.0000_bw",
+  "name": "Botswana",
+  "bn": "Botswana",
+  "division": "Africa",
+  "lat": -22,
+  "lon": 24,
+  "country": "Botswana",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-54.4333_3.4000_bv",
+  "name": "Bouvet Island",
+  "bn": "Bouvet Island",
+  "division": "Antarctic",
+  "lat": -54.43333333,
+  "lon": 3.4,
+  "country": "Bouvet Island",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-10.0000_-55.0000_br",
+  "name": "Brazil",
+  "bn": "Brazil",
+  "division": "Americas",
+  "lat": -10,
+  "lon": -55,
+  "country": "Brazil",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-6.0000_71.5000_io",
+  "name": "British Indian Ocean Territory",
+  "bn": "British Indian Ocean Territory",
+  "division": "Africa",
+  "lat": -6,
+  "lon": 71.5,
+  "country": "British Indian Ocean Territory",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_18.4314_-64.6231_vg",
+  "name": "British Virgin Islands",
+  "bn": "British Virgin Islands",
+  "division": "Americas",
+  "lat": 18.431383,
+  "lon": -64.62305,
+  "country": "British Virgin Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_4.5000_114.6667_bn",
+  "name": "Brunei",
+  "bn": "Brunei",
+  "division": "Asia",
+  "lat": 4.5,
+  "lon": 114.66666666,
+  "country": "Brunei",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_43.0000_25.0000_bg",
+  "name": "Bulgaria",
+  "bn": "Bulgaria",
+  "division": "Europe",
+  "lat": 43,
+  "lon": 25,
+  "country": "Bulgaria",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_13.0000_-2.0000_bf",
+  "name": "Burkina Faso",
+  "bn": "Burkina Faso",
+  "division": "Africa",
+  "lat": 13,
+  "lon": -2,
+  "country": "Burkina Faso",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-3.5000_30.0000_bi",
+  "name": "Burundi",
+  "bn": "Burundi",
+  "division": "Africa",
+  "lat": -3.5,
+  "lon": 30,
+  "country": "Burundi",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_13.0000_105.0000_kh",
+  "name": "Cambodia",
+  "bn": "Cambodia",
+  "division": "Asia",
+  "lat": 13,
+  "lon": 105,
+  "country": "Cambodia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_6.0000_12.0000_cm",
+  "name": "Cameroon",
+  "bn": "Cameroon",
+  "division": "Africa",
+  "lat": 6,
+  "lon": 12,
+  "country": "Cameroon",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_60.0000_-95.0000_ca",
+  "name": "Canada",
+  "bn": "Canada",
+  "division": "Americas",
+  "lat": 60,
+  "lon": -95,
+  "country": "Canada",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_16.0000_-24.0000_cv",
+  "name": "Cape Verde",
+  "bn": "Cape Verde",
+  "division": "Africa",
+  "lat": 16,
+  "lon": -24,
+  "country": "Cape Verde",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_12.1800_-68.2500_bq",
+  "name": "Caribbean Netherlands",
+  "bn": "Caribbean Netherlands",
+  "division": "Americas",
+  "lat": 12.18,
+  "lon": -68.25,
+  "country": "Caribbean Netherlands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_19.5000_-80.5000_ky",
+  "name": "Cayman Islands",
+  "bn": "Cayman Islands",
+  "division": "Americas",
+  "lat": 19.5,
+  "lon": -80.5,
+  "country": "Cayman Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_7.0000_21.0000_cf",
+  "name": "Central African Republic",
+  "bn": "Central African Republic",
+  "division": "Africa",
+  "lat": 7,
+  "lon": 21,
+  "country": "Central African Republic",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_15.0000_19.0000_td",
+  "name": "Chad",
+  "bn": "Chad",
+  "division": "Africa",
+  "lat": 15,
+  "lon": 19,
+  "country": "Chad",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-30.0000_-71.0000_cl",
+  "name": "Chile",
+  "bn": "Chile",
+  "division": "Americas",
+  "lat": -30,
+  "lon": -71,
+  "country": "Chile",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_35.0000_105.0000_cn",
+  "name": "China",
+  "bn": "China",
+  "division": "Asia",
+  "lat": 35,
+  "lon": 105,
+  "country": "China",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-10.5000_105.6667_cx",
+  "name": "Christmas Island",
+  "bn": "Christmas Island",
+  "division": "Oceania",
+  "lat": -10.5,
+  "lon": 105.66666666,
+  "country": "Christmas Island",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-12.5000_96.8333_cc",
+  "name": "Cocos (Keeling) Islands",
+  "bn": "Cocos (Keeling) Islands",
+  "division": "Oceania",
+  "lat": -12.5,
+  "lon": 96.83333333,
+  "country": "Cocos (Keeling) Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_4.0000_-72.0000_co",
+  "name": "Colombia",
+  "bn": "Colombia",
+  "division": "Americas",
+  "lat": 4,
+  "lon": -72,
+  "country": "Colombia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-12.1667_44.2500_km",
+  "name": "Comoros",
+  "bn": "Comoros",
+  "division": "Africa",
+  "lat": -12.16666666,
+  "lon": 44.25,
+  "country": "Comoros",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-1.0000_15.0000_cg",
+  "name": "Congo",
+  "bn": "Congo",
+  "division": "Africa",
+  "lat": -1,
+  "lon": 15,
+  "country": "Congo",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-21.2333_-159.7667_ck",
+  "name": "Cook Islands",
+  "bn": "Cook Islands",
+  "division": "Oceania",
+  "lat": -21.23333333,
+  "lon": -159.76666666,
+  "country": "Cook Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_10.0000_-84.0000_cr",
+  "name": "Costa Rica",
+  "bn": "Costa Rica",
+  "division": "Americas",
+  "lat": 10,
+  "lon": -84,
+  "country": "Costa Rica",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_45.1667_15.5000_hr",
+  "name": "Croatia",
+  "bn": "Croatia",
+  "division": "Europe",
+  "lat": 45.16666666,
+  "lon": 15.5,
+  "country": "Croatia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_21.5000_-80.0000_cu",
+  "name": "Cuba",
+  "bn": "Cuba",
+  "division": "Americas",
+  "lat": 21.5,
+  "lon": -80,
+  "country": "Cuba",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_12.1167_-68.9333_cw",
+  "name": "Curaçao",
+  "bn": "Curaçao",
+  "division": "Americas",
+  "lat": 12.116667,
+  "lon": -68.933333,
+  "country": "Curaçao",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_35.0000_33.0000_cy",
+  "name": "Cyprus",
+  "bn": "Cyprus",
+  "division": "Europe",
+  "lat": 35,
+  "lon": 33,
+  "country": "Cyprus",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_49.7500_15.5000_cz",
+  "name": "Czechia",
+  "bn": "Czechia",
+  "division": "Europe",
+  "lat": 49.75,
+  "lon": 15.5,
+  "country": "Czechia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_0.0000_25.0000_cd",
+  "name": "DR Congo",
+  "bn": "DR Congo",
+  "division": "Africa",
+  "lat": 0,
+  "lon": 25,
+  "country": "DR Congo",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_56.0000_10.0000_dk",
+  "name": "Denmark",
+  "bn": "Denmark",
+  "division": "Europe",
+  "lat": 56,
+  "lon": 10,
+  "country": "Denmark",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_11.5000_43.0000_dj",
+  "name": "Djibouti",
+  "bn": "Djibouti",
+  "division": "Africa",
+  "lat": 11.5,
+  "lon": 43,
+  "country": "Djibouti",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_15.4167_-61.3333_dm",
+  "name": "Dominica",
+  "bn": "Dominica",
+  "division": "Americas",
+  "lat": 15.41666666,
+  "lon": -61.33333333,
+  "country": "Dominica",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_19.0000_-70.6667_do",
+  "name": "Dominican Republic",
+  "bn": "Dominican Republic",
+  "division": "Americas",
+  "lat": 19,
+  "lon": -70.66666666,
+  "country": "Dominican Republic",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-2.0000_-77.5000_ec",
+  "name": "Ecuador",
+  "bn": "Ecuador",
+  "division": "Americas",
+  "lat": -2,
+  "lon": -77.5,
+  "country": "Ecuador",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_27.0000_30.0000_eg",
+  "name": "Egypt",
+  "bn": "Egypt",
+  "division": "Africa",
+  "lat": 27,
+  "lon": 30,
+  "country": "Egypt",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_13.8333_-88.9167_sv",
+  "name": "El Salvador",
+  "bn": "El Salvador",
+  "division": "Americas",
+  "lat": 13.83333333,
+  "lon": -88.91666666,
+  "country": "El Salvador",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_2.0000_10.0000_gq",
+  "name": "Equatorial Guinea",
+  "bn": "Equatorial Guinea",
+  "division": "Africa",
+  "lat": 2,
+  "lon": 10,
+  "country": "Equatorial Guinea",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_15.0000_39.0000_er",
+  "name": "Eritrea",
+  "bn": "Eritrea",
+  "division": "Africa",
+  "lat": 15,
+  "lon": 39,
+  "country": "Eritrea",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_59.0000_26.0000_ee",
+  "name": "Estonia",
+  "bn": "Estonia",
+  "division": "Europe",
+  "lat": 59,
+  "lon": 26,
+  "country": "Estonia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-26.5000_31.5000_sz",
+  "name": "Eswatini",
+  "bn": "Eswatini",
+  "division": "Africa",
+  "lat": -26.5,
+  "lon": 31.5,
+  "country": "Eswatini",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_8.0000_38.0000_et",
+  "name": "Ethiopia",
+  "bn": "Ethiopia",
+  "division": "Africa",
+  "lat": 8,
+  "lon": 38,
+  "country": "Ethiopia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-51.7500_-59.0000_fk",
+  "name": "Falkland Islands",
+  "bn": "Falkland Islands",
+  "division": "Americas",
+  "lat": -51.75,
+  "lon": -59,
+  "country": "Falkland Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_62.0000_-7.0000_fo",
+  "name": "Faroe Islands",
+  "bn": "Faroe Islands",
+  "division": "Europe",
+  "lat": 62,
+  "lon": -7,
+  "country": "Faroe Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-18.0000_175.0000_fj",
+  "name": "Fiji",
+  "bn": "Fiji",
+  "division": "Oceania",
+  "lat": -18,
+  "lon": 175,
+  "country": "Fiji",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_64.0000_26.0000_fi",
+  "name": "Finland",
+  "bn": "Finland",
+  "division": "Europe",
+  "lat": 64,
+  "lon": 26,
+  "country": "Finland",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_46.0000_2.0000_fr",
+  "name": "France",
+  "bn": "France",
+  "division": "Europe",
+  "lat": 46,
+  "lon": 2,
+  "country": "France",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_4.0000_-53.0000_gf",
+  "name": "French Guiana",
+  "bn": "French Guiana",
+  "division": "Americas",
+  "lat": 4,
+  "lon": -53,
+  "country": "French Guiana",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-15.0000_-140.0000_pf",
+  "name": "French Polynesia",
+  "bn": "French Polynesia",
+  "division": "Oceania",
+  "lat": -15,
+  "lon": -140,
+  "country": "French Polynesia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-49.2500_69.1670_tf",
+  "name": "French Southern and Antarctic Lands",
+  "bn": "French Southern and Antarctic Lands",
+  "division": "Antarctic",
+  "lat": -49.25,
+  "lon": 69.167,
+  "country": "French Southern and Antarctic Lands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-1.0000_11.7500_ga",
+  "name": "Gabon",
+  "bn": "Gabon",
+  "division": "Africa",
+  "lat": -1,
+  "lon": 11.75,
+  "country": "Gabon",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_13.4667_-16.5667_gm",
+  "name": "Gambia",
+  "bn": "Gambia",
+  "division": "Africa",
+  "lat": 13.46666666,
+  "lon": -16.56666666,
+  "country": "Gambia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_42.0000_43.5000_ge",
+  "name": "Georgia",
+  "bn": "Georgia",
+  "division": "Asia",
+  "lat": 42,
+  "lon": 43.5,
+  "country": "Georgia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_51.0000_9.0000_de",
+  "name": "Germany",
+  "bn": "Germany",
+  "division": "Europe",
+  "lat": 51,
+  "lon": 9,
+  "country": "Germany",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_8.0000_-2.0000_gh",
+  "name": "Ghana",
+  "bn": "Ghana",
+  "division": "Africa",
+  "lat": 8,
+  "lon": -2,
+  "country": "Ghana",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_36.1333_-5.3500_gi",
+  "name": "Gibraltar",
+  "bn": "Gibraltar",
+  "division": "Europe",
+  "lat": 36.13333333,
+  "lon": -5.35,
+  "country": "Gibraltar",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_39.0000_22.0000_gr",
+  "name": "Greece",
+  "bn": "Greece",
+  "division": "Europe",
+  "lat": 39,
+  "lon": 22,
+  "country": "Greece",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_72.0000_-40.0000_gl",
+  "name": "Greenland",
+  "bn": "Greenland",
+  "division": "Americas",
+  "lat": 72,
+  "lon": -40,
+  "country": "Greenland",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_12.1167_-61.6667_gd",
+  "name": "Grenada",
+  "bn": "Grenada",
+  "division": "Americas",
+  "lat": 12.11666666,
+  "lon": -61.66666666,
+  "country": "Grenada",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_16.2500_-61.5833_gp",
+  "name": "Guadeloupe",
+  "bn": "Guadeloupe",
+  "division": "Americas",
+  "lat": 16.25,
+  "lon": -61.583333,
+  "country": "Guadeloupe",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_13.4667_144.7833_gu",
+  "name": "Guam",
+  "bn": "Guam",
+  "division": "Oceania",
+  "lat": 13.46666666,
+  "lon": 144.78333333,
+  "country": "Guam",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_15.5000_-90.2500_gt",
+  "name": "Guatemala",
+  "bn": "Guatemala",
+  "division": "Americas",
+  "lat": 15.5,
+  "lon": -90.25,
+  "country": "Guatemala",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_49.4667_-2.5833_gg",
+  "name": "Guernsey",
+  "bn": "Guernsey",
+  "division": "Europe",
+  "lat": 49.46666666,
+  "lon": -2.58333333,
+  "country": "Guernsey",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_11.0000_-10.0000_gn",
+  "name": "Guinea",
+  "bn": "Guinea",
+  "division": "Africa",
+  "lat": 11,
+  "lon": -10,
+  "country": "Guinea",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_12.0000_-15.0000_gw",
+  "name": "Guinea-Bissau",
+  "bn": "Guinea-Bissau",
+  "division": "Africa",
+  "lat": 12,
+  "lon": -15,
+  "country": "Guinea-Bissau",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_5.0000_-59.0000_gy",
+  "name": "Guyana",
+  "bn": "Guyana",
+  "division": "Americas",
+  "lat": 5,
+  "lon": -59,
+  "country": "Guyana",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_19.0000_-72.4167_ht",
+  "name": "Haiti",
+  "bn": "Haiti",
+  "division": "Americas",
+  "lat": 19,
+  "lon": -72.41666666,
+  "country": "Haiti",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-53.1000_72.5167_hm",
+  "name": "Heard Island and McDonald Islands",
+  "bn": "Heard Island and McDonald Islands",
+  "division": "Antarctic",
+  "lat": -53.1,
+  "lon": 72.51666666,
+  "country": "Heard Island and McDonald Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_15.0000_-86.5000_hn",
+  "name": "Honduras",
+  "bn": "Honduras",
+  "division": "Americas",
+  "lat": 15,
+  "lon": -86.5,
+  "country": "Honduras",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_22.2670_114.1880_hk",
+  "name": "Hong Kong",
+  "bn": "Hong Kong",
+  "division": "Asia",
+  "lat": 22.267,
+  "lon": 114.188,
+  "country": "Hong Kong",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_47.0000_20.0000_hu",
+  "name": "Hungary",
+  "bn": "Hungary",
+  "division": "Europe",
+  "lat": 47,
+  "lon": 20,
+  "country": "Hungary",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_65.0000_-18.0000_is",
+  "name": "Iceland",
+  "bn": "Iceland",
+  "division": "Europe",
+  "lat": 65,
+  "lon": -18,
+  "country": "Iceland",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_20.0000_77.0000_in",
+  "name": "India",
+  "bn": "India",
+  "division": "Asia",
+  "lat": 20,
+  "lon": 77,
+  "country": "India",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-5.0000_120.0000_id",
+  "name": "Indonesia",
+  "bn": "Indonesia",
+  "division": "Asia",
+  "lat": -5,
+  "lon": 120,
+  "country": "Indonesia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_32.0000_53.0000_ir",
+  "name": "Iran",
+  "bn": "Iran",
+  "division": "Asia",
+  "lat": 32,
+  "lon": 53,
+  "country": "Iran",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_33.0000_44.0000_iq",
+  "name": "Iraq",
+  "bn": "Iraq",
+  "division": "Asia",
+  "lat": 33,
+  "lon": 44,
+  "country": "Iraq",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_53.0000_-8.0000_ie",
+  "name": "Ireland",
+  "bn": "Ireland",
+  "division": "Europe",
+  "lat": 53,
+  "lon": -8,
+  "country": "Ireland",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_54.2500_-4.5000_im",
+  "name": "Isle of Man",
+  "bn": "Isle of Man",
+  "division": "Europe",
+  "lat": 54.25,
+  "lon": -4.5,
+  "country": "Isle of Man",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_31.4700_35.1300_il",
+  "name": "Israel",
+  "bn": "Israel",
+  "division": "Asia",
+  "lat": 31.47,
+  "lon": 35.13,
+  "country": "Israel",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_42.8333_12.8333_it",
+  "name": "Italy",
+  "bn": "Italy",
+  "division": "Europe",
+  "lat": 42.83333333,
+  "lon": 12.83333333,
+  "country": "Italy",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_8.0000_-5.0000_ci",
+  "name": "Ivory Coast",
+  "bn": "Ivory Coast",
+  "division": "Africa",
+  "lat": 8,
+  "lon": -5,
+  "country": "Ivory Coast",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_18.2500_-77.5000_jm",
+  "name": "Jamaica",
+  "bn": "Jamaica",
+  "division": "Americas",
+  "lat": 18.25,
+  "lon": -77.5,
+  "country": "Jamaica",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_36.0000_138.0000_jp",
+  "name": "Japan",
+  "bn": "Japan",
+  "division": "Asia",
+  "lat": 36,
+  "lon": 138,
+  "country": "Japan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_49.2500_-2.1667_je",
+  "name": "Jersey",
+  "bn": "Jersey",
+  "division": "Europe",
+  "lat": 49.25,
+  "lon": -2.16666666,
+  "country": "Jersey",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_31.0000_36.0000_jo",
+  "name": "Jordan",
+  "bn": "Jordan",
+  "division": "Asia",
+  "lat": 31,
+  "lon": 36,
+  "country": "Jordan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_48.0000_68.0000_kz",
+  "name": "Kazakhstan",
+  "bn": "Kazakhstan",
+  "division": "Asia",
+  "lat": 48,
+  "lon": 68,
+  "country": "Kazakhstan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_1.0000_38.0000_ke",
+  "name": "Kenya",
+  "bn": "Kenya",
+  "division": "Africa",
+  "lat": 1,
+  "lon": 38,
+  "country": "Kenya",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_1.4167_173.0000_ki",
+  "name": "Kiribati",
+  "bn": "Kiribati",
+  "division": "Oceania",
+  "lat": 1.41666666,
+  "lon": 173,
+  "country": "Kiribati",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_42.6667_21.1667_xk",
+  "name": "Kosovo",
+  "bn": "Kosovo",
+  "division": "Europe",
+  "lat": 42.666667,
+  "lon": 21.166667,
+  "country": "Kosovo",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_29.5000_45.7500_kw",
+  "name": "Kuwait",
+  "bn": "Kuwait",
+  "division": "Asia",
+  "lat": 29.5,
+  "lon": 45.75,
+  "country": "Kuwait",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_41.0000_75.0000_kg",
+  "name": "Kyrgyzstan",
+  "bn": "Kyrgyzstan",
+  "division": "Asia",
+  "lat": 41,
+  "lon": 75,
+  "country": "Kyrgyzstan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_18.0000_105.0000_la",
+  "name": "Laos",
+  "bn": "Laos",
+  "division": "Asia",
+  "lat": 18,
+  "lon": 105,
+  "country": "Laos",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_57.0000_25.0000_lv",
+  "name": "Latvia",
+  "bn": "Latvia",
+  "division": "Europe",
+  "lat": 57,
+  "lon": 25,
+  "country": "Latvia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_33.8333_35.8333_lb",
+  "name": "Lebanon",
+  "bn": "Lebanon",
+  "division": "Asia",
+  "lat": 33.83333333,
+  "lon": 35.83333333,
+  "country": "Lebanon",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-29.5000_28.5000_ls",
+  "name": "Lesotho",
+  "bn": "Lesotho",
+  "division": "Africa",
+  "lat": -29.5,
+  "lon": 28.5,
+  "country": "Lesotho",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_6.5000_-9.5000_lr",
+  "name": "Liberia",
+  "bn": "Liberia",
+  "division": "Africa",
+  "lat": 6.5,
+  "lon": -9.5,
+  "country": "Liberia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_25.0000_17.0000_ly",
+  "name": "Libya",
+  "bn": "Libya",
+  "division": "Africa",
+  "lat": 25,
+  "lon": 17,
+  "country": "Libya",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_47.2667_9.5333_li",
+  "name": "Liechtenstein",
+  "bn": "Liechtenstein",
+  "division": "Europe",
+  "lat": 47.26666666,
+  "lon": 9.53333333,
+  "country": "Liechtenstein",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_56.0000_24.0000_lt",
+  "name": "Lithuania",
+  "bn": "Lithuania",
+  "division": "Europe",
+  "lat": 56,
+  "lon": 24,
+  "country": "Lithuania",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_49.7500_6.1667_lu",
+  "name": "Luxembourg",
+  "bn": "Luxembourg",
+  "division": "Europe",
+  "lat": 49.75,
+  "lon": 6.16666666,
+  "country": "Luxembourg",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_22.1667_113.5500_mo",
+  "name": "Macau",
+  "bn": "Macau",
+  "division": "Asia",
+  "lat": 22.16666666,
+  "lon": 113.55,
+  "country": "Macau",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-20.0000_47.0000_mg",
+  "name": "Madagascar",
+  "bn": "Madagascar",
+  "division": "Africa",
+  "lat": -20,
+  "lon": 47,
+  "country": "Madagascar",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-13.5000_34.0000_mw",
+  "name": "Malawi",
+  "bn": "Malawi",
+  "division": "Africa",
+  "lat": -13.5,
+  "lon": 34,
+  "country": "Malawi",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_2.5000_112.5000_my",
+  "name": "Malaysia",
+  "bn": "Malaysia",
+  "division": "Asia",
+  "lat": 2.5,
+  "lon": 112.5,
+  "country": "Malaysia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_3.2500_73.0000_mv",
+  "name": "Maldives",
+  "bn": "Maldives",
+  "division": "Asia",
+  "lat": 3.25,
+  "lon": 73,
+  "country": "Maldives",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_17.0000_-4.0000_ml",
+  "name": "Mali",
+  "bn": "Mali",
+  "division": "Africa",
+  "lat": 17,
+  "lon": -4,
+  "country": "Mali",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_35.8333_14.5833_mt",
+  "name": "Malta",
+  "bn": "Malta",
+  "division": "Europe",
+  "lat": 35.83333333,
+  "lon": 14.58333333,
+  "country": "Malta",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_9.0000_168.0000_mh",
+  "name": "Marshall Islands",
+  "bn": "Marshall Islands",
+  "division": "Oceania",
+  "lat": 9,
+  "lon": 168,
+  "country": "Marshall Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_14.6667_-61.0000_mq",
+  "name": "Martinique",
+  "bn": "Martinique",
+  "division": "Americas",
+  "lat": 14.666667,
+  "lon": -61,
+  "country": "Martinique",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_20.0000_-12.0000_mr",
+  "name": "Mauritania",
+  "bn": "Mauritania",
+  "division": "Africa",
+  "lat": 20,
+  "lon": -12,
+  "country": "Mauritania",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-20.2833_57.5500_mu",
+  "name": "Mauritius",
+  "bn": "Mauritius",
+  "division": "Africa",
+  "lat": -20.28333333,
+  "lon": 57.55,
+  "country": "Mauritius",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-12.8333_45.1667_yt",
+  "name": "Mayotte",
+  "bn": "Mayotte",
+  "division": "Africa",
+  "lat": -12.83333333,
+  "lon": 45.16666666,
+  "country": "Mayotte",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_23.0000_-102.0000_mx",
+  "name": "Mexico",
+  "bn": "Mexico",
+  "division": "Americas",
+  "lat": 23,
+  "lon": -102,
+  "country": "Mexico",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_6.9167_158.2500_fm",
+  "name": "Micronesia",
+  "bn": "Micronesia",
+  "division": "Oceania",
+  "lat": 6.91666666,
+  "lon": 158.25,
+  "country": "Micronesia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_47.0000_29.0000_md",
+  "name": "Moldova",
+  "bn": "Moldova",
+  "division": "Europe",
+  "lat": 47,
+  "lon": 29,
+  "country": "Moldova",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_43.7333_7.4000_mc",
+  "name": "Monaco",
+  "bn": "Monaco",
+  "division": "Europe",
+  "lat": 43.73333333,
+  "lon": 7.4,
+  "country": "Monaco",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_46.0000_105.0000_mn",
+  "name": "Mongolia",
+  "bn": "Mongolia",
+  "division": "Asia",
+  "lat": 46,
+  "lon": 105,
+  "country": "Mongolia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_42.5000_19.3000_me",
+  "name": "Montenegro",
+  "bn": "Montenegro",
+  "division": "Europe",
+  "lat": 42.5,
+  "lon": 19.3,
+  "country": "Montenegro",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_16.7500_-62.2000_ms",
+  "name": "Montserrat",
+  "bn": "Montserrat",
+  "division": "Americas",
+  "lat": 16.75,
+  "lon": -62.2,
+  "country": "Montserrat",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_32.0000_-5.0000_ma",
+  "name": "Morocco",
+  "bn": "Morocco",
+  "division": "Africa",
+  "lat": 32,
+  "lon": -5,
+  "country": "Morocco",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-18.2500_35.0000_mz",
+  "name": "Mozambique",
+  "bn": "Mozambique",
+  "division": "Africa",
+  "lat": -18.25,
+  "lon": 35,
+  "country": "Mozambique",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_22.0000_98.0000_mm",
+  "name": "Myanmar",
+  "bn": "Myanmar",
+  "division": "Asia",
+  "lat": 22,
+  "lon": 98,
+  "country": "Myanmar",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-22.0000_17.0000_na",
+  "name": "Namibia",
+  "bn": "Namibia",
+  "division": "Africa",
+  "lat": -22,
+  "lon": 17,
+  "country": "Namibia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-0.5333_166.9167_nr",
+  "name": "Nauru",
+  "bn": "Nauru",
+  "division": "Oceania",
+  "lat": -0.53333333,
+  "lon": 166.91666666,
+  "country": "Nauru",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_28.0000_84.0000_np",
+  "name": "Nepal",
+  "bn": "Nepal",
+  "division": "Asia",
+  "lat": 28,
+  "lon": 84,
+  "country": "Nepal",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_52.5000_5.7500_nl",
+  "name": "Netherlands",
+  "bn": "Netherlands",
+  "division": "Europe",
+  "lat": 52.5,
+  "lon": 5.75,
+  "country": "Netherlands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-21.5000_165.5000_nc",
+  "name": "New Caledonia",
+  "bn": "New Caledonia",
+  "division": "Oceania",
+  "lat": -21.5,
+  "lon": 165.5,
+  "country": "New Caledonia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-41.0000_174.0000_nz",
+  "name": "New Zealand",
+  "bn": "New Zealand",
+  "division": "Oceania",
+  "lat": -41,
+  "lon": 174,
+  "country": "New Zealand",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_13.0000_-85.0000_ni",
+  "name": "Nicaragua",
+  "bn": "Nicaragua",
+  "division": "Americas",
+  "lat": 13,
+  "lon": -85,
+  "country": "Nicaragua",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_16.0000_8.0000_ne",
+  "name": "Niger",
+  "bn": "Niger",
+  "division": "Africa",
+  "lat": 16,
+  "lon": 8,
+  "country": "Niger",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_10.0000_8.0000_ng",
+  "name": "Nigeria",
+  "bn": "Nigeria",
+  "division": "Africa",
+  "lat": 10,
+  "lon": 8,
+  "country": "Nigeria",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-19.0333_-169.8667_nu",
+  "name": "Niue",
+  "bn": "Niue",
+  "division": "Oceania",
+  "lat": -19.03333333,
+  "lon": -169.86666666,
+  "country": "Niue",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-29.0333_167.9500_nf",
+  "name": "Norfolk Island",
+  "bn": "Norfolk Island",
+  "division": "Oceania",
+  "lat": -29.03333333,
+  "lon": 167.95,
+  "country": "Norfolk Island",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_40.0000_127.0000_kp",
+  "name": "North Korea",
+  "bn": "North Korea",
+  "division": "Asia",
+  "lat": 40,
+  "lon": 127,
+  "country": "North Korea",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_41.8333_22.0000_mk",
+  "name": "North Macedonia",
+  "bn": "North Macedonia",
+  "division": "Europe",
+  "lat": 41.83333333,
+  "lon": 22,
+  "country": "North Macedonia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_15.2000_145.7500_mp",
+  "name": "Northern Mariana Islands",
+  "bn": "Northern Mariana Islands",
+  "division": "Oceania",
+  "lat": 15.2,
+  "lon": 145.75,
+  "country": "Northern Mariana Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_62.0000_10.0000_no",
+  "name": "Norway",
+  "bn": "Norway",
+  "division": "Europe",
+  "lat": 62,
+  "lon": 10,
+  "country": "Norway",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_21.0000_57.0000_om",
+  "name": "Oman",
+  "bn": "Oman",
+  "division": "Asia",
+  "lat": 21,
+  "lon": 57,
+  "country": "Oman",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_30.0000_70.0000_pk",
+  "name": "Pakistan",
+  "bn": "Pakistan",
+  "division": "Asia",
+  "lat": 30,
+  "lon": 70,
+  "country": "Pakistan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_7.5000_134.5000_pw",
+  "name": "Palau",
+  "bn": "Palau",
+  "division": "Oceania",
+  "lat": 7.5,
+  "lon": 134.5,
+  "country": "Palau",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_31.9000_35.2000_ps",
+  "name": "Palestine",
+  "bn": "Palestine",
+  "division": "Asia",
+  "lat": 31.9,
+  "lon": 35.2,
+  "country": "Palestine",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_9.0000_-80.0000_pa",
+  "name": "Panama",
+  "bn": "Panama",
+  "division": "Americas",
+  "lat": 9,
+  "lon": -80,
+  "country": "Panama",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-6.0000_147.0000_pg",
+  "name": "Papua New Guinea",
+  "bn": "Papua New Guinea",
+  "division": "Oceania",
+  "lat": -6,
+  "lon": 147,
+  "country": "Papua New Guinea",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-23.0000_-58.0000_py",
+  "name": "Paraguay",
+  "bn": "Paraguay",
+  "division": "Americas",
+  "lat": -23,
+  "lon": -58,
+  "country": "Paraguay",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-10.0000_-76.0000_pe",
+  "name": "Peru",
+  "bn": "Peru",
+  "division": "Americas",
+  "lat": -10,
+  "lon": -76,
+  "country": "Peru",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_13.0000_122.0000_ph",
+  "name": "Philippines",
+  "bn": "Philippines",
+  "division": "Asia",
+  "lat": 13,
+  "lon": 122,
+  "country": "Philippines",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-25.0667_-130.1000_pn",
+  "name": "Pitcairn Islands",
+  "bn": "Pitcairn Islands",
+  "division": "Oceania",
+  "lat": -25.06666666,
+  "lon": -130.1,
+  "country": "Pitcairn Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_52.0000_20.0000_pl",
+  "name": "Poland",
+  "bn": "Poland",
+  "division": "Europe",
+  "lat": 52,
+  "lon": 20,
+  "country": "Poland",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_39.5000_-8.0000_pt",
+  "name": "Portugal",
+  "bn": "Portugal",
+  "division": "Europe",
+  "lat": 39.5,
+  "lon": -8,
+  "country": "Portugal",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_18.2500_-66.5000_pr",
+  "name": "Puerto Rico",
+  "bn": "Puerto Rico",
+  "division": "Americas",
+  "lat": 18.25,
+  "lon": -66.5,
+  "country": "Puerto Rico",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_25.5000_51.2500_qa",
+  "name": "Qatar",
+  "bn": "Qatar",
+  "division": "Asia",
+  "lat": 25.5,
+  "lon": 51.25,
+  "country": "Qatar",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_46.0000_25.0000_ro",
+  "name": "Romania",
+  "bn": "Romania",
+  "division": "Europe",
+  "lat": 46,
+  "lon": 25,
+  "country": "Romania",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_60.0000_100.0000_ru",
+  "name": "Russia",
+  "bn": "Russia",
+  "division": "Europe",
+  "lat": 60,
+  "lon": 100,
+  "country": "Russia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-2.0000_30.0000_rw",
+  "name": "Rwanda",
+  "bn": "Rwanda",
+  "division": "Africa",
+  "lat": -2,
+  "lon": 30,
+  "country": "Rwanda",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-21.1500_55.5000_re",
+  "name": "Réunion",
+  "bn": "Réunion",
+  "division": "Africa",
+  "lat": -21.15,
+  "lon": 55.5,
+  "country": "Réunion",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_18.5000_-63.4167_bl",
+  "name": "Saint Barthélemy",
+  "bn": "Saint Barthélemy",
+  "division": "Americas",
+  "lat": 18.5,
+  "lon": -63.41666666,
+  "country": "Saint Barthélemy",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-15.9500_-5.7200_sh",
+  "name": "Saint Helena, Ascension and Tristan da Cunha",
+  "bn": "Saint Helena, Ascension and Tristan da Cunha",
+  "division": "Africa",
+  "lat": -15.95,
+  "lon": -5.72,
+  "country": "Saint Helena, Ascension and Tristan da Cunha",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_17.3333_-62.7500_kn",
+  "name": "Saint Kitts and Nevis",
+  "bn": "Saint Kitts and Nevis",
+  "division": "Americas",
+  "lat": 17.33333333,
+  "lon": -62.75,
+  "country": "Saint Kitts and Nevis",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_13.8833_-60.9667_lc",
+  "name": "Saint Lucia",
+  "bn": "Saint Lucia",
+  "division": "Americas",
+  "lat": 13.88333333,
+  "lon": -60.96666666,
+  "country": "Saint Lucia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_18.0833_-63.9500_mf",
+  "name": "Saint Martin",
+  "bn": "Saint Martin",
+  "division": "Americas",
+  "lat": 18.08333333,
+  "lon": -63.95,
+  "country": "Saint Martin",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_46.8333_-56.3333_pm",
+  "name": "Saint Pierre and Miquelon",
+  "bn": "Saint Pierre and Miquelon",
+  "division": "Americas",
+  "lat": 46.83333333,
+  "lon": -56.33333333,
+  "country": "Saint Pierre and Miquelon",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_13.2500_-61.2000_vc",
+  "name": "Saint Vincent and the Grenadines",
+  "bn": "Saint Vincent and the Grenadines",
+  "division": "Americas",
+  "lat": 13.25,
+  "lon": -61.2,
+  "country": "Saint Vincent and the Grenadines",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-13.5833_-172.3333_ws",
+  "name": "Samoa",
+  "bn": "Samoa",
+  "division": "Oceania",
+  "lat": -13.58333333,
+  "lon": -172.33333333,
+  "country": "Samoa",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_43.7667_12.4167_sm",
+  "name": "San Marino",
+  "bn": "San Marino",
+  "division": "Europe",
+  "lat": 43.76666666,
+  "lon": 12.41666666,
+  "country": "San Marino",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_25.0000_45.0000_sa",
+  "name": "Saudi Arabia",
+  "bn": "Saudi Arabia",
+  "division": "Asia",
+  "lat": 25,
+  "lon": 45,
+  "country": "Saudi Arabia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_14.0000_-14.0000_sn",
+  "name": "Senegal",
+  "bn": "Senegal",
+  "division": "Africa",
+  "lat": 14,
+  "lon": -14,
+  "country": "Senegal",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_44.0000_21.0000_rs",
+  "name": "Serbia",
+  "bn": "Serbia",
+  "division": "Europe",
+  "lat": 44,
+  "lon": 21,
+  "country": "Serbia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-4.5833_55.6667_sc",
+  "name": "Seychelles",
+  "bn": "Seychelles",
+  "division": "Africa",
+  "lat": -4.58333333,
+  "lon": 55.66666666,
+  "country": "Seychelles",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_8.5000_-11.5000_sl",
+  "name": "Sierra Leone",
+  "bn": "Sierra Leone",
+  "division": "Africa",
+  "lat": 8.5,
+  "lon": -11.5,
+  "country": "Sierra Leone",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_1.3667_103.8000_sg",
+  "name": "Singapore",
+  "bn": "Singapore",
+  "division": "Asia",
+  "lat": 1.36666666,
+  "lon": 103.8,
+  "country": "Singapore",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_18.0333_-63.0500_sx",
+  "name": "Sint Maarten",
+  "bn": "Sint Maarten",
+  "division": "Americas",
+  "lat": 18.033333,
+  "lon": -63.05,
+  "country": "Sint Maarten",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_48.6667_19.5000_sk",
+  "name": "Slovakia",
+  "bn": "Slovakia",
+  "division": "Europe",
+  "lat": 48.66666666,
+  "lon": 19.5,
+  "country": "Slovakia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_46.1167_14.8167_si",
+  "name": "Slovenia",
+  "bn": "Slovenia",
+  "division": "Europe",
+  "lat": 46.11666666,
+  "lon": 14.81666666,
+  "country": "Slovenia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-8.0000_159.0000_sb",
+  "name": "Solomon Islands",
+  "bn": "Solomon Islands",
+  "division": "Oceania",
+  "lat": -8,
+  "lon": 159,
+  "country": "Solomon Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_10.0000_49.0000_so",
+  "name": "Somalia",
+  "bn": "Somalia",
+  "division": "Africa",
+  "lat": 10,
+  "lon": 49,
+  "country": "Somalia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-29.0000_24.0000_za",
+  "name": "South Africa",
+  "bn": "South Africa",
+  "division": "Africa",
+  "lat": -29,
+  "lon": 24,
+  "country": "South Africa",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-54.5000_-37.0000_gs",
+  "name": "South Georgia",
+  "bn": "South Georgia",
+  "division": "Antarctic",
+  "lat": -54.5,
+  "lon": -37,
+  "country": "South Georgia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_37.0000_127.5000_kr",
+  "name": "South Korea",
+  "bn": "South Korea",
+  "division": "Asia",
+  "lat": 37,
+  "lon": 127.5,
+  "country": "South Korea",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_7.0000_30.0000_ss",
+  "name": "South Sudan",
+  "bn": "South Sudan",
+  "division": "Africa",
+  "lat": 7,
+  "lon": 30,
+  "country": "South Sudan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_40.0000_-4.0000_es",
+  "name": "Spain",
+  "bn": "Spain",
+  "division": "Europe",
+  "lat": 40,
+  "lon": -4,
+  "country": "Spain",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_7.0000_81.0000_lk",
+  "name": "Sri Lanka",
+  "bn": "Sri Lanka",
+  "division": "Asia",
+  "lat": 7,
+  "lon": 81,
+  "country": "Sri Lanka",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_15.0000_30.0000_sd",
+  "name": "Sudan",
+  "bn": "Sudan",
+  "division": "Africa",
+  "lat": 15,
+  "lon": 30,
+  "country": "Sudan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_4.0000_-56.0000_sr",
+  "name": "Suriname",
+  "bn": "Suriname",
+  "division": "Americas",
+  "lat": 4,
+  "lon": -56,
+  "country": "Suriname",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_78.0000_20.0000_sj",
+  "name": "Svalbard and Jan Mayen",
+  "bn": "Svalbard and Jan Mayen",
+  "division": "Europe",
+  "lat": 78,
+  "lon": 20,
+  "country": "Svalbard and Jan Mayen",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_62.0000_15.0000_se",
+  "name": "Sweden",
+  "bn": "Sweden",
+  "division": "Europe",
+  "lat": 62,
+  "lon": 15,
+  "country": "Sweden",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_47.0000_8.0000_ch",
+  "name": "Switzerland",
+  "bn": "Switzerland",
+  "division": "Europe",
+  "lat": 47,
+  "lon": 8,
+  "country": "Switzerland",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_35.0000_38.0000_sy",
+  "name": "Syria",
+  "bn": "Syria",
+  "division": "Asia",
+  "lat": 35,
+  "lon": 38,
+  "country": "Syria",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_1.0000_7.0000_st",
+  "name": "São Tomé and Príncipe",
+  "bn": "São Tomé and Príncipe",
+  "division": "Africa",
+  "lat": 1,
+  "lon": 7,
+  "country": "São Tomé and Príncipe",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_23.5000_121.0000_tw",
+  "name": "Taiwan",
+  "bn": "Taiwan",
+  "division": "Asia",
+  "lat": 23.5,
+  "lon": 121,
+  "country": "Taiwan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_39.0000_71.0000_tj",
+  "name": "Tajikistan",
+  "bn": "Tajikistan",
+  "division": "Asia",
+  "lat": 39,
+  "lon": 71,
+  "country": "Tajikistan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-6.0000_35.0000_tz",
+  "name": "Tanzania",
+  "bn": "Tanzania",
+  "division": "Africa",
+  "lat": -6,
+  "lon": 35,
+  "country": "Tanzania",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_15.0000_100.0000_th",
+  "name": "Thailand",
+  "bn": "Thailand",
+  "division": "Asia",
+  "lat": 15,
+  "lon": 100,
+  "country": "Thailand",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-8.8333_125.9167_tl",
+  "name": "Timor-Leste",
+  "bn": "Timor-Leste",
+  "division": "Asia",
+  "lat": -8.83333333,
+  "lon": 125.91666666,
+  "country": "Timor-Leste",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_8.0000_1.1667_tg",
+  "name": "Togo",
+  "bn": "Togo",
+  "division": "Africa",
+  "lat": 8,
+  "lon": 1.16666666,
+  "country": "Togo",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-9.0000_-172.0000_tk",
+  "name": "Tokelau",
+  "bn": "Tokelau",
+  "division": "Oceania",
+  "lat": -9,
+  "lon": -172,
+  "country": "Tokelau",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-20.0000_-175.0000_to",
+  "name": "Tonga",
+  "bn": "Tonga",
+  "division": "Oceania",
+  "lat": -20,
+  "lon": -175,
+  "country": "Tonga",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_11.0000_-61.0000_tt",
+  "name": "Trinidad and Tobago",
+  "bn": "Trinidad and Tobago",
+  "division": "Americas",
+  "lat": 11,
+  "lon": -61,
+  "country": "Trinidad and Tobago",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_34.0000_9.0000_tn",
+  "name": "Tunisia",
+  "bn": "Tunisia",
+  "division": "Africa",
+  "lat": 34,
+  "lon": 9,
+  "country": "Tunisia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_40.0000_60.0000_tm",
+  "name": "Turkmenistan",
+  "bn": "Turkmenistan",
+  "division": "Asia",
+  "lat": 40,
+  "lon": 60,
+  "country": "Turkmenistan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_21.7500_-71.5833_tc",
+  "name": "Turks and Caicos Islands",
+  "bn": "Turks and Caicos Islands",
+  "division": "Americas",
+  "lat": 21.75,
+  "lon": -71.58333333,
+  "country": "Turks and Caicos Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-8.0000_178.0000_tv",
+  "name": "Tuvalu",
+  "bn": "Tuvalu",
+  "division": "Oceania",
+  "lat": -8,
+  "lon": 178,
+  "country": "Tuvalu",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_39.0000_35.0000_tr",
+  "name": "Türkiye",
+  "bn": "Türkiye",
+  "division": "Asia",
+  "lat": 39,
+  "lon": 35,
+  "country": "Türkiye",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_1.0000_32.0000_ug",
+  "name": "Uganda",
+  "bn": "Uganda",
+  "division": "Africa",
+  "lat": 1,
+  "lon": 32,
+  "country": "Uganda",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_49.0000_32.0000_ua",
+  "name": "Ukraine",
+  "bn": "Ukraine",
+  "division": "Europe",
+  "lat": 49,
+  "lon": 32,
+  "country": "Ukraine",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_24.0000_54.0000_ae",
+  "name": "United Arab Emirates",
+  "bn": "United Arab Emirates",
+  "division": "Asia",
+  "lat": 24,
+  "lon": 54,
+  "country": "United Arab Emirates",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_54.0000_-2.0000_gb",
+  "name": "United Kingdom",
+  "bn": "United Kingdom",
+  "division": "Europe",
+  "lat": 54,
+  "lon": -2,
+  "country": "United Kingdom",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_38.0000_-97.0000_us",
+  "name": "United States",
+  "bn": "United States",
+  "division": "Americas",
+  "lat": 38,
+  "lon": -97,
+  "country": "United States",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_19.3000_166.6333_um",
+  "name": "United States Minor Outlying Islands",
+  "bn": "United States Minor Outlying Islands",
+  "division": "Americas",
+  "lat": 19.3,
+  "lon": 166.633333,
+  "country": "United States Minor Outlying Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_18.3500_-64.9333_vi",
+  "name": "United States Virgin Islands",
+  "bn": "United States Virgin Islands",
+  "division": "Americas",
+  "lat": 18.35,
+  "lon": -64.933333,
+  "country": "United States Virgin Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-33.0000_-56.0000_uy",
+  "name": "Uruguay",
+  "bn": "Uruguay",
+  "division": "Americas",
+  "lat": -33,
+  "lon": -56,
+  "country": "Uruguay",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_41.0000_64.0000_uz",
+  "name": "Uzbekistan",
+  "bn": "Uzbekistan",
+  "division": "Asia",
+  "lat": 41,
+  "lon": 64,
+  "country": "Uzbekistan",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-16.0000_167.0000_vu",
+  "name": "Vanuatu",
+  "bn": "Vanuatu",
+  "division": "Oceania",
+  "lat": -16,
+  "lon": 167,
+  "country": "Vanuatu",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_41.9000_12.4500_va",
+  "name": "Vatican City",
+  "bn": "Vatican City",
+  "division": "Europe",
+  "lat": 41.9,
+  "lon": 12.45,
+  "country": "Vatican City",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_8.0000_-66.0000_ve",
+  "name": "Venezuela",
+  "bn": "Venezuela",
+  "division": "Americas",
+  "lat": 8,
+  "lon": -66,
+  "country": "Venezuela",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_16.1667_107.8333_vn",
+  "name": "Vietnam",
+  "bn": "Vietnam",
+  "division": "Asia",
+  "lat": 16.16666666,
+  "lon": 107.83333333,
+  "country": "Vietnam",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-13.3000_-176.2000_wf",
+  "name": "Wallis and Futuna",
+  "bn": "Wallis and Futuna",
+  "division": "Oceania",
+  "lat": -13.3,
+  "lon": -176.2,
+  "country": "Wallis and Futuna",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_24.5000_-13.0000_eh",
+  "name": "Western Sahara",
+  "bn": "Western Sahara",
+  "division": "Africa",
+  "lat": 24.5,
+  "lon": -13,
+  "country": "Western Sahara",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_15.0000_48.0000_ye",
+  "name": "Yemen",
+  "bn": "Yemen",
+  "division": "Asia",
+  "lat": 15,
+  "lon": 48,
+  "country": "Yemen",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-15.0000_30.0000_zm",
+  "name": "Zambia",
+  "bn": "Zambia",
+  "division": "Africa",
+  "lat": -15,
+  "lon": 30,
+  "country": "Zambia",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_-20.0000_30.0000_zw",
+  "name": "Zimbabwe",
+  "bn": "Zimbabwe",
+  "division": "Africa",
+  "lat": -20,
+  "lon": 30,
+  "country": "Zimbabwe",
+  "sample_type": "country reference coordinate (not a national average)"
+ },
+ {
+  "id": "g_60.1167_19.9000_ax",
+  "name": "Åland Islands",
+  "bn": "Åland Islands",
+  "division": "Europe",
+  "lat": 60.116667,
+  "lon": 19.9,
+  "country": "Åland Islands",
+  "sample_type": "country reference coordinate (not a national average)"
+ }
+]

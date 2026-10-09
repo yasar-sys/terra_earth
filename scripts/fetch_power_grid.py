@@ -23,6 +23,8 @@ for key, (param, unit) in PARAMS.items():
         lon, lat = f["geometry"]["coordinates"][:2]
         series = f["properties"]["parameter"][param]
         annual = {k[:4]: v for k, v in series.items() if k.endswith("13") and v is not None and v > -900}
+        if key == "solar" and doc["parameters"][param]["units"].startswith("MJ"):
+            annual = {year: value / 3.6 for year, value in annual.items()}
         cells.append({"lat": lat, "lng": lon, "annual": annual})
     json.dump({"variable": key, "unit": unit, "cells": cells, "provenance": {
         "dataset_id": "NASA_POWER_MONTHLY_REGIONAL_%s" % param, "source_url": url,

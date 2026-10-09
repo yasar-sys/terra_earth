@@ -36,9 +36,9 @@ export const getFavoriteDistrictIds = createServerFn({ method: "GET" })
 export const saveLearningProfile = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) => z.object({
-    displayName: z.string().trim().max(80), schoolName: z.string().trim().max(120), classLevel: z.string().trim().max(40),
-    homeDistrictId: z.string().trim().max(40).nullable(), preferredLanguage: z.enum(["en", "bn"]),
-    learningInterests: z.array(z.string().trim().min(1).max(40)).max(10), avatarPath: z.string().trim().max(300).nullable(),
+    displayName: z.string().trim().max(80), schoolName: z.string().trim().max(120), classLevel: z.string().trim().max(100),
+    homeDistrictId: z.string().trim().max(100).nullable(), preferredLanguage: z.enum(["en", "bn"]),
+    learningInterests: z.array(z.string().trim().min(1).max(100)).max(10), avatarPath: z.string().trim().max(300).nullable(),
   }).parse(input))
   .handler(async ({ context, data }) => {
     const result = await context.supabase.from("profiles").upsert({ user_id: context.userId, display_name: data.displayName, school_name: data.schoolName, class_level: data.classLevel, home_district_id: data.homeDistrictId, preferred_language: data.preferredLanguage, learning_interests: data.learningInterests, avatar_path: data.avatarPath }, { onConflict: "user_id" });
@@ -48,9 +48,11 @@ export const saveLearningProfile = createServerFn({ method: "POST" })
 
 export const saveLearningAttempt = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input) => z.object({ districtId: z.string().min(1).max(40), variable: variableSchema, selectedTrend: trendSchema }).parse(input))
+  .inputValidator((input) => z.object({ districtId: z.string().min(1).max(100), variable: variableSchema, selectedTrend: trendSchema }).parse(input))
   .handler(async ({ context, data }) => {
     const { analyzeVariable } = await import("./climate");
+    const { ensureGlobalEvidence } = await import("./global-climate.server");
+    await ensureGlobalEvidence(data.districtId, data.variable === "ndvi" || data.variable === "lst");
     const analysis = analyzeVariable(data.districtId, data.variable);
     if (!analysis) throw new Error("Cached NASA data is not available for this selection.");
     const correctTrend = !analysis.result.trend.significant_at_0_05 ? "same" : analysis.result.slope.slope_per_decade > 0 ? "up" : "down";
@@ -62,7 +64,7 @@ export const saveLearningAttempt = createServerFn({ method: "POST" })
 
 export const toggleFavoriteDistrict = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input) => z.object({ districtId: z.string().min(1).max(40), favorite: z.boolean() }).parse(input))
+  .inputValidator((input) => z.object({ districtId: z.string().min(1).max(100), favorite: z.boolean() }).parse(input))
   .handler(async ({ context, data }) => {
     const result = data.favorite
       ? await context.supabase.from("favorite_districts").upsert({ user_id: context.userId, district_id: data.districtId }, { onConflict: "user_id,district_id" })
@@ -73,9 +75,11 @@ export const toggleFavoriteDistrict = createServerFn({ method: "POST" })
 
 export const saveStudentInsight = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input) => z.object({ districtId: z.string().min(1).max(40), variable: variableSchema, start: z.number().int(), end: z.number().int(), observation: z.string().trim().min(8).max(800), explanation: z.string().trim().min(1).max(12000) }).parse(input))
+  .inputValidator((input) => z.object({ districtId: z.string().min(1).max(100), variable: variableSchema, start: z.number().int(), end: z.number().int(), observation: z.string().trim().min(8).max(800), explanation: z.string().trim().min(1).max(12000) }).parse(input))
   .handler(async ({ context, data }) => {
     const { analyzeVariable } = await import("./climate");
+    const { ensureGlobalEvidence } = await import("./global-climate.server");
+    await ensureGlobalEvidence(data.districtId, data.variable === "ndvi" || data.variable === "lst");
     const analysis = analyzeVariable(data.districtId, data.variable, { start: Math.min(data.start, data.end), end: Math.max(data.start, data.end) });
     if (!analysis) throw new Error("Cached NASA data is not available for this selection.");
     const evidence: Json = { unit: analysis.unit, period: { start: analysis.result.period.start, end: analysis.result.period.end }, observations: analysis.result.n_observations, first_value: analysis.result.first_value, latest_value: analysis.result.current_value, slope_per_decade: analysis.result.slope.slope_per_decade, trend: { s: analysis.result.trend.s, z: analysis.result.trend.z, p_value: analysis.result.trend.p_value, direction: analysis.result.trend.direction, significant_at_0_05: analysis.result.trend.significant_at_0_05 }, provenance: { dataset_id: analysis.provenance.dataset_id, source_url: analysis.provenance.source_url, retrieved: analysis.provenance.retrieved, mode: analysis.provenance.mode } };

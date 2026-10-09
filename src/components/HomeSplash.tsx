@@ -39,21 +39,21 @@ export function HomeSplash({ onComplete }: { onComplete: () => void }) {
   }
 
   return createPortal(
-    <div className={`home-splash ${leaving ? "is-leaving" : ""}`} role="dialog" aria-modal="true" aria-label={lang === "bn" ? "টেরাবাংলা পরিচিতি" : "TerraBangla introduction"}>
+    <div className={`home-splash ${leaving ? "is-leaving" : ""}`} role="dialog" aria-modal="true" aria-label={lang === "bn" ? "টেরা আর্থ পরিচিতি" : "Terra Earth introduction"}>
       <div className="home-splash-stars" aria-hidden />
       <div className="home-splash-logo-wrap">
         <span className="home-splash-logo-halo" aria-hidden />
         <img
           className="home-splash-logo"
           src={terraBanglaLogo.url}
-          alt={lang === "bn" ? "টেরা বাংলা" : "TerraBangla"}
+          alt={lang === "bn" ? "টেরা আর্থ" : "Terra Earth"}
           width={768}
           height={768}
         />
       </div>
       <div className="home-splash-copy">
-        <p>{lang === "bn" ? "বাংলাদেশ জলবায়ু প্রমাণ" : "Bangladesh climate evidence"}</p>
-        <span>{lang === "bn" ? "পৃথিবী থেকে জেলা—বাস্তব NASA তথ্যের পথে" : "From Earth to district, guided by real NASA data"}</span>
+        <p>{lang === "bn" ? "পৃথিবী জলবায়ু প্রমাণ" : "Earth climate evidence"}</p>
+        <span>{lang === "bn" ? "পৃথিবী থেকে স্থান—বাস্তব NASA তথ্যের পথে" : "From Earth to location, guided by real NASA data"}</span>
       </div>
       <div className="home-splash-progress" aria-hidden><i /></div>
       <Button variant="ghost" className="home-splash-skip" onClick={finish}>

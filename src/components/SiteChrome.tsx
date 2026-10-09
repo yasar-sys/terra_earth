@@ -19,13 +19,13 @@ const NAV = [
 ] as const;
 
 function Brand() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
-    <Link to="/" className="group flex min-w-0 items-center gap-3 rounded-md">
+    <Link to="/" className="group flex min-w-0 shrink-0 items-center gap-3 rounded-md">
       <img className="site-brand-logo" src={terraBanglaLogo.url} alt="" width={768} height={768} />
       <span className="min-w-0">
-        <span className="block truncate font-display text-lg font-semibold text-foreground">{t("app.title")}</span>
-        <span className="block truncate text-[10px] uppercase text-muted-foreground">Bangladesh climate evidence</span>
+        <span className="block whitespace-nowrap font-display text-base font-semibold text-foreground">{t("app.title")}</span>
+        <span className="block truncate text-[10px] uppercase text-muted-foreground">{lang === "en" ? "Global climate evidence" : "বিশ্বের জলবায়ু প্রমাণ"}</span>
       </span>
     </Link>
   );
@@ -74,17 +74,17 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-3 sm:px-6">
         <BackButton />
         <Brand />
-        <nav aria-label="Main" className="ml-auto hidden xl:block">
+        <nav aria-label="Main" className="ml-auto hidden 2xl:block">
           <ul className="flex items-center gap-1"><NavItems /></ul>
         </nav>
-        <Button variant="outline" size="sm" onClick={() => setLang(lang === "en" ? "bn" : "en")} className="ml-auto shrink-0 xl:ml-0" aria-label={t("lang.label")}>
+        <Button variant="outline" size="sm" onClick={() => setLang(lang === "en" ? "bn" : "en")} className="ml-auto shrink-0 2xl:ml-0" aria-label={t("lang.label")}>
           <Languages aria-hidden /> {t("lang.toggle")}
         </Button>
         <ThemeToggle />
         <div className="hidden sm:block"><AuthButton /></div>
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="shrink-0 xl:hidden" aria-label={t("nav.menu")}><Menu aria-hidden /></Button>
+            <Button variant="outline" size="icon" className="shrink-0 2xl:hidden" aria-label={t("nav.menu")}><Menu aria-hidden /></Button>
           </SheetTrigger>
           <SheetContent className="glass-panel border-border bg-background/95 backdrop-blur-xl">
             <SheetHeader><SheetTitle><Brand /></SheetTitle></SheetHeader>
@@ -130,7 +130,7 @@ export function SiteFooter() {
           <Link to="/admin" className="mt-2 inline-block text-sm text-muted-foreground hover:underline">Admin</Link>
         </div>
       </div>
-      <div className="border-t border-border/70 px-3 py-3 text-center text-[11px] text-muted-foreground">MEC TERRA_DETECTORS · Bangladesh · 2026</div>
+      <div className="border-t border-border/70 px-3 py-3 text-center text-[11px] text-muted-foreground">MEC TERRA_DETECTORS · Worldwide · 2026</div>
     </footer>
   );
 }

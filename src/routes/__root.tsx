@@ -84,11 +84,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "TerraBangla — Bangladesh Climate Trend Explorer" },
+      { title: "Terra Earth — Global Climate Trend Explorer" },
       {
         name: "description",
         content:
-          "Interactive 3D exploration of real NASA Earth-observation trends across all 64 districts of Bangladesh.",
+          "Interactive 3D exploration of real NASA Earth-observation trends at locations worldwide.",
       },
       { name: "author", content: "MEC TERRA_DETECTORS" },
       { name: "theme-color", content: "#0A0A0F", media: "(prefers-color-scheme: dark)" },
@@ -96,10 +96,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
-      { name: "apple-mobile-web-app-title", content: "TerraBangla" },
+      { name: "apple-mobile-web-app-title", content: "Terra Earth" },
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "TerraBangla — Bangladesh Climate Trend Explorer" },
-      { property: "og:description", content: "Explore tested NASA climate evidence across all 64 districts of Bangladesh." },
+      { property: "og:title", content: "Terra Earth — Global Climate Trend Explorer" },
+      { property: "og:description", content: "Explore tested NASA climate evidence at locations worldwide." },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
