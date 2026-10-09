@@ -6,6 +6,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { analyzeVariable, availableVariables, districts, getDistrict, type VariableAnalysis, type VariableKey } from "@/lib/climate";
 import { fmt, useLang, type Lang } from "@/lib/i18n";
 import { getFavoriteDistrictIds, saveLearningAttempt, toggleFavoriteDistrict } from "@/lib/learning.functions";
+import { LocationSearch } from "./LocationSearch";
+import { useLocationEvidence } from "@/lib/location-evidence";
 import districtGeo from "@/data/bangladesh-districts.geojson.json";
 import type { MascotState } from "@/components/KidsMascot";
 
@@ -51,7 +53,7 @@ function evidenceSentence(analysis: VariableAnalysis, districtName: string, lang
   if (!Number.isFinite(trend.p_value) || !Number.isFinite(slope)) return null;
   if (!trend.significant_at_0_05) return lang === "bn"
     ? `${years.toLocaleString("bn-BD")} বছরে ${districtName}-এর ${label} মোটামুটি স্থিতিশীল ছিল (p = ${p}; পরিসংখ্যানগতভাবে তাৎপর্যপূর্ণ নয়)।`
-    : `${label} in ${districtName} stayed roughly stable over ${years} years (p = ${p}; not statistically significant).`;
+    : `${label} in ${districtName} has no statistically significant detected trend over ${years} years (p = ${p}; not statistically significant).`;
   const direction = slope > 0 ? (lang === "bn" ? "বেড়েছে" : "risen") : (lang === "bn" ? "কমেছে" : "declined");
   const amount = fmt(Math.abs(slope), lang, analysis.variable === "ndvi" ? 3 : 2);
   return lang === "bn"
@@ -68,12 +70,13 @@ function learningSentence(analysis: VariableAnalysis, lang: Lang) {
     : "What you learned: When many years of records show a consistent direction and the p-value is below 0.05, scientists call the change statistically significant.";
 }
 
-export function DistrictLearning({ onMascotState, onContextChange }: { onMascotState?: (state: MascotState) => void; onContextChange?: (context: { districtId: string; district: string; variable: string; significant: boolean }) => void }) {
+export function DistrictLearning({ onMascotState, onContextChange, districtId: initialId = "g_35.6762_139.6503_tokyo", variable: initialVariable = "temperature" }: { districtId?: string; variable?: VariableKey; onMascotState?: (state: MascotState) => void; onContextChange?: (context: { districtId: string; district: string; variable: string; significant: boolean }) => void }) {
   const { lang } = useLang();
   const L = (en: string, bn: string) => lang === "bn" ? bn : en;
-  const [districtId, setDistrictId] = useState("dhaka");
-  const variables = availableVariables(districtId);
-  const [variable, setVariable] = useState<VariableKey>("lst");
+  const [districtId, setDistrictId] = useState(initialId);
+  const locationEvidence = useLocationEvidence(districtId);
+  const variables = districtId.startsWith("g_") && !locationEvidence.hydrated ? [] : availableVariables(districtId);
+  const [variable, setVariable] = useState<VariableKey>(initialVariable);
   const [picked, setPicked] = useState<Trend | null>(null);
   const [favorite, setFavorite] = useState(false);
   const [saveMessage, setSaveMessage] = useState("");
@@ -81,7 +84,7 @@ export function DistrictLearning({ onMascotState, onContextChange }: { onMascotS
   const toggleFavorite = useServerFn(toggleFavoriteDistrict);
   const listFavorites = useServerFn(getFavoriteDistrictIds);
   const activeVariable = variables.includes(variable) ? variable : variables[0] ?? "temperature";
-  const analysis = useMemo(() => analyzeVariable(districtId, activeVariable), [districtId, activeVariable]);
+  const analysis = useMemo(() => districtId.startsWith("g_") && !locationEvidence.hydrated ? null : analyzeVariable(districtId, activeVariable), [districtId, activeVariable, locationEvidence.version, locationEvidence.hydrated]);
   const district = getDistrict(districtId);
   const districtName = lang === "bn" ? district?.bn ?? districtId : district?.name ?? districtId;
   const correct: Trend = !analysis?.result.trend.significant_at_0_05 ? "same" : (analysis.result.slope.slope_per_decade ?? 0) > 0 ? "up" : "down";
@@ -103,26 +106,26 @@ export function DistrictLearning({ onMascotState, onContextChange }: { onMascotS
   };
   const updateFavorite = async () => {
     const { data } = await supabase.auth.getUser();
-    if (!data.user) { setSaveMessage(L("Sign in to save favorite districts.", "প্রিয় জেলা সেভ করতে সাইন ইন করো।")); return; }
+    if (!data.user) { setSaveMessage(L("Sign in to save favorite locations.", "প্রিয় জেলা সেভ করতে সাইন ইন করো।")); return; }
     const next = !favorite;
     await toggleFavorite({ data: { districtId, favorite: next } });
     setFavorite(next);
-    setSaveMessage(next ? L("District saved to favorites.", "জেলাটি প্রিয় তালিকায় সেভ হয়েছে।") : L("District removed from favorites.", "জেলাটি প্রিয় তালিকা থেকে সরানো হয়েছে।"));
+    setSaveMessage(next ? L("Location saved to favorites.", "জেলাটি প্রিয় তালিকায় সেভ হয়েছে।") : L("Location removed from favorites.", "জেলাটি প্রিয় তালিকা থেকে সরানো হয়েছে।"));
   };
   useEffect(() => { void supabase.auth.getUser().then(async ({ data }) => { if (!data.user) return; try { setFavorite((await listFavorites()).includes(districtId)); } catch { setFavorite(false); } }); }, [districtId, listFavorites]);
 
   return <section className="learn-studio" aria-labelledby="learn-title">
     <header className="learn-header scroll-reveal">
-      <div><p className="learn-eyebrow"><Leaf /> {L("A guided Earth observation", "নির্দেশিত পৃথিবী পর্যবেক্ষণ")}</p><h1 id="learn-title">{L("Bangladesh in My Hands", "আমার হাতে বাংলাদেশ")}</h1><p>{L("Explore measured change across Bangladesh, one district and one climate record at a time.", "একটি জেলা ও একটি জলবায়ু রেকর্ড ধরে বাংলাদেশের পরিমাপ করা পরিবর্তন অনুসন্ধান করো।")}</p></div>
-      <div className="learn-record"><span>{L("Evidence coverage", "উপাত্তের আওতা")}</span><strong>{lang === "bn" ? "৬৪ জেলা" : "64 districts"}</strong><small>{L("NASA Earth observations", "নাসা আর্থ অবজারভেশনস")}</small></div>
+      <div><p className="learn-eyebrow"><Leaf /> {L("A guided Earth observation", "নির্দেশিত পৃথিবী পর্যবেক্ষণ")}</p><h1 id="learn-title">{L("Earth in My Hands", "আমার হাতে পৃথিবী")}</h1><p>{L("Explore measured change worldwide, one sampled location and one climate record at a time.", "একটি স্থান ও একটি জলবায়ু রেকর্ড ধরে পৃথিবীর পরিমাপ করা পরিবর্তন অনুসন্ধান করো।")}</p></div>
+      <div className="learn-record"><span>{L("Evidence coverage", "উপাত্তের আওতা")}</span><strong>{lang === "bn" ? "বিশ্বব্যাপী অনুসন্ধান" : "Worldwide search"}</strong><small>{L("NASA Earth observations", "নাসা আর্থ অবজারভেশনস")}</small></div>
     </header>
 
     <div className="learn-layout scroll-reveal">
       <aside className="learn-picker" aria-label={L("District selector", "জেলা নির্বাচন")}>
-        <div className="learn-picker-heading"><div><span>{L("Explore by place", "স্থান ধরে অনুসন্ধান")}</span><h2>{L("Choose a district", "জেলা বেছে নাও")}</h2></div><MapPin /></div>
-        <DistrictMap activeId={districtId} onSelect={chooseDistrict} lang={lang} />
-        <div className="learn-selected-place"><span>{L("Selected district", "নির্বাচিত জেলা")}</span><strong>{districtName}</strong><small>{district?.division}</small></div>
-        <label className="learn-select-label">{L("District list", "জেলার তালিকা")}<select value={districtId} onChange={(event) => chooseDistrict(event.target.value)}>{districts.map((item) => <option key={item.id} value={item.id}>{lang === "bn" ? item.bn : item.name}</option>)}</select></label>
+        <div className="learn-picker-heading"><div><span>{L("Explore by place", "স্থান ধরে অনুসন্ধান")}</span><h2>{L("Choose a location", "স্থান বেছে নাও")}</h2></div><MapPin /></div>
+        <LocationSearch onSelect={chooseDistrict} /><p className="mt-3 text-xs text-muted-foreground">{L("Observations describe a coordinate sample, not a country average.","পর্যবেক্ষণ একটি স্থানাঙ্কের নমুনা, দেশের গড় নয়।")}</p>
+        <div className="learn-selected-place"><span>{L("Selected location", "নির্বাচিত স্থান")}</span><strong>{districtName}</strong><small>{district?.division}</small></div>
+        
       </aside>
 
       <div className="learn-content">
@@ -141,7 +144,7 @@ export function DistrictLearning({ onMascotState, onContextChange }: { onMascotS
           <p className="learn-source">NASA · {analysis.provenance.dataset_id} · {L(`${analysis.result.n_observations} annual observations`, `${analysis.result.n_observations.toLocaleString("bn-BD")}টি বার্ষিক পর্যবেক্ষণ`)}</p>
 
           <section className="learn-question" aria-labelledby="observation-question"><p className="learn-section-label">{L("Check your observation", "তোমার পর্যবেক্ষণ মিলিয়ে দেখো")}</p><h2 id="observation-question">{L(`What does the long-term ${LABELS[activeVariable].en.toLowerCase()} record show?`, `দীর্ঘমেয়াদি ${LABELS[activeVariable].bn} রেকর্ডে কী দেখা যায়?`)}</h2><div className="learn-answers">{(Object.keys(TRENDS) as Trend[]).map((trend) => { const IconComponent = TRENDS[trend].icon; return <Button key={trend} variant="outline" disabled={picked !== null} onClick={() => void answer(trend)} className={picked ? trend === correct ? "is-correct" : trend === picked ? "is-wrong" : "" : ""}><IconComponent /><span>{TRENDS[trend][lang]}</span>{picked && trend === correct ? <Check /> : null}</Button>; })}</div>{picked ? <div className="learn-feedback" role="status"><p>{picked === correct ? L("Your observation matches the statistical test.", "তোমার পর্যবেক্ষণটি পরিসংখ্যানগত পরীক্ষার সঙ্গে মিলেছে।") : L("Compare your choice with the highlighted statistical result.", "তোমার পছন্দটি চিহ্নিত পরিসংখ্যানগত ফলাফলের সঙ্গে মিলিয়ে দেখো।")}</p><div className="learn-answer-row"><span>{L("Correct answer", "সঠিক উত্তর")}</span><strong>{TRENDS[correct][lang]}</strong></div><small>{L("Theil–Sen rate per decade", "প্রতি দশকে থেইল–সেন হার")}: {analysis.result.slope.slope_per_decade > 0 ? "+" : ""}{fmt(analysis.result.slope.slope_per_decade, lang, 2)} {analysis.unit} · p = {pValue(analysis.result.trend.p_value)}</small><p className="learn-takeaway"><BookOpenCheck aria-hidden />{learningSentence(analysis, lang)}</p>{saveMessage ? <p className="learn-save-note">{saveMessage}</p> : null}</div> : saveMessage ? <p className="learn-save-note" role="status">{saveMessage}</p> : null}</section>
-        </div> : <div className="learn-empty">{L("Data not yet available for this district.", "এই জেলার তথ্য এখনো পাওয়া যায়নি।")}</div>}
+        </div> : <div className="learn-empty">{L("Data not yet available for this location.", "এই জেলার তথ্য এখনো পাওয়া যায়নি।")}</div>}
       </div>
     </div>
     <p className="learn-honesty"><Info />{L("Every number comes from cached NASA records. The guide illustration explains the interface; it does not represent measured evidence.", "প্রতিটি সংখ্যা সংরক্ষিত NASA রেকর্ড থেকে এসেছে। গাইডের ছবিটি ইন্টারফেস বোঝায়; এটি পরিমাপ করা প্রমাণ নয়।")}</p>
