@@ -1,0 +1,11 @@
+[
+  { "id": "bangladesh", "name": "Bangladesh", "bn": "বাংলাদেশ", "lat": 23.8103, "lon": 90.4125 },
+  { "id": "india", "name": "India", "bn": "ভারত", "lat": 28.6139, "lon": 77.209 },
+  { "id": "pakistan", "name": "Pakistan", "bn": "পাকিস্তান", "lat": 33.6844, "lon": 73.0479 },
+  { "id": "nepal", "name": "Nepal", "bn": "নেপাল", "lat": 27.7172, "lon": 85.324 },
+  { "id": "bhutan", "name": "Bhutan", "bn": "ভুটান", "lat": 27.4728, "lon": 89.639 },
+  { "id": "sri-lanka", "name": "Sri Lanka", "bn": "শ্রীলঙ্কা", "lat": 6.9271, "lon": 79.8612 },
+  { "id": "maldives", "name": "Maldives", "bn": "মালদ্বীপ", "lat": 4.1755, "lon": 73.5093 },
+  { "id": "afghanistan", "name": "Afghanistan", "bn": "আফগানিস্তান", "lat": 34.5553, "lon": 69.2075 },
+  { "id": "myanmar", "name": "Myanmar", "bn": "মিয়ানমার", "lat": 19.7633, "lon": 96.0785 }
+]

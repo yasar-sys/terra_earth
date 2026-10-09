@@ -1,0 +1,120 @@
+{
+ "bn": "নেপাল",
+ "id": "nepal",
+ "lat": 27.7172,
+ "lon": 85.324,
+ "name": "Nepal",
+ "sample_type": "capital representative point",
+ "variables": {
+  "lst": {
+   "annual": {
+    "2015": 26.6426,
+    "2016": 27.5779,
+    "2017": 26.9249,
+    "2018": 26.6056,
+    "2019": 26.8816,
+    "2020": 27.6471,
+    "2021": 27.159,
+    "2022": 26.9573,
+    "2023": 27.3442,
+    "2024": 26.1495
+   },
+   "label": "Land surface temperature (day)",
+   "provenance": {
+    "dataset_id": "MOD11A2.061",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:10:50.893683+00:00",
+    "source_url": "https://modis.ornl.gov/rst/api/v1/MOD11A2/subset (lat=27.7172, lon=85.324, band=LST_Day_1km)"
+   },
+   "unit": "°C"
+  },
+  "ndvi": {
+   "annual": {
+    "2015": 0.2931,
+    "2016": 0.2872,
+    "2017": 0.303,
+    "2018": 0.2632,
+    "2019": 0.2995,
+    "2020": 0.2981,
+    "2021": 0.2589,
+    "2022": 0.2994,
+    "2023": 0.2808,
+    "2024": 0.2785
+   },
+   "label": "Vegetation index (NDVI)",
+   "provenance": {
+    "dataset_id": "MOD13Q1.061",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:10:50.893683+00:00",
+    "source_url": "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset (lat=27.7172, lon=85.324, band=250m_16_days_NDVI)"
+   },
+   "unit": "NDVI"
+  },
+  "precipitation": {
+   "annual": {
+    "2015": 3.2758,
+    "2016": 3.1558,
+    "2017": 2.9208,
+    "2018": 2.5558,
+    "2019": 3.2333,
+    "2020": 3.8192,
+    "2021": 4.2367,
+    "2022": 3.3908,
+    "2023": 3.2783,
+    "2024": 4.3367
+   },
+   "label": "Precipitation",
+   "provenance": {
+    "dataset_id": "NASA_POWER_MONTHLY_AG_V9",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:09:14.545300+00:00",
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=27.7172&longitude=85.324&start=2015&end=2024&format=JSON"
+   },
+   "unit": "mm/day"
+  },
+  "solar": {
+   "annual": {
+    "2015": 17.075,
+    "2016": 16.9467,
+    "2017": 17.3642,
+    "2018": 16.9,
+    "2019": 16.8692,
+    "2020": 16.1425,
+    "2021": 16.1717,
+    "2022": 16.5833,
+    "2023": 16.8642,
+    "2024": 16.6925
+   },
+   "label": "All-sky solar radiation",
+   "provenance": {
+    "dataset_id": "NASA_POWER_MONTHLY_AG_V9",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:09:14.545300+00:00",
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=27.7172&longitude=85.324&start=2015&end=2024&format=JSON"
+   },
+   "unit": "kWh/m²/day"
+  },
+  "temperature": {
+   "annual": {
+    "2015": 19.1408,
+    "2016": 19.6225,
+    "2017": 19.6242,
+    "2018": 18.9467,
+    "2019": 19.0892,
+    "2020": 18.3558,
+    "2021": 19.0283,
+    "2022": 18.7508,
+    "2023": 19.2933,
+    "2024": 19.28
+   },
+   "label": "Air temperature (2 m)",
+   "provenance": {
+    "dataset_id": "NASA_POWER_MONTHLY_AG_V9",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:09:14.545300+00:00",
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=27.7172&longitude=85.324&start=2015&end=2024&format=JSON"
+   },
+   "unit": "°C"
+  }
+ }
+}

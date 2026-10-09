@@ -1,0 +1,45 @@
+# Roadmap
+
+- [x] Add grounded student AI insight flow
+- [x] Strengthen two-district comparison and PDF report export
+- [x] Add project imagery and atmospheric motion
+- [x] Furnish header, footer, and mobile navigation
+- [x] Verify build, AI call, PDF, and responsive interaction
+- [x] Replace the district grid with one compact district selector
+- [x] Rebrand the public experience as TerraBangla and simplify its identity
+- [x] Add installable home-screen support without offline caching
+- [x] Add Google sign-in with saved multi-conversation climate chat
+- [x] Add a secure admin workspace for content, announcements, chat review, and data uploads
+- [x] Verify public sign-in flow, protected chat/admin access, install metadata, and mobile layout
+- [x] Verify signed-in chat and admin access with the approved Google account
+- [x] Build and verify the four-location Bangladesh Earth Trend Detective game for ages 7–12
+- [x] Redesign the children’s game as “আমার হাতে বাংলাদেশ” with polished scenes and tactile interaction
+- [x] Connect every game mission to real district NASA records and make phone taps reliable
+- [x] Polish the kids’ game scenes, clue feedback, sound, travel transitions, star motion, and quiz celebrations
+- [x] Replace the game flow with a minimal animated 64-district learning studio
+- [x] Add private student profiles, profile pictures, favorites, lesson results, and saved AI explanations
+- [x] Add the uploaded five-pose animated mascot to the kids learning studio and quiz
+- [x] Overhaul `/kids` into a calm, museum-quality climate data learning experience
+- [x] Add 64 distinct procedural district themes and guide accents to `/kids`
+- [x] Upgrade all district themes into layered illustrated worlds with animated guide conversations
+- [x] Install the supplied TerraBangla logo across the site, splash screen, and app icons
+- [x] Add clear answers and learning takeaways to every children’s question
+- [x] Add the final presentation-ready 240-second English voiceover script to the docs
+- [x] Apply the neon-professional dark/light visual system across every route
+- [x] Expand saved chat into the server-grounded AI Evidence Lab
+- [x] Verify both themes, responsive layouts, downloads, and Evidence Lab interactions
+- [x] Apply the TerraBangla violet brand color to Bangladesh on the world globe
+- [x] Add real-data global or regional trend comparison around Bangladesh
+- [x] Add a Reference tab linking TerraBangla to the NASA Space Apps challenge
+- [x] Add research, documentation, and reserved YouTube preview sections
+- [x] Restore 3D pillars in the heatmap experience
+- [x] Verify navigation, responsive layouts, video fallback, and heatmap pillars
+- [x] Embed the NASA challenge video and add its YouTube submission link
+- [x] Show each signed-in user's submitted Evidence Lab questions and answers privately on Reference
+- [x] Verify the video, private evidence states, responsive layout, and build
+- [x] Replace `/kids` with an 8–12 minute bilingual evidence comic and final story review
+- [x] Verify narration controls, evidence panels, quiz flow, accessibility, and responsive layouts
+- [x] Convert the children’s story into a reliable one-scene-at-a-time slide player
+- [x] Add per-slide voice playback, expressive mascot poses, speaking motion, and distinct backgrounds
+- [x] Add 14 unique comic scenes, scene-specific character motion, and layered ambient sound
+- [x] Remove all artificial overlays and effects from around the kids character

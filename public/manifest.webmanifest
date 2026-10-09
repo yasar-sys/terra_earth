@@ -1,0 +1,20 @@
+{
+  "id": "/",
+  "name": "TerraBangla — Bangladesh Climate Trend Explorer",
+  "short_name": "TerraBangla",
+  "description": "Explore data-backed NASA climate trends across all 64 districts of Bangladesh — vegetation, temperature, rainfall and sunlight, with a kids' climate game.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0B0E1A",
+  "theme_color": "#0B0E1A",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "science", "weather"],
+  "icons": [
+    { "src": "/pwa-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/pwa-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/pwa-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

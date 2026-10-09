@@ -1,0 +1,120 @@
+{
+ "bn": "শ্রীলঙ্কা",
+ "id": "sri-lanka",
+ "lat": 6.9271,
+ "lon": 79.8612,
+ "name": "Sri Lanka",
+ "sample_type": "capital representative point",
+ "variables": {
+  "lst": {
+   "annual": {
+    "2015": 34.2668,
+    "2016": 34.695,
+    "2017": 34.6474,
+    "2018": 35.0576,
+    "2019": 34.6624,
+    "2020": 34.275,
+    "2021": 34.1305,
+    "2022": 32.8312,
+    "2023": 32.9142,
+    "2024": 33.4306
+   },
+   "label": "Land surface temperature (day)",
+   "provenance": {
+    "dataset_id": "MOD11A2.061",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:12:11.319634+00:00",
+    "source_url": "https://modis.ornl.gov/rst/api/v1/MOD11A2/subset (lat=6.9271, lon=79.8612, band=LST_Day_1km)"
+   },
+   "unit": "°C"
+  },
+  "ndvi": {
+   "annual": {
+    "2015": 0.4184,
+    "2016": 0.3665,
+    "2017": 0.408,
+    "2018": 0.4016,
+    "2019": 0.4411,
+    "2020": 0.4159,
+    "2021": 0.4797,
+    "2022": 0.4828,
+    "2023": 0.5158,
+    "2024": 0.4905
+   },
+   "label": "Vegetation index (NDVI)",
+   "provenance": {
+    "dataset_id": "MOD13Q1.061",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:12:11.319634+00:00",
+    "source_url": "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset (lat=6.9271, lon=79.8612, band=250m_16_days_NDVI)"
+   },
+   "unit": "NDVI"
+  },
+  "precipitation": {
+   "annual": {
+    "2015": 6.695,
+    "2016": 4.4775,
+    "2017": 5.02,
+    "2018": 5.5908,
+    "2019": 6.5142,
+    "2020": 5.3583,
+    "2021": 7.5567,
+    "2022": 6.6758,
+    "2023": 8.105,
+    "2024": 5.4292
+   },
+   "label": "Precipitation",
+   "provenance": {
+    "dataset_id": "NASA_POWER_MONTHLY_AG_V9",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:11:23.691570+00:00",
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=6.9271&longitude=79.8612&start=2015&end=2024&format=JSON"
+   },
+   "unit": "mm/day"
+  },
+  "solar": {
+   "annual": {
+    "2015": 20.4092,
+    "2016": 20.9958,
+    "2017": 20.4375,
+    "2018": 19.8592,
+    "2019": 19.7958,
+    "2020": 20.3942,
+    "2021": 19.9208,
+    "2022": 19.7167,
+    "2023": 19.5925,
+    "2024": 19.4125
+   },
+   "label": "All-sky solar radiation",
+   "provenance": {
+    "dataset_id": "NASA_POWER_MONTHLY_AG_V9",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:11:23.691570+00:00",
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=6.9271&longitude=79.8612&start=2015&end=2024&format=JSON"
+   },
+   "unit": "kWh/m²/day"
+  },
+  "temperature": {
+   "annual": {
+    "2015": 26.415,
+    "2016": 26.6517,
+    "2017": 26.5275,
+    "2018": 26.275,
+    "2019": 26.8533,
+    "2020": 26.8017,
+    "2021": 26.4042,
+    "2022": 26.2392,
+    "2023": 26.6275,
+    "2024": 27.1208
+   },
+   "label": "Air temperature (2 m)",
+   "provenance": {
+    "dataset_id": "NASA_POWER_MONTHLY_AG_V9",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:11:23.691570+00:00",
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=6.9271&longitude=79.8612&start=2015&end=2024&format=JSON"
+   },
+   "unit": "°C"
+  }
+ }
+}

@@ -1,0 +1,108 @@
+{
+ "bn": "মালদ্বীপ",
+ "id": "maldives",
+ "lat": 4.1755,
+ "lon": 73.5093,
+ "name": "Maldives",
+ "sample_type": "capital representative point",
+ "variables": {
+  "lst": {
+   "annual": {},
+   "label": "Land surface temperature (day)",
+   "provenance": {
+    "dataset_id": "MOD11A2.061",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:12:40.451638+00:00",
+    "source_url": "https://modis.ornl.gov/rst/api/v1/MOD11A2/subset (lat=4.1755, lon=73.5093, band=LST_Day_1km)"
+   },
+   "unit": "°C"
+  },
+  "ndvi": {
+   "annual": {
+    "2015": 0.2078,
+    "2016": 0.1885,
+    "2017": 0.199,
+    "2018": 0.1736,
+    "2019": 0.1815,
+    "2020": 0.1722,
+    "2021": 0.2458,
+    "2022": 0.1448,
+    "2024": 0.2246
+   },
+   "label": "Vegetation index (NDVI)",
+   "provenance": {
+    "dataset_id": "MOD13Q1.061",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:12:40.451638+00:00",
+    "source_url": "https://modis.ornl.gov/rst/api/v1/MOD13Q1/subset (lat=4.1755, lon=73.5093, band=250m_16_days_NDVI)"
+   },
+   "unit": "NDVI"
+  },
+  "precipitation": {
+   "annual": {
+    "2015": 4.5283,
+    "2016": 4.8658,
+    "2017": 4.345,
+    "2018": 5.3167,
+    "2019": 5.6708,
+    "2020": 4.3125,
+    "2021": 3.6233,
+    "2022": 4.695,
+    "2023": 5.1717,
+    "2024": 5.3292
+   },
+   "label": "Precipitation",
+   "provenance": {
+    "dataset_id": "NASA_POWER_MONTHLY_AG_V9",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:12:16.329556+00:00",
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=4.1755&longitude=73.5093&start=2015&end=2024&format=JSON"
+   },
+   "unit": "mm/day"
+  },
+  "solar": {
+   "annual": {
+    "2015": 20.3317,
+    "2016": 19.8367,
+    "2017": 20.3017,
+    "2018": 19.8133,
+    "2019": 19.6175,
+    "2020": 20.025,
+    "2021": 20.5583,
+    "2022": 19.885,
+    "2023": 19.5008,
+    "2024": 19.4325
+   },
+   "label": "All-sky solar radiation",
+   "provenance": {
+    "dataset_id": "NASA_POWER_MONTHLY_AG_V9",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:12:16.329556+00:00",
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=4.1755&longitude=73.5093&start=2015&end=2024&format=JSON"
+   },
+   "unit": "kWh/m²/day"
+  },
+  "temperature": {
+   "annual": {
+    "2015": 28.0417,
+    "2016": 28.1858,
+    "2017": 27.9667,
+    "2018": 27.8842,
+    "2019": 28.1767,
+    "2020": 28.2958,
+    "2021": 28.1458,
+    "2022": 27.9717,
+    "2023": 28.22,
+    "2024": 28.6883
+   },
+   "label": "Air temperature (2 m)",
+   "provenance": {
+    "dataset_id": "NASA_POWER_MONTHLY_AG_V9",
+    "mode": "cache",
+    "retrieved": "2026-10-01T22:12:16.329556+00:00",
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M%2CALLSKY_SFC_SW_DWN%2CPRECTOTCORR&community=AG&latitude=4.1755&longitude=73.5093&start=2015&end=2024&format=JSON"
+   },
+   "unit": "°C"
+  }
+ }
+}
