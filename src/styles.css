@@ -88,6 +88,9 @@
   --chart-grid: oklch(0.82 0.025 285);
   --chart-axis: oklch(0.43 0.025 280);
   --globe-tooltip: oklch(0.99 0.004 285 / 0.96);
+  --globe-pin: oklch(0.9 0.15 85);
+  --globe-atmosphere: oklch(0.75 0.14 230);
+  --globe-light: oklch(1 0 0);
   --game-paper: oklch(0.97 0.018 92);
   --game-ink: oklch(0.32 0.075 225);
   --game-muted: oklch(0.44 0.06 221);
@@ -260,12 +263,19 @@ a:hover > .site-brand-logo { transform: translateY(-1px) scale(1.03); }
 .theme-toggle { position: relative; overflow: hidden; }
 .theme-toggle::after { content: ""; position: absolute; inset: 28%; border-radius: 50%; background: var(--color-accent); filter: blur(10px); opacity: .15; }
 
-.globe-frame {
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-panel), 0 0 0 1px color-mix(in oklab,var(--primary) 30%,transparent), 0 0 48px -30px var(--primary-glow);
-}
+.globe-frame { border-radius: 0; background: transparent; }
+.earth-stage { isolation: isolate; }
+.earth-stage-caption { position: absolute; left: 1rem; top: 1rem; z-index: 1; display: flex; align-items: center; gap: .6rem; color: var(--color-muted-foreground); font-size: .65rem; font-weight: 600; pointer-events: none; }
+.earth-stage-caption svg { width: 1rem; height: 1rem; }
+.earth-live-dot { width: .3rem; height: .3rem; border-radius: 50%; background: var(--color-accent); }
+.earth-toolbar { position: absolute; z-index: 2; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: .15rem; padding: .35rem; max-width: calc(100% - 1rem); border: 1px solid var(--color-border); border-radius: .5rem; background: var(--globe-tooltip); box-shadow: var(--shadow-panel); backdrop-filter: blur(18px); }
+.earth-toolbar button { flex-shrink: 0; }
+.earth-toolbar-divider { height: 1.2rem; width: 1px; background: var(--color-border); margin-inline: .2rem; }
+@media(max-width:480px) { .earth-toolbar { gap:0; padding:.25rem; } .earth-toolbar button { width:2.2rem; height:2.2rem; } .earth-stage-caption { top:.9rem; left:.5rem; font-size:.6rem; } }
+
 .globe-frame:fullscreen,
 .globe-frame:-webkit-full-screen {
+  background: var(--color-background);
   height: 100dvh !important;
   width: 100vw !important;
   max-height: none !important;
@@ -274,6 +284,7 @@ a:hover > .site-brand-logo { transform: translateY(-1px) scale(1.03); }
   box-shadow: none;
 }
 .globe-frame-full {
+  background: var(--color-background);
   position: fixed;
   inset: 0;
   z-index: 60;

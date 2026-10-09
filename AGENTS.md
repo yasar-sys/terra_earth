@@ -6,7 +6,7 @@ Kids comic navigation is active-index driven, with one full-screen scene, unique
 The supplied detective character is an optional, understated evidence guide; it never represents measured evidence or introduces gamification.
 Location visual themes use one shared layered CSS renderer with stable per-district compositions; they are geography-informed atmosphere only and never climate evidence.
 Student profiles, favorites, lesson attempts, and saved AI explanations use separate owner-scoped records; roles never live in profiles.
-Retain the supplied globe emblem through its asset pointer, paired with the current app wordmark; install identity must match the current app name.
+Use one shared logo asset pointer across site branding and derive all install icons from that source so identity stays consistent.
 Apply theme preference before hydration and use semantic CSS tokens so every route shares one accessible light/dark system.
 Worldwide comparisons use NASA observations at named representative coordinate points; never present them as national averages.
 Keep challenge context, research references, documentation scope, and the team video together on the public Reference route so judges have one canonical evidence hub.
@@ -25,3 +25,5 @@ Keep saved Evidence Lab questions and answers owner-scoped and reveal them on Re
 Worldwide locations use validated coordinate-encoded IDs alongside legacy district IDs so saved records and existing links remain compatible.
 Global observations are loaded through TanStack server functions and shared annual completeness checks so every feature and AI uses the same verified evidence.
 NASA point records use a bounded one-day server memory cache; unavailable variables stay explicitly missing rather than estimated.
+
+Keep globe rendering browser-lazy through GlobeStage; visual Earth layers and lighting never encode climate measurements.

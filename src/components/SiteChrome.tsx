@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { AuthButton } from "@/components/AuthButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import terraBanglaLogo from "@/assets/brand/terrabangla-logo.png.asset.json";
+import terraBanglaLogo from "@/assets/brand/terra-earth-logo.png.asset.json";
 
 const NAV = [
   { to: "/", key: "nav.globe", icon: Globe2 },

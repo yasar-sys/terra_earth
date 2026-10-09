@@ -15,7 +15,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useLang } from "@/lib/i18n";
 import { analyzeVariable, districts, getDistrict, getSeries, VARIABLE_KEYS, yearBounds, type VariableKey } from "@/lib/climate";
 import { ProvenanceButton } from "@/components/ProvenanceDrawer";
-import terraBanglaLogo from "@/assets/brand/terrabangla-logo.png.asset.json";
+import terraBanglaLogo from "@/assets/brand/terra-earth-logo.png.asset.json";
 
 const VARIABLE_NAMES: Record<VariableKey, { en: string; bn: string }> = {
   ndvi: { en: "Vegetation (NDVI)", bn: "সবুজতা (NDVI)" },
