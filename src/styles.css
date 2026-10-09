@@ -275,6 +275,7 @@ a:hover > .site-brand-logo { transform: translateY(-1px) scale(1.03); }
 
 .globe-frame:fullscreen,
 .globe-frame:-webkit-full-screen {
+  background: var(--color-background);
   height: 100dvh !important;
   width: 100vw !important;
   max-height: none !important;
@@ -283,6 +284,7 @@ a:hover > .site-brand-logo { transform: translateY(-1px) scale(1.03); }
   box-shadow: none;
 }
 .globe-frame-full {
+  background: var(--color-background);
   position: fixed;
   inset: 0;
   z-index: 60;

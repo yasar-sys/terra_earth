@@ -1,7 +1,7 @@
 # Roadmap
 
-- [ ] Install the updated Terra Earth explorer logo and refresh all app icons
-- [ ] Redesign and verify the interactive globe with richer Earth rendering and polished controls
+- [x] Install the updated Terra Earth explorer logo and refresh all app icons
+- [x] Redesign and verify the interactive globe with richer Earth rendering and polished controls
 
 - [x] Add grounded student AI insight flow
 - [x] Strengthen two-district comparison and PDF report export
