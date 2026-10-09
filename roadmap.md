@@ -43,3 +43,4 @@
 - [x] Add per-slide voice playback, expressive mascot poses, speaking motion, and distinct backgrounds
 - [x] Add 14 unique comic scenes, scene-specific character motion, and layered ambient sound
 - [x] Remove all artificial overlays and effects from around the kids character
+- [x] Add the bilingual "How we know" plain-language methods guide route

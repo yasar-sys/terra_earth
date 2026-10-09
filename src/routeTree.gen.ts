@@ -16,6 +16,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthCallbackRouteImport } from './routes/auth-callback'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as HeatmapRouteImport } from './routes/heatmap'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as KidsRouteImport } from './routes/kids'
 import { Route as ReferenceRouteImport } from './routes/reference'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
@@ -57,6 +58,11 @@ const CompareRoute = CompareRouteImport.update({
 const HeatmapRoute = HeatmapRouteImport.update({
   id: '/heatmap',
   path: '/heatmap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KidsRoute = KidsRouteImport.update({
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/auth-callback': typeof AuthCallbackRoute
   '/compare': typeof CompareRoute
   '/heatmap': typeof HeatmapRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/kids': typeof KidsRoute
   '/reference': typeof ReferenceRoute
   '/admin': typeof AuthenticatedAdminRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/auth-callback': typeof AuthCallbackRoute
   '/compare': typeof CompareRoute
   '/heatmap': typeof HeatmapRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/kids': typeof KidsRoute
   '/reference': typeof ReferenceRoute
   '/admin': typeof AuthenticatedAdminRoute
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/auth-callback': typeof AuthCallbackRoute
   '/compare': typeof CompareRoute
   '/heatmap': typeof HeatmapRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/kids': typeof KidsRoute
   '/reference': typeof ReferenceRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
@@ -160,6 +169,7 @@ export interface FileRouteTypes {
     | '/auth-callback'
     | '/compare'
     | '/heatmap'
+    | '/how-it-works'
     | '/kids'
     | '/reference'
     | '/admin'
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/auth-callback'
     | '/compare'
     | '/heatmap'
+    | '/how-it-works'
     | '/kids'
     | '/reference'
     | '/admin'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '/auth-callback'
     | '/compare'
     | '/heatmap'
+    | '/how-it-works'
     | '/kids'
     | '/reference'
     | '/_authenticated/admin'
@@ -211,6 +223,7 @@ export interface RootRouteChildren {
   AuthCallbackRoute: typeof AuthCallbackRoute
   CompareRoute: typeof CompareRoute
   HeatmapRoute: typeof HeatmapRoute
+  HowItWorksRoute: typeof HowItWorksRoute
   KidsRoute: typeof KidsRoute
   ReferenceRoute: typeof ReferenceRoute
   ApiChatRoute: typeof ApiChatRoute
@@ -266,6 +279,13 @@ declare module '@tanstack/react-router' {
       path: '/heatmap'
       fullPath: '/heatmap'
       preLoaderRoute: typeof HeatmapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kids': {
@@ -352,6 +372,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthCallbackRoute: AuthCallbackRoute,
   CompareRoute: CompareRoute,
   HeatmapRoute: HeatmapRoute,
+  HowItWorksRoute: HowItWorksRoute,
   KidsRoute: KidsRoute,
   ReferenceRoute: ReferenceRoute,
   ApiChatRoute: ApiChatRoute,
