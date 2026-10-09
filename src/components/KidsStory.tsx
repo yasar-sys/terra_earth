@@ -297,7 +297,7 @@ export function KidsStory() {
   const mood = MOODS[scene.id] ?? "encouraging";
   const localize = (value: StoryText) => value[lang];
   const locationEvidence = useLocationEvidence(scene.evidence?.districtId ?? "dhaka", false);
-  const analysis = useMemo(() => scene.evidence ? analyzeVariable(scene.evidence.districtId, scene.evidence.variable) : null, [scene, locationEvidence.version]);
+  const analysis = useMemo(() => scene.evidence && locationEvidence.hydrated ? analyzeVariable(scene.evidence.districtId, scene.evidence.variable) : null, [scene, locationEvidence.version, locationEvidence.hydrated]);
   const district = useMemo(() => scene.evidence ? getDistrict(scene.evidence.districtId) : null, [scene]);
 
   const playScene = useCallback((target: StoryScene) => {

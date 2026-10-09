@@ -3,6 +3,7 @@ import { coordinatesLabel } from "@/lib/global-locations";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
+import { DistrictLearning } from "@/components/DistrictLearning";
 import { TrendCard } from "@/components/TrendCard";
 import { ProvenanceButton } from "@/components/ProvenanceDrawer";
 import { classifyBiome } from "@/lib/biome";
@@ -153,6 +154,7 @@ function DistrictDetail() {
             ))}
           </div>
 
+          <DistrictLearning districtId={districtId} variable={available.includes("temperature") ? "temperature" : available[0] ?? "temperature"} />
           <StudentInsight
             districtId={districtId}
             variable={available.includes("temperature") ? "temperature" : available[0] ?? "temperature"}

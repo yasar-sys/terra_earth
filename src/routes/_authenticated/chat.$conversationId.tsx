@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { createConversation, deleteConversation, listConversations, loadConversation } from "@/lib/chat.functions";
 import { supabase } from "@/integrations/supabase/client";
 import { useLang } from "@/lib/i18n";
-import { analyzeVariable, districts, getSeries, VARIABLE_KEYS, yearBounds, type VariableKey } from "@/lib/climate";
+import { analyzeVariable, districts, getDistrict, getSeries, VARIABLE_KEYS, yearBounds, type VariableKey } from "@/lib/climate";
 import { ProvenanceButton } from "@/components/ProvenanceDrawer";
 import terraBanglaLogo from "@/assets/brand/terrabangla-logo.png.asset.json";
 
@@ -48,7 +48,7 @@ function ChatThread() {
 
 function ChatPanel({ conversationId, initialMessages, lang }: { conversationId: string; initialMessages: UIMessage[]; lang: "en" | "bn" }) {
   const inputRef = useRef<HTMLTextAreaElement>(null); const [input, setInput] = useState(""); const [errorText, setErrorText] = useState("");
-  const globalBounds = yearBounds();
+  const globalBounds = {min:2015,max:2024};
   const [districtId, setDistrictId] = useState("auto");
   const [variable, setVariable] = useState<VariableKey | "all">("all");
   const isFree = districtId === "auto";
@@ -64,7 +64,7 @@ function ChatPanel({ conversationId, initialMessages, lang }: { conversationId: 
   useEffect(() => { setYearStart(minYear); setYearEnd(maxYear); }, [minYear, maxYear]);
   const range = { start: Math.min(yearStart, yearEnd), end: Math.max(yearStart, yearEnd) };
   const analysis = useMemo(() => isFree ? null : analyzeVariable(previewDistrict, previewVariable, range), [isFree, previewDistrict, previewVariable, range.start, range.end, locationEvidence.version]);
-  const district = districts.find((item) => item.id === districtId);
+  const district = getDistrict(districtId);
   const requestScope = isFree ? {} : { districtId, ...(variable === "all" ? {} : { variable }), yearStart: range.start, yearEnd: range.end };
   const L = (en: string, bn: string) => lang === "bn" ? bn : en;
   const transport = useMemo(() => new DefaultChatTransport({ api: "/api/chat", body: { conversationId, ...requestScope }, headers: async () => { const { data } = await supabase.auth.getSession(); return data.session ? { Authorization: `Bearer ${data.session.access_token}` } : {}; } }), [conversationId, isFree, districtId, variable, range.start, range.end]);
@@ -79,7 +79,7 @@ function ChatPanel({ conversationId, initialMessages, lang }: { conversationId: 
       <div className="flex min-h-[560px] min-w-0 flex-col border-border xl:border-r">
         <div className="grid gap-2 border-b border-border bg-elevated/40 p-3 sm:grid-cols-2 lg:grid-cols-4" aria-label={L("Evidence controls", "প্রমাণ নিয়ন্ত্রণ")}>
           <LocationSearch onSelect={setDistrictId} />
-          <label className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{L("Location", "স্থান")}<select className="mt-1 h-10 w-full border border-input bg-card px-3 text-sm" value={districtId} onChange={(event) => setDistrictId(event.target.value)} disabled={busy}><option value="auto">{L("Any — detect from my question", "যেকোনো — প্রশ্ন থেকে বুঝে নাও")}</option>{districts.map((item) => <option key={item.id} value={item.id}>{lang === "bn" ? item.bn : item.name}</option>)}</select></label>
+          <label className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{L("Location", "স্থান")}<select className="mt-1 h-10 w-full border border-input bg-card px-3 text-sm" value={districtId} onChange={(event) => setDistrictId(event.target.value)} disabled={busy}><option value="auto">{L("Any — detect from my question", "যেকোনো — প্রশ্ন থেকে বুঝে নাও")}</option>{[...districts,...(district && !districts.some(d=>d.id===district.id) ? [district] : [])].map((item) => <option key={item.id} value={item.id}>{lang === "bn" ? item.bn : item.name}</option>)}</select></label>
           <label className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{L("Variable", "সূচক")}<select className="mt-1 h-10 w-full border border-input bg-card px-3 text-sm" value={variable} onChange={(event) => setVariable(event.target.value as VariableKey | "all")} disabled={busy}><option value="all">{L("All variables", "সব সূচক")}</option>{VARIABLE_KEYS.map((key) => <option key={key} value={key}>{lang === "bn" ? VARIABLE_NAMES[key].bn : VARIABLE_NAMES[key].en}</option>)}</select></label>
           <label className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{L("Start year", "শুরুর বছর")}<select className="mt-1 h-10 w-full border border-input bg-card px-3 text-sm" value={yearStart} onChange={(event) => setYearStart(Number(event.target.value))} disabled={busy || isFree}>{years.map((year) => <option key={year}>{year}</option>)}</select></label>
           <label className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{L("End year", "শেষ বছর")}<select className="mt-1 h-10 w-full border border-input bg-card px-3 text-sm" value={yearEnd} onChange={(event) => setYearEnd(Number(event.target.value))} disabled={busy || isFree}>{years.map((year) => <option key={year}>{year}</option>)}</select></label>

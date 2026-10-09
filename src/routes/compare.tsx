@@ -156,7 +156,7 @@ function ComparePage() {
     return VARIABLE_KEYS.map((k) => (
       <option key={k} value={k}>
         {t(VARIABLE_LABEL_KEY[k])}
-        {av.includes(k) ? "" : ` (${L("no data", "তথ্য নেই")})`}
+        
       </option>
     ));
   };

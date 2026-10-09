@@ -44,11 +44,15 @@ export const Route = createFileRoute("/api/chat")({
       await supabase.from("conversations").update({ title: userText.slice(0, 64) || "Climate question" }).eq("id", body.conversationId);
     }
 
-    const { districts, getDistrict, analyzeVariable, VARIABLE_KEYS } = await import("@/lib/climate");
+    const { districts, getDistrict, registerEvidence, getCached, analyzeVariable, VARIABLE_KEYS } = await import("@/lib/climate");
     const normalized = userText.toLowerCase();
     const explicitDistrict = body.districtId ? getDistrict(body.districtId) : undefined;
     if (body.districtId && !explicitDistrict) return new Response("Unknown location selection.", { status: 400 });
     const mentioned = explicitDistrict ? [explicitDistrict] : districts.filter((district) => normalized.includes(district.name.toLowerCase()) || normalized.includes(district.id.replace(/-/g, " ")) || (district.bn && userText.includes(district.bn)));
+    if (!explicitDistrict) {
+      const { geocodeQuestion } = await import("@/lib/geocode.server");
+      for (const location of await geocodeQuestion(userText)) { registerEvidence(location,getCached(location.id) ?? {district:location.id,variables:{}}); if (!mentioned.some(x=>x.id===location.id)) mentioned.push(location); }
+    }
     const chosenList = (mentioned.length ? mentioned : districts.filter((district) => district.id === "dhaka")).slice(0, 6);
     const { ensureGlobalEvidence } = await import("@/lib/global-climate.server");
     await Promise.all(chosenList.map(chosen => ensureGlobalEvidence(chosen.id, body.variable === "ndvi" || body.variable === "lst")));
