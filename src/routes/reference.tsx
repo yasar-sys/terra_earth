@@ -116,11 +116,11 @@ function ReferencePage() {
         <div className="mt-5 sm:mt-0">
           <p className="text-sm leading-7 text-muted-foreground">
             {lang === "bn"
-              ? "MEC TERRA_DETECTORS নাসা স্পেস অ্যাপস চ্যালেঞ্জ ২০২৬-এর ‘Be An Earth System Trend Detective!’ চ্যালেঞ্জের জন্য টেরা আর্থ তৈরি করেছে। প্রকল্পটি NASA Earth-observation রেকর্ডকে বাংলাদেশের ৬৪ জেলার অনুসন্ধানযোগ্য জলবায়ু প্রমাণে রূপ দেয়—কোনো অনুপস্থিত মান বানানো ছাড়া।"
-              : "MEC TERRA_DETECTORS built Terra Earth for the NASA Space Apps Challenge 2026 challenge, ‘Be An Earth System Trend Detective!’. It turns NASA Earth-observation records into explorable climate evidence for all 64 districts of Bangladesh—without inventing missing values."}
+              ? "MEC TERRA_DETECTORS নাসা স্পেস অ্যাপস চ্যালেঞ্জ ২০২৬-এর ‘Be An Earth System Trend Detective!’ চ্যালেঞ্জের জন্য টেরা আর্থ তৈরি করেছে। প্রকল্পটি NASA Earth-observation রেকর্ডকে বিশ্বব্যাপী দেশ ও শহরের স্থানাঙ্কে অনুসন্ধানযোগ্য জলবায়ু প্রমাণে রূপ দেয়—কোনো অনুপস্থিত মান বানানো ছাড়া।"
+              : "MEC TERRA_DETECTORS built Terra Earth for the NASA Space Apps Challenge 2026 challenge, ‘Be An Earth System Trend Detective!’. It turns NASA Earth-observation records into explorable climate evidence at worldwide country and city coordinates—without inventing missing values."}
           </p>
           <div className="mt-5 flex flex-wrap gap-2 text-xs font-medium text-foreground">
-            <span className="rounded-full border border-border bg-elevated px-3 py-1.5">Bangladesh</span>
+            <span className="rounded-full border border-border bg-elevated px-3 py-1.5">Worldwide</span>
             <span className="rounded-full border border-border bg-elevated px-3 py-1.5">64 districts</span>
             <span className="rounded-full border border-border bg-elevated px-3 py-1.5">NASA open data</span>
             <span className="rounded-full border border-border bg-elevated px-3 py-1.5">Apache-2.0</span>

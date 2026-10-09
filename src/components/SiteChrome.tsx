@@ -21,11 +21,11 @@ const NAV = [
 function Brand() {
   const { t } = useLang();
   return (
-    <Link to="/" className="group flex min-w-0 items-center gap-3 rounded-md">
+    <Link to="/" className="group flex min-w-0 shrink-0 items-center gap-3 rounded-md">
       <img className="site-brand-logo" src={terraBanglaLogo.url} alt="" width={768} height={768} />
       <span className="min-w-0">
-        <span className="block truncate font-display text-lg font-semibold text-foreground">{t("app.title")}</span>
-        <span className="block truncate text-[10px] uppercase text-muted-foreground">Global climate evidence</span>
+        <span className="block whitespace-nowrap font-display text-base font-semibold text-foreground">{t("app.title")}</span>
+        <span className="block truncate text-[10px] uppercase text-muted-foreground">{t("app.tagline").includes("NASA") ? "Global climate evidence" : "বিশ্বের জলবায়ু প্রমাণ"}</span>
       </span>
     </Link>
   );

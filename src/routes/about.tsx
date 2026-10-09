@@ -89,7 +89,7 @@ function AboutPage() {
 
       <h2 className="mt-8 font-display text-xl text-foreground">Team</h2>
       <p className="mt-2 text-sm text-muted-foreground">
-        Terra Earth · NASA Space Apps Challenge 2026, Bangladesh · challenge “Be An Earth
+        Terra Earth · NASA Space Apps Challenge 2026, Worldwide · challenge “Be An Earth
         System Trend Detective!” · Apache-2.0 licensed.
       </p>
     </div>

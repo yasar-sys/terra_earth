@@ -71,6 +71,8 @@ for (const [path, doc] of Object.entries(modules)) {
   const id = path.split("/").pop()?.replace(/\.json$/, "");
   if (!id) continue;
   cache.set(id, doc);
+  const location = parseGlobalLocation(id);
+  if (location && !districts.some(d=>d.id===id)) districts.push(location);
 }
 
 export function getDistrict(id: string): District | undefined {
@@ -99,7 +101,7 @@ export function availableVariables(id: string): VariableKey[] {
 }
 
 export function coveredDistrictIds(): string[] {
-  return districts.filter((d) => hasData(d.id)).map((d) => d.id);
+  return [...cache.keys()].filter(id=>hasData(id));
 }
 
 export interface SeriesPoint {

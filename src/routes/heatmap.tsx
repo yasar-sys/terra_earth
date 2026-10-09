@@ -41,7 +41,7 @@ export const Route = createFileRoute("/heatmap")({
 interface Grid {
   variable: string;
   unit: string;
-  cells: { lat: number; lng: number; annual: Record<string, number> }[];
+  cells: { lat: number; lng: number; annual: Record<string, number>; place?:string; provenance?:Provenance }[];
   provenance: Provenance;
 }
 
@@ -72,7 +72,7 @@ function HeatmapPage() {
   const globalGrid = useMemo(() => {
     const records = [...districts, ...(!districts.some(d=>d.id === selected) && getDistrict(selected) ? [getDistrict(selected)].filter((d): d is NonNullable<typeof d> => !!d) : [])].flatMap(d => { const v = d.id.startsWith("g_") && !evidence.hydrated ? undefined : getCached(d.id)?.variables[variable]; return v ? [{location:d,variable:v}] : []; });
     const first = records[0]?.variable;
-    return {variable,unit:first?.unit ?? "",cells:records.map(r => ({lat:r.location.lat,lng:r.location.lon,annual:r.variable.annual})),provenance:{dataset_id:"NASA_GLOBAL_POINT_COLLECTION",source_url:"https://power.larc.nasa.gov/",retrieved:first?.provenance.retrieved ?? "",mode:"cache" as const}};
+    return {variable,unit:first?.unit ?? "",cells:records.map(r => ({lat:r.location.lat,lng:r.location.lon,annual:r.variable.annual,place:r.location.name,provenance:r.variable.provenance})),provenance:{dataset_id:"NASA_GLOBAL_POINT_COLLECTION",source_url:"https://power.larc.nasa.gov/",retrieved:first?.provenance.retrieved ?? "",mode:"cache" as const}};
   },[variable,evidence.version,selected,evidence.hydrated]);
   const grid = scope === "world" ? globalGrid : GRIDS[variable];
   const isSat = variable === "ndvi" || variable === "lst";
@@ -81,7 +81,7 @@ function HeatmapPage() {
     [grid],
   );
   const [year, setYear] = useState(2024);
-  const activeYear = years.includes(year) ? year : years[years.length - 1]!;
+  const activeYear = years.includes(year) ? year : years[years.length - 1] ?? 2024;
 
   const points = useMemo(() => {
     if (mode === "year") {
@@ -98,6 +98,8 @@ function HeatmapPage() {
   }, [grid, mode, activeYear]);
 
   const placeName = (lat: number, lng: number) => {
+    const sample = grid.cells.find(c=>c.lat===lat && c.lng===lng);
+    if (scope === "world") return sample?.place ?? `${lat.toFixed(3)}, ${lng.toFixed(3)}`;
     const d = nearestDistrict(lat, lng);
     return d ? (lang === "bn" ? d.bn : d.name) : "—";
   };
@@ -116,7 +118,8 @@ function HeatmapPage() {
       const r = analyzeSeries(Object.entries(c.annual).map(([y, v]) => ({ year: Number(y), value: v })));
       const d = nearestDistrict(c.lat, c.lng);
       return {
-        place: d?.name ?? "-",
+        place: c.place ?? d?.name ?? "-",
+        ...(c.provenance ? {provenance:c.provenance} : {}),
         lat: c.lat,
         lng: c.lng,
         annual: c.annual,
@@ -135,13 +138,13 @@ function HeatmapPage() {
           scope === "world" ? "Loaded coordinate samples worldwide. Unmeasured areas remain empty; these points do not imply continuous global coverage or national averages." : isSat
             ? `Each hexagon aggregates real NASA MODIS satellite samples (${grid.cells.length} sites, one per district). No values are interpolated — colour and height come only from cached measurements.`
             : `Each hexagon aggregates real NASA POWER grid cells (0.5° × 0.625°). ${grid.cells.length} cells cover the country. Colour and height come only from cached values.`,
-          isSat
+          scope === "world" ? "বিশ্বব্যাপী লোড করা স্থানাঙ্কের নমুনা। ফাঁকা স্থানে তথ্য নেই; এগুলো সম্পূর্ণ বিশ্বব্যাপী গ্রিড বা দেশের গড় নয়।" : isSat
             ? `প্রতিটি ষড়ভুজ আসল নাসা MODIS উপগ্রহ নমুনা থেকে তৈরি (${grid.cells.length}টি স্থান, প্রতি জেলায় একটি)। কোনো মান অনুমান করা হয়নি।`
             : `প্রতিটি ষড়ভুজ আসল নাসা POWER গ্রিড কোষ (০.৫° × ০.৬২৫°) থেকে তৈরি। ${grid.cells.length}টি কোষ দেশকে ঢেকে রাখে। রং ও উচ্চতা কেবল সংরক্ষিত মান থেকে।`,
         )}
       </p>
 
-      <div className="mt-5 grid gap-4 sm:grid-cols-2"><LocationSearch onSelect={id=>{setSelected(id);setScope("world");}} /><div className="flex items-end gap-2"><Button variant={scope === "world" ? "default" : "outline"} onClick={()=>setScope("world")}>Worldwide samples</Button><Button variant={scope === "bangladesh" ? "default" : "outline"} onClick={()=>setScope("bangladesh")}>Bangladesh grid</Button></div></div>
+      <div className="mt-5 grid gap-4 sm:grid-cols-2"><LocationSearch onSelect={id=>{setSelected(id);setScope("world");}} /><div className="flex items-end gap-2"><Button variant={scope === "world" ? "default" : "outline"} onClick={()=>setScope("world")}>{L("Worldwide samples","বিশ্বব্যাপী নমুনা")}</Button><Button variant={scope === "bangladesh" ? "default" : "outline"} onClick={()=>setScope("bangladesh")}>{L("Bangladesh grid","বাংলাদেশ গ্রিড")}</Button></div></div>
       {evidence.isFetching ? <p role="status" className="mt-3 text-accent">Loading NASA map sample…</p> : null}
       {evidence.data?.warnings.map(w=><p key={w} className="mt-2 text-xs text-accent">{w}</p>)}
       <div className="mt-5 flex flex-wrap items-end gap-3">
@@ -175,8 +178,8 @@ function HeatmapPage() {
             {L("Year", "বছর")} <span className="font-mono text-foreground">{fmt(activeYear, lang, 0).replace(/,/g, "")}</span>
             <input
               type="range"
-              min={years[0]}
-              max={years[years.length - 1]}
+              min={years[0] ?? 2024}
+              max={years[years.length - 1] ?? 2024}
               value={activeYear}
               onChange={(e) => setYear(Number(e.target.value))}
               className="w-40 accent-[var(--color-primary)]"
@@ -217,7 +220,7 @@ function HeatmapPage() {
               )}
             </p>
           )}
-          <h3 className="mt-4 text-xs uppercase tracking-wide text-muted-foreground">{L("Highest cells", "সর্বোচ্চ কোষ")}</h3>
+          <h3 className="mt-4 text-xs uppercase tracking-wide text-muted-foreground">{L("Highest measured samples", "সর্বোচ্চ কোষ")}</h3>
           <ol className="mt-1 space-y-1 text-sm">
             {sorted.slice(0, 5).map((p) => (
               <li key={`${p.lat},${p.lng}`} className="flex justify-between font-mono text-foreground">
@@ -226,7 +229,7 @@ function HeatmapPage() {
               </li>
             ))}
           </ol>
-          <h3 className="mt-4 text-xs uppercase tracking-wide text-muted-foreground">{L("Lowest cells", "সর্বনিম্ন কোষ")}</h3>
+          <h3 className="mt-4 text-xs uppercase tracking-wide text-muted-foreground">{L("Lowest measured samples", "সর্বনিম্ন কোষ")}</h3>
           <ol className="mt-1 space-y-1 text-sm">
             {sorted.slice(-5).reverse().map((p) => (
               <li key={`${p.lat},${p.lng}`} className="flex justify-between font-mono text-foreground">
@@ -239,7 +242,7 @@ function HeatmapPage() {
             <ProvenanceButton
               provenance={grid.provenance}
               title={L(LABELS[variable].en, LABELS[variable].bn)}
-              payload={{ variable, unit, mode, year: mode === "year" ? activeYear : null, n_cells: points.length, provenance: grid.provenance, points: points.slice(0, 20) }}
+              payload={{ samples: scope === "world" ? grid.cells.map(c=>({place:c.place,latitude:c.lat,longitude:c.lng,provenance:c.provenance})) : [], variable, unit, mode, year: mode === "year" ? activeYear : null, n_cells: points.length, provenance: grid.provenance, points: points.slice(0, 20) }}
             />
             <Button type="button" variant="outline" size="sm" onClick={() => exportGridCsv(buildExport(), `terra-earth-${variable}-cells.csv`)}>
               {L("Download CSV", "CSV ডাউনলোড")}
