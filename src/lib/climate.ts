@@ -221,7 +221,10 @@ export function nearestDistrict(lat: number, lng: number): District | undefined 
 
 /** Register only observations fetched and validated by our NASA server loader. */
 export function registerEvidence(location: GlobalLocation, document: CachedDistrict) {
- if (location.id.startsWith("g_")) dynamicLocations.set(location.id, location);
+ if (location.id.startsWith("g_")) {
+  dynamicLocations.set(location.id, location);
+  if(dynamicLocations.size > 128) {const oldest=dynamicLocations.keys().next().value;if(oldest){dynamicLocations.delete(oldest);if(!districts.some(d=>d.id===oldest))cache.delete(oldest);}}
+ }
  else if (!districts.some(x => x.id === location.id)) districts.push(location);
  cache.set(location.id, document);
 }
