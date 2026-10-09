@@ -115,8 +115,8 @@ function Landing() {
       <section className="mx-auto mt-4 max-w-7xl px-3 sm:px-6"><DistrictPicker />
         <div
           ref={frameRef}
-          className={`globe-frame relative mt-3 overflow-hidden border border-border bg-elevated ${
-            isGlobeFull ? "globe-frame-full h-full w-full" : "h-[58vh] min-h-[340px]"
+          className={`globe-frame relative mt-3 overflow-hidden ${
+            isGlobeFull ? "globe-frame-full h-full w-full" : "h-[72vh] min-h-[440px]"
           }`}
         >
           <GlobeStage

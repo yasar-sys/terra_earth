@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLang } from "@/lib/i18n";
-import terraBanglaLogo from "@/assets/brand/terrabangla-logo.png.asset.json";
+import terraBanglaLogo from "@/assets/brand/terra-earth-logo.png.asset.json";
 
 const SPLASH_KEY = "terrabangla-splash-seen";
 
