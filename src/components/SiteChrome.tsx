@@ -42,7 +42,7 @@ function NavItems({ mobile = false }: { mobile?: boolean }) {
         className={mobile ? "nav-mobile-link" : "nav-desktop-link"}
         activeProps={{ className: mobile ? "nav-mobile-link nav-link-active" : "nav-desktop-link nav-link-active" }}
       >
-        <Icon aria-hidden /> <span className="whitespace-nowrap">{t(item.key)}</span>
+        {mobile && <Icon aria-hidden />} <span className="whitespace-nowrap">{t(item.key)}</span>
       </Link>
     );
     return mobile ? <SheetClose asChild key={item.to}>{link}</SheetClose> : <li key={item.to}>{link}</li>;
