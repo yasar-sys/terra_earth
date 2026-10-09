@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "Terra Earth — Global Climate Trend Explorer",
+  "name": "Terra Earth \u2014 Global Climate Trend Explorer",
   "short_name": "Terra Earth",
-  "description": "Explore data-backed NASA climate trends across locations worldwide of Global — vegetation, temperature, rainfall and sunlight, with a kids' climate game.",
+  "description": "Search worldwide countries, cities and coordinates for available NASA climate evidence, comparisons, maps and learning.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -11,10 +11,29 @@
   "theme_color": "#0B0E1A",
   "lang": "en",
   "dir": "ltr",
-  "categories": ["education", "science", "weather"],
+  "categories": [
+    "education",
+    "science",
+    "weather"
+  ],
   "icons": [
-    { "src": "/pwa-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/pwa-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/pwa-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "/pwa-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

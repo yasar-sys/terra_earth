@@ -85,7 +85,7 @@ def fetch(district):
     doc["variables"]["solar"] = {
         "unit": "kWh/m²/day",
         "label": "All-sky solar radiation",
-        "annual": annual_means(p["ALLSKY_SFC_SW_DWN"]),
+        "annual": {year: value / (3.6 if payload["parameters"]["ALLSKY_SFC_SW_DWN"]["units"].startswith("MJ") else 1) for year, value in annual_means(p["ALLSKY_SFC_SW_DWN"]).items()},
         "provenance": provenance,
     }
     doc["variables"]["precipitation"] = {

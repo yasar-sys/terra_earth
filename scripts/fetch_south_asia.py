@@ -61,7 +61,7 @@ def fetch_power(location):
     provenance = {"dataset_id": "NASA_POWER_MONTHLY_AG_V9", "source_url": url, "retrieved": datetime.now(timezone.utc).isoformat(), "mode": "cache"}
     return {
         "temperature": {"unit": "°C", "label": "Air temperature (2 m)", "annual": annual_monthly(params["T2M"]), "provenance": provenance},
-        "solar": {"unit": "kWh/m²/day", "label": "All-sky solar radiation", "annual": annual_monthly(params["ALLSKY_SFC_SW_DWN"]), "provenance": provenance},
+        "solar": {"unit": "kWh/m²/day", "label": "All-sky solar radiation", "annual": {year: value / (3.6 if payload["parameters"]["ALLSKY_SFC_SW_DWN"]["units"].startswith("MJ") else 1) for year, value in annual_monthly(params["ALLSKY_SFC_SW_DWN"]).items()}, "provenance": provenance},
         "precipitation": {"unit": "mm/day", "label": "Precipitation", "annual": annual_monthly(params["PRECTOTCORR"]), "provenance": provenance},
     }
 

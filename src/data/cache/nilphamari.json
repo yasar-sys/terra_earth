@@ -35,7 +35,7 @@
     "retrieved": "2026-09-26T18:55:22.774377+00:00",
     "source_url": "https://modis.ornl.gov/rst/api/v1/MOD11A2/subset (lat=25.9317, lon=88.856, band=LST_Day_1km)"
    },
-   "unit": "\u00b0C"
+   "unit": "°C"
   },
   "ndvi": {
    "annual": {
@@ -111,39 +111,40 @@
   },
   "solar": {
    "annual": {
-    "2001": 16.9217,
-    "2002": 16.3733,
-    "2003": 16.28,
-    "2004": 16.0667,
-    "2005": 16.4358,
-    "2006": 16.7417,
-    "2007": 16.4375,
-    "2008": 16.3975,
-    "2009": 16.725,
-    "2010": 16.5925,
-    "2011": 16.2608,
-    "2012": 16.7633,
-    "2013": 16.6375,
-    "2014": 16.4875,
-    "2015": 15.9758,
-    "2016": 16.31,
-    "2017": 15.8608,
-    "2018": 16.0583,
-    "2019": 16.0408,
-    "2020": 15.0492,
-    "2021": 15.5408,
-    "2022": 15.7425,
-    "2023": 16.2208,
-    "2024": 15.4692
+    "2001": 4.700472,
+    "2002": 4.548139,
+    "2003": 4.522222,
+    "2004": 4.462972,
+    "2005": 4.5655,
+    "2006": 4.650472,
+    "2007": 4.565972,
+    "2008": 4.554861,
+    "2009": 4.645833,
+    "2010": 4.609028,
+    "2011": 4.516889,
+    "2012": 4.656472,
+    "2013": 4.621528,
+    "2014": 4.579861,
+    "2015": 4.437722,
+    "2016": 4.530556,
+    "2017": 4.405778,
+    "2018": 4.460639,
+    "2019": 4.455778,
+    "2020": 4.180333,
+    "2021": 4.316889,
+    "2022": 4.372917,
+    "2023": 4.505778,
+    "2024": 4.297
    },
    "label": "All-sky solar radiation",
    "provenance": {
     "dataset_id": "NASA_POWER_MONTHLY_AG_V9",
     "mode": "cache",
     "retrieved": "2026-09-26T17:46:22.256029+00:00",
-    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M,ALLSKY_SFC_SW_DWN,PRECTOTCORR&community=AG&latitude=25.9317&longitude=88.856&start=2001&end=2024&format=JSON"
+    "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M,ALLSKY_SFC_SW_DWN,PRECTOTCORR&community=AG&latitude=25.9317&longitude=88.856&start=2001&end=2024&format=JSON",
+    "solar_conversion": "NASA AG MJ/m²/day divided by 3.6 to kWh/m²/day"
    },
-   "unit": "kWh/m\u00b2/day"
+   "unit": "kWh/m²/day"
   },
   "temperature": {
    "annual": {
@@ -179,7 +180,7 @@
     "retrieved": "2026-09-26T17:46:22.256029+00:00",
     "source_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M,ALLSKY_SFC_SW_DWN,PRECTOTCORR&community=AG&latitude=25.9317&longitude=88.856&start=2001&end=2024&format=JSON"
    },
-   "unit": "\u00b0C"
+   "unit": "°C"
   }
  }
 }
