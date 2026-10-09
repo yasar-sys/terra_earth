@@ -1,5 +1,5 @@
 import { Link, useRouter, useRouterState } from "@tanstack/react-router";
-import { ArrowLeft, BarChart3, BookOpen, FlaskConical, Globe2, Languages, Library, Map, Menu, MessageCircle, Satellite } from "lucide-react";
+import { ArrowLeft, BarChart3, BookOpen, Compass, FlaskConical, Globe2, Languages, Library, Map, Menu, MessageCircle, Satellite } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -14,6 +14,7 @@ const NAV = [
   { to: "/kids", key: "nav.kids", icon: FlaskConical },
   { to: "/chat", key: "nav.chat", icon: MessageCircle },
   { to: "/about", key: "nav.about", icon: BookOpen },
+  { to: "/how-it-works", key: "nav.how", icon: Compass },
   { to: "/reference", key: "nav.reference", icon: Library },
 ] as const;
 
@@ -123,6 +124,7 @@ export function SiteFooter() {
           <p className="mt-3 text-sm leading-6 text-muted-foreground">{t("footer.license")}</p>
           <div className="flex flex-col gap-2">
             <Link to="/about" className="mt-2 text-sm text-primary hover:underline">{t("nav.about")}</Link>
+            <Link to="/how-it-works" className="text-sm text-primary hover:underline">{t("nav.how")}</Link>
             <Link to="/reference" className="text-sm text-primary hover:underline">{t("nav.reference")}</Link>
           </div>
           <Link to="/admin" className="mt-2 inline-block text-sm text-muted-foreground hover:underline">Admin</Link>
