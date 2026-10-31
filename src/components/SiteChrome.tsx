@@ -24,7 +24,7 @@ function Brand() {
   return (
     <Link to="/" className="group flex min-w-0 shrink-0 items-center gap-3 rounded-md">
       <img className="site-brand-logo" src={terraBanglaLogo.url} alt="" width={768} height={768} />
-      <span className="min-w-0">
+      <span className="hidden min-w-0 sm:block">
         <span className="block whitespace-nowrap font-display text-base font-semibold text-foreground">{t("app.title")}</span>
         <span className="block truncate text-[10px] uppercase text-muted-foreground">{lang === "en" ? "Global climate evidence" : "বিশ্বের জলবায়ু প্রমাণ"}</span>
       </span>
@@ -62,7 +62,7 @@ function BackButton() {
       onClick={() => (window.history.length > 1 ? router.history.back() : router.navigate({ to: "/" }))}
       aria-label={lang === "bn" ? "আগের পাতায় ফিরে যান" : "Go back"}
     >
-      <ArrowLeft aria-hidden /> {lang === "bn" ? "ফিরে যান" : "Back"}
+      <ArrowLeft aria-hidden /> <span className="hidden sm:inline">{lang === "bn" ? "ফিরে যান" : "Back"}</span>
     </Button>
   );
 }
@@ -70,16 +70,17 @@ function BackButton() {
 export function SiteHeader() {
   const { t, lang, setLang } = useLang();
   return (
+    <>
     <header className="site-header sticky top-0 z-40 border-b border-border/80 bg-background/82 backdrop-blur-xl">
       <div className="header-spectrum" />
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-3 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-3 sm:gap-4 sm:px-6">
         <BackButton />
         <Brand />
         <nav aria-label="Main" className="ml-auto hidden 2xl:block">
           <ul className="flex items-center gap-1"><NavItems /></ul>
         </nav>
         <Button variant="outline" size="sm" onClick={() => setLang(lang === "en" ? "bn" : "en")} className="ml-auto shrink-0 2xl:ml-0" aria-label={t("lang.label")}>
-          <Languages aria-hidden /> {t("lang.toggle")}
+          <Languages aria-hidden /> <span className="hidden sm:inline">{t("lang.toggle")}</span>
         </Button>
         <ThemeToggle />
         <div className="hidden sm:block"><AuthButton /></div>
@@ -87,7 +88,7 @@ export function SiteHeader() {
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="shrink-0 2xl:hidden" aria-label={t("nav.menu")}><Menu aria-hidden /></Button>
           </SheetTrigger>
-          <SheetContent className="glass-panel border-border bg-background/95 backdrop-blur-xl">
+          <SheetContent className="overflow-y-auto glass-panel border-border bg-background/95 backdrop-blur-xl">
             <SheetHeader><SheetTitle><Brand /></SheetTitle></SheetHeader>
             <nav aria-label="Mobile" className="mt-8 flex flex-col gap-2"><NavItems mobile /></nav>
             <div className="mt-5"><AuthButton /></div>
@@ -98,6 +99,8 @@ export function SiteHeader() {
         </Sheet>
       </div>
     </header>
+    <MobileTabBar />
+    </>
   );
 }
 
@@ -105,7 +108,7 @@ export function SiteFooter() {
   const { t, lang } = useLang();
   const L = (en: string, bn: string) => (lang === "bn" ? bn : en);
   return (
-    <footer className="relative z-10 mt-14 border-t border-border bg-elevated/92 backdrop-blur-xl">
+    <footer className="relative z-10 mt-14 pb-20 lg:pb-0 border-t border-border bg-elevated/92 backdrop-blur-xl">
       <div className="mx-auto grid max-w-7xl gap-8 px-3 py-9 sm:px-6 md:grid-cols-[1.25fr_0.75fr_0.75fr]">
         <div>
           <Brand />
@@ -133,5 +136,33 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-border/70 px-3 py-3 text-center text-[11px] text-muted-foreground">MEC TERRA_DETECTORS · Worldwide · 2026</div>
     </footer>
+  );
+}
+
+const TABS = [NAV[0], NAV[2], NAV[3], NAV[4], NAV[5]];
+
+function MobileTabBar() {
+  const { t } = useLang();
+  return (
+    <nav aria-label="Quick" className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 backdrop-blur-xl lg:hidden" style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
+      <ul className="grid grid-cols-5">
+        {TABS.map((item) => {
+          const Icon = item.icon;
+          return (
+            <li key={item.to} className="min-w-0">
+              <Link
+                to={item.to}
+                activeOptions={{ exact: item.to === "/" }}
+                className="flex flex-col items-center gap-1 px-1 py-2 text-[11px] text-muted-foreground"
+                activeProps={{ className: "flex flex-col items-center gap-1 px-1 py-2 text-[11px] text-primary font-semibold" }}
+              >
+                <Icon aria-hidden className="h-5 w-5 shrink-0" />
+                <span className="w-full truncate text-center">{t(item.key)}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 }
