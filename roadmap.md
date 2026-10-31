@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Trend Detective: seasons, custom years, t-test + CI, guided questions, demos, soil moisture/humidity/wind, area mean, CSV/PDF
+
 - [x] Install the updated Terra Earth explorer logo and refresh all app icons
 - [x] Redesign and verify the interactive globe with richer Earth rendering and polished controls
 

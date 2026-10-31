@@ -1,5 +1,5 @@
 import { Link, useRouter, useRouterState } from "@tanstack/react-router";
-import { ArrowLeft, BarChart3, BookOpen, Compass, FlaskConical, Globe2, Languages, Library, Map, Menu, MessageCircle, Satellite } from "lucide-react";
+import { ArrowLeft, BarChart3, BookOpen, Compass, FlaskConical, Globe2, Languages, Library, Map, Menu, MessageCircle, Satellite, Search } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -10,6 +10,7 @@ import terraBanglaLogo from "@/assets/brand/terra-earth-logo.png.asset.json";
 const NAV = [
   { to: "/", key: "nav.globe", icon: Globe2 },
   { to: "/heatmap", key: "nav.heatmap", icon: Map },
+  { to: "/detective", key: "nav.detective", icon: Search },
   { to: "/compare", key: "nav.compare", icon: BarChart3 },
   { to: "/kids", key: "nav.kids", icon: FlaskConical },
   { to: "/chat", key: "nav.chat", icon: MessageCircle },

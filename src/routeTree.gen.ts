@@ -15,6 +15,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthCallbackRouteImport } from './routes/auth-callback'
 import { Route as CompareRouteImport } from './routes/compare'
+import { Route as DetectiveRouteImport } from './routes/detective'
 import { Route as HeatmapRouteImport } from './routes/heatmap'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as KidsRouteImport } from './routes/kids'
@@ -53,6 +54,11 @@ const AuthCallbackRoute = AuthCallbackRouteImport.update({
 const CompareRoute = CompareRouteImport.update({
   id: '/compare',
   path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DetectiveRoute = DetectiveRouteImport.update({
+  id: '/detective',
+  path: '/detective',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HeatmapRoute = HeatmapRouteImport.update({
@@ -113,6 +119,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/auth-callback': typeof AuthCallbackRoute
   '/compare': typeof CompareRoute
+  '/detective': typeof DetectiveRoute
   '/heatmap': typeof HeatmapRoute
   '/how-it-works': typeof HowItWorksRoute
   '/kids': typeof KidsRoute
@@ -130,6 +137,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/auth-callback': typeof AuthCallbackRoute
   '/compare': typeof CompareRoute
+  '/detective': typeof DetectiveRoute
   '/heatmap': typeof HeatmapRoute
   '/how-it-works': typeof HowItWorksRoute
   '/kids': typeof KidsRoute
@@ -149,6 +157,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/auth-callback': typeof AuthCallbackRoute
   '/compare': typeof CompareRoute
+  '/detective': typeof DetectiveRoute
   '/heatmap': typeof HeatmapRoute
   '/how-it-works': typeof HowItWorksRoute
   '/kids': typeof KidsRoute
@@ -168,6 +177,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/auth-callback'
     | '/compare'
+    | '/detective'
     | '/heatmap'
     | '/how-it-works'
     | '/kids'
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/auth-callback'
     | '/compare'
+    | '/detective'
     | '/heatmap'
     | '/how-it-works'
     | '/kids'
@@ -203,6 +214,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/auth-callback'
     | '/compare'
+    | '/detective'
     | '/heatmap'
     | '/how-it-works'
     | '/kids'
@@ -222,6 +234,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
   CompareRoute: typeof CompareRoute
+  DetectiveRoute: typeof DetectiveRoute
   HeatmapRoute: typeof HeatmapRoute
   HowItWorksRoute: typeof HowItWorksRoute
   KidsRoute: typeof KidsRoute
@@ -272,6 +285,13 @@ declare module '@tanstack/react-router' {
       path: '/compare'
       fullPath: '/compare'
       preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/detective': {
+      id: '/detective'
+      path: '/detective'
+      fullPath: '/detective'
+      preLoaderRoute: typeof DetectiveRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/heatmap': {
@@ -371,6 +391,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   AuthCallbackRoute: AuthCallbackRoute,
   CompareRoute: CompareRoute,
+  DetectiveRoute: DetectiveRoute,
   HeatmapRoute: HeatmapRoute,
   HowItWorksRoute: HowItWorksRoute,
   KidsRoute: KidsRoute,
