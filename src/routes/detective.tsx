@@ -111,7 +111,7 @@ function DetectivePage() {
   const suggested = env ? ENVIRONMENTS[env].suggest : [];
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-10">
+    <div className="mx-auto max-w-6xl px-4 py-10">
       <p className="text-xs uppercase tracking-widest text-primary">{bn ? "NASA স্পেস অ্যাপস ২০২৬" : "NASA Space Apps 2026"}</p>
       <h1 className="mt-2 font-display text-3xl font-semibold text-foreground sm:text-4xl">{bn ? "ট্রেন্ড ডিটেকটিভ" : "Trend Detective"}</h1>
       <p className="mt-3 max-w-3xl text-muted-foreground">{bn ? "কী বদলাচ্ছে, কোথায়, কতটা, আর তা কি পরিসংখ্যানগতভাবে উল্লেখযোগ্য? একটি স্থান, NASA চলক, মৌসুম ও বছর বেছে নিন।" : "What is changing, where, how much — and is it significant? Choose a place, a NASA variable, a season and a range of years, then test it."}</p>
@@ -219,7 +219,7 @@ function DetectivePage() {
           </div>
         </section>
       ) : null}
-    </main>
+    </div>
   );
 }
 
