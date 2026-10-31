@@ -60,11 +60,16 @@ export const ENVIRONMENTS = {
 } as const;
 export type Environment = keyof typeof ENVIRONMENTS;
 
-export interface DetectiveDemo { id: string; title: string; bn: string; lat: number; lon: number; place: string; variable: DetectiveVariable; season: string; start: number; end: number; story: string }
+export interface DetectiveDemo { id: string; title: string; bn: string; lat: number; lon: number; place: string; variable: DetectiveVariable; season: string; start: number; end: number; story: string; scope?: "point" | "area" | "region"; region?: string }
+/** The fixed walkthrough shown to judges. The finding text is always computed live from NASA data. */
+export const JUDGE_DEMO: DetectiveDemo = { id: "judge-spain-july", title: "Is July getting hotter across Spain?", bn: "পুরো স্পেনে জুলাই কি আরও গরম হচ্ছে?", lat: 40.4168, lon: -3.7038, place: "Spain", region: "Spain", scope: "region", variable: "T2M_MAX", season: "M7", start: 1981, end: 2024, story: "Country-wide mean of NASA POWER cells inside Spain's boundary, July daily maximum temperature, 1981–2024." };
+
 export const DEMOS: DetectiveDemo[] = [
   { id: "dhaka-heat", title: "Is Dhaka's hot season getting hotter?", bn: "ঢাকার গরমকাল কি আরও গরম হচ্ছে?", lat: 23.8103, lon: 90.4125, place: "Dhaka", variable: "T2M_MAX", season: "MAM", start: 1981, end: 2024, story: "Daily maximum temperature in March–May, the pre-monsoon heat season." },
   { id: "sahel-soil", title: "Is the Sahel's soil drying or recovering?", bn: "সাহেলের মাটি কি শুকাচ্ছে?", lat: 13.5, lon: 2.1, place: "Niamey, Niger", variable: "GWETROOT", season: "JJA", start: 1981, end: 2024, story: "Root-zone soil wetness during the June–August rainy season." },
   { id: "arctic-warm", title: "How fast is the Arctic warming?", bn: "আর্কটিক কত দ্রুত উষ্ণ হচ্ছে?", lat: 78.2232, lon: 15.6267, place: "Longyearbyen, Svalbard", variable: "T2M", season: "annual", start: 1981, end: 2024, story: "Annual mean air temperature at one of the fastest-warming places on Earth." },
+  { id: "wisconsin-smoke", title: "Is summer smoke haze rising over Wisconsin?", bn: "উইসকনসিনে গ্রীষ্মের ধোঁয়াশা কি বাড়ছে?", lat: 44.6, lon: -89.9, place: "Wisconsin", region: "Wisconsin", scope: "region", variable: "AOD_55", season: "JJA", start: 2001, end: 2024, story: "State-wide aerosol optical depth in June–August — the NASA challenge video example." },
+  { id: "antarctic-ozone", title: "Is the Antarctic ozone hole recovering?", bn: "অ্যান্টার্কটিক ওজোন গর্ত কি সেরে উঠছে?", lat: -75.6, lon: -26.2, place: "Halley, Antarctica", variable: "TO3", season: "M10", start: 1981, end: 2024, story: "October total column ozone, when the ozone hole is deepest." },
   { id: "amazon-rain", title: "Is the Amazon's dry season changing?", bn: "আমাজনের শুষ্ক মৌসুম কি বদলাচ্ছে?", lat: -3.4653, lon: -62.2159, place: "Central Amazon", variable: "PRECTOTCORR", season: "SON", start: 1981, end: 2024, story: "September–November rainfall — the end of the Amazon dry season." },
 ];
 
