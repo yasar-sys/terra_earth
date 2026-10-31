@@ -1,10 +1,10 @@
 # Roadmap
 
-- [ ] Run Arctic + Sahel demos end to end; fix PDF download
-- [ ] Judge-ready walkthrough demo
-- [ ] Ozone + aerosol (smoke haze) variables
-- [ ] Guided detective question flow with suggestions
-- [ ] State/country-wide averages
+- [x] Run Arctic + Sahel demos end to end; fix PDF download
+- [x] Judge-ready walkthrough demo
+- [x] Ozone + aerosol (smoke haze) variables
+- [x] Guided detective question flow with suggestions
+- [x] State/country-wide averages
 - [x] Trend Detective: seasons, custom years, t-test + CI, guided questions, demos, soil moisture/humidity/wind, area mean, CSV/PDF
 
 - [x] Install the updated Terra Earth explorer logo and refresh all app icons
