@@ -227,7 +227,7 @@ function Stat({ title, value, rows }: { title: string; value: string; rows: [str
   return (
     <div className="rounded-lg border border-border bg-card p-4">
       <p className="text-xs text-muted-foreground">{title}</p>
-      <p className="mt-1 font-display text-lg font-semibold capitalize text-foreground">{value}</p>
+      <p className="mt-1 font-display text-lg font-semibold text-foreground first-letter:uppercase">{value}</p>
       <dl className="mt-3 space-y-1 text-xs">{rows.map(([k, v]) => <div key={k} className="flex justify-between gap-2"><dt className="text-muted-foreground">{k}</dt><dd className="text-foreground">{v}</dd></div>)}</dl>
     </div>
   );
