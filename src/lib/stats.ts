@@ -162,3 +162,88 @@ export function senLine(slope: SenSlope, years: number[]) {
     ciHigh: slope.intercept + slope.ci_high * year,
   }));
 }
+
+/* ---------- Ordinary least squares with Student-t significance ---------- */
+
+function logGamma(x: number): number {
+  const c = [76.18009172947146, -86.50532032941677, 24.01409824083091, -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
+  let y = x;
+  const tmp = x + 5.5 - (x + 0.5) * Math.log(x + 5.5);
+  let ser = 1.000000000190015;
+  for (const ci of c) ser += ci / ++y;
+  return -tmp + Math.log((2.5066282746310005 * ser) / x);
+}
+function betacf(a: number, b: number, x: number): number {
+  let c = 1, d = 1 - ((a + b) * x) / (a + 1);
+  if (Math.abs(d) < 1e-30) d = 1e-30;
+  d = 1 / d; let h = d;
+  for (let m = 1; m <= 200; m += 1) {
+    const m2 = 2 * m;
+    let aa = (m * (b - m) * x) / ((a - 1 + m2) * (a + m2));
+    d = 1 + aa * d; if (Math.abs(d) < 1e-30) d = 1e-30;
+    c = 1 + aa / c; if (Math.abs(c) < 1e-30) c = 1e-30;
+    d = 1 / d; h *= d * c;
+    aa = (-(a + m) * (a + b + m) * x) / ((a + m2) * (a + 1 + m2));
+    d = 1 + aa * d; if (Math.abs(d) < 1e-30) d = 1e-30;
+    c = 1 + aa / c; if (Math.abs(c) < 1e-30) c = 1e-30;
+    d = 1 / d; const del = d * c; h *= del;
+    if (Math.abs(del - 1) < 3e-12) break;
+  }
+  return h;
+}
+function incompleteBeta(a: number, b: number, x: number): number {
+  if (x <= 0) return 0; if (x >= 1) return 1;
+  const bt = Math.exp(logGamma(a + b) - logGamma(a) - logGamma(b) + a * Math.log(x) + b * Math.log(1 - x));
+  return x < (a + 1) / (a + b + 2) ? (bt * betacf(a, b, x)) / a : 1 - (bt * betacf(b, a, 1 - x)) / b;
+}
+/** Two-sided p-value for a Student t statistic with df degrees of freedom. */
+export function studentTwoSidedP(t: number, df: number): number {
+  if (!Number.isFinite(t)) return 0;
+  return incompleteBeta(df / 2, 0.5, df / (df + t * t));
+}
+/** Critical t value for a two-sided 95% interval (bisection on the CDF). */
+export function tCritical95(df: number): number {
+  let lo = 0, hi = 50;
+  for (let i = 0; i < 80; i += 1) { const mid = (lo + hi) / 2; if (studentTwoSidedP(mid, df) > 0.05) lo = mid; else hi = mid; }
+  return (lo + hi) / 2;
+}
+
+export interface LinearTrend {
+  slope_per_year: number;
+  slope_per_decade: number;
+  intercept: number;
+  r_squared: number;
+  standard_error: number;
+  t_statistic: number;
+  degrees_of_freedom: number;
+  p_value: number;
+  ci95_low_per_decade: number;
+  ci95_high_per_decade: number;
+  significant_at_0_05: boolean;
+}
+
+/** OLS slope, t-test on the slope, and 95% confidence interval. Needs ≥ 3 points. */
+export function linearRegression(years: number[], values: number[]): LinearTrend | null {
+  const n = years.length;
+  if (n < 3 || values.length !== n) return null;
+  const mx = years.reduce((a, b) => a + b, 0) / n;
+  const my = values.reduce((a, b) => a + b, 0) / n;
+  let sxx = 0, sxy = 0, syy = 0;
+  for (let i = 0; i < n; i += 1) { const dx = years[i]! - mx, dy = values[i]! - my; sxx += dx * dx; sxy += dx * dy; syy += dy * dy; }
+  if (sxx === 0) return null;
+  const slope = sxy / sxx, intercept = my - slope * mx;
+  let sse = 0;
+  for (let i = 0; i < n; i += 1) { const r = values[i]! - (intercept + slope * years[i]!); sse += r * r; }
+  const df = n - 2;
+  const se = Math.sqrt(sse / df / sxx);
+  const t = se === 0 ? (slope === 0 ? 0 : Infinity) : slope / se;
+  const p = se === 0 ? (slope === 0 ? 1 : 0) : studentTwoSidedP(t, df);
+  const tc = tCritical95(df);
+  return {
+    slope_per_year: slope, slope_per_decade: slope * 10, intercept,
+    r_squared: syy === 0 ? 0 : 1 - sse / syy,
+    standard_error: se, t_statistic: t, degrees_of_freedom: df, p_value: p,
+    ci95_low_per_decade: (slope - tc * se) * 10, ci95_high_per_decade: (slope + tc * se) * 10,
+    significant_at_0_05: p < 0.05,
+  };
+}
