@@ -120,7 +120,7 @@ function DetectivePage() {
       ols ? `95% confidence interval (t): ${ols.ci95_low_per_decade.toFixed(4)} to ${ols.ci95_high_per_decade.toFixed(4)} ${meta.unit}/decade` : "", "",
       "Key finding:", ...pdf.splitTextToSize(sentence, 180), "",
       "Data (year: value):", ...pdf.splitTextToSize(analysis.series.map((p) => `${p.year}: ${p.value.toFixed(3)}`).join("   "), 180), "",
-      `Source: ${run.provenance?.source_url ?? ""}`, `Retrieved: ${run.provenance?.retrieved ?? ""}`,
+      ...pdf.splitTextToSize(`Source: ${run.provenance?.source_url ?? ""}`, 180), `Retrieved: ${run.provenance?.retrieved ?? ""}`,
     ];
     let y = 15;
     for (const l of lines) { if (y > 285) { pdf.addPage(); y = 15; } pdf.setFontSize(l === lines[0] ? 15 : 10); pdf.text(String(l), 12, y); y += l === lines[0] ? 9 : 5.5; }
