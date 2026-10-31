@@ -21,6 +21,7 @@ export const strings: Dict = {
   },
   "nav.globe": { en: "Globe", bn: "গ্লোব" },
   "nav.heatmap": { en: "Heatmap", bn: "হিটম্যাপ" },
+  "nav.detective": { en: "Trend Detective", bn: "ট্রেন্ড ডিটেকটিভ" },
   "nav.compare": { en: "Compare", bn: "তুলনা" },
   "nav.kids": { en: "For Kids", bn: "শিশুদের জন্য" },
 "nav.about": { en: "Data & Methods", bn: "উপাত্ত ও পদ্ধতি" },
