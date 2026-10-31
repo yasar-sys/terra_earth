@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, Database, ExternalLink, FileText, FlaskConical, Library, LoaderCircle, LockKeyhole, LogIn, MessageSquareText, Microscope, Satellite, Youtube } from "lucide-react";
 import { listEvidenceReferences } from "@/lib/chat.functions";
 import { supabase } from "@/integrations/supabase/client";
+import { ResearchPaper } from "@/components/ResearchPaper";
 import { MessageResponse } from "@/components/ai-elements/message";
 
 export const Route = createFileRoute("/reference")({
@@ -207,6 +208,8 @@ function ReferencePage() {
           ))}
         </div>
       </section>
+
+      <ResearchPaper L={L} />
 
       <section className="mt-12 border-t border-border pt-8">
         <div className="flex items-start gap-3">
