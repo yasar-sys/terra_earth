@@ -52,7 +52,7 @@ function DetectivePage() {
   const [run, setRun] = useState<Run | null>(null);
 
   async function investigate(p = place, v = variable, s = season, a = start, b = end, sc = scope, rg = region) {
-    setBusy(true);
+    setBusy(true); setRun(null);
     const base = { place: sc === "region" ? { ...p, name: rg || p.name } : p, variable: v, season: s, start: a, end: b, scope: sc, region: rg };
     try {
       const r = await load({ data: { variable: v, lat: p.lat, lon: p.lon, scope: sc, region: sc === "region" ? rg : undefined } });
@@ -92,7 +92,7 @@ function DetectivePage() {
 
   const meta = run ? DETECTIVE_VARIABLES[run.variable] : null;
   const scopeLabel = run ? (run.scope === "region" ? `Mean of ${run.cells} NASA POWER cells inside ${run.regionName ?? run.region} (a sampled regional average)` : run.scope === "area" ? `Area mean of ${run.cells} NASA POWER cells (±1°)` : "Single NASA POWER cell — a point observation, not a national average") : "";
-  const sentence = run && meta && analysis?.mk ? trendSentence({ label: meta.label, unit: meta.unit, season: SEASONS[run.season]!.label, place: run.place.name, direction: analysis.mk.trend.direction, perDecade: analysis.mk.slope.slope_per_decade, p: analysis.mk.trend.p_value, n: analysis.mk.n_observations }) : "";
+  const sentence = run && meta && analysis?.mk ? trendSentence({ label: meta.label, unit: meta.unit, season: SEASONS[run.season]!.label, place: run.place.name, direction: analysis.mk.trend.direction, perDecade: analysis.mk.slope.slope_per_decade, p: analysis.mk.trend.p_value, n: analysis.mk.n_observations, region: run.scope === "region" }) : "";
 
   function exportCsv() {
     if (!run || !analysis || !meta) return;
@@ -133,8 +133,8 @@ function DetectivePage() {
 
   const suggested = suggestVariables(curiosity, env);
   const JUDGE_STEPS = bn
-    ? ["প্রশ্ন: পুরো স্পেনে জুলাই কি আরও গরম হচ্ছে?", "অঞ্চল: স্পেনের সীমানার ভিতরের NASA গ্রিড ঘর", "চলক ও সময়: জুলাই সর্বোচ্চ তাপমাত্রা, ১৯৮১–২০২৪", "NASA থেকে সময়সারি তৈরি", "পরীক্ষা: Mann-Kendall, Theil-Sen, t-পরীক্ষা"]
-    : ["Question: is July getting hotter across Spain?", "Region: NASA grid cells inside Spain's boundary", "Variable & years: July daily maximum temperature, 1981–2024", "Build the time series from NASA POWER", "Test it: Mann-Kendall, Theil-Sen and a t-test"];
+    ? ["প্রশ্ন: পুরো স্পেনে গ্রীষ্ম কি আরও গরম হচ্ছে?", "অঞ্চল: স্পেনের সীমানার ভিতরের NASA গ্রিড ঘর", "চলক ও সময়: জুন–আগস্ট সর্বোচ্চ তাপমাত্রা, ১৯৮১–২০২৪", "NASA থেকে সময়সারি তৈরি", "পরীক্ষা: Mann-Kendall, Theil-Sen, t-পরীক্ষা"]
+    : ["Question: are summers getting hotter across Spain?", "Region: NASA grid cells inside Spain's boundary", "Variable & years: Jun–Aug daily maximum temperature, 1981–2024", "Build the time series from NASA POWER", "Test it: Mann-Kendall, Theil-Sen and a t-test"];
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
