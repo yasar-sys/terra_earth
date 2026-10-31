@@ -25,3 +25,18 @@ describe("trend detective rules", () => {
     expect(seasonalSeries({ "200107": -999 }, [7], 2001, 2001)).toEqual([]);
   });
 });
+import { insideGeometry, sampleRegion, suggestVariables } from "./detective";
+describe("region averages and guided questions", () => {
+  const square = { type: "Polygon" as const, coordinates: [[[0, 0], [4, 0], [4, 4], [0, 4], [0, 0]] as [number, number][]] };
+  it("only samples cells inside the boundary", () => {
+    expect(insideGeometry(2, 2, square)).toBe(true);
+    expect(insideGeometry(5, 2, square)).toBe(false);
+    const { points } = sampleRegion(square, { south: -1, north: 5, west: -1, east: 5 }, 24);
+    expect(points.length).toBeGreaterThan(0);
+    expect(points.length).toBeLessThanOrEqual(24);
+    expect(points.every((p) => p.lat > 0 && p.lat < 4 && p.lon > 0 && p.lon < 4)).toBe(true);
+  });
+  it("suggests smoke haze first for air questions about a city", () => {
+    expect(suggestVariables("air", "city")[0]).toBe("AOD_55");
+  });
+});
