@@ -9,6 +9,8 @@ export const DETECTIVE_VARIABLES = {
   RH2M: { label: "Relative humidity", bn: "আপেক্ষিক আর্দ্রতা", unit: "%", source: "MERRA-2 via NASA POWER", definition: "How close the air is to being saturated with water vapour.", bnDef: "বাতাসে জলীয় বাষ্প কতটা পূর্ণ।" },
   GWETROOT: { label: "Root-zone soil wetness", bn: "শিকড়-স্তরের মাটির আর্দ্রতা", unit: "0–1", source: "MERRA-2 land model via NASA POWER", definition: "How wet the soil is where plant roots live, from 0 (dry) to 1 (saturated).", bnDef: "গাছের শিকড় যেখানে থাকে সেখানে মাটি কতটা ভেজা, ০ (শুকনো) থেকে ১ (পূর্ণ)।" },
   ALLSKY_SFC_SW_DWN: { label: "Sunlight at the surface", bn: "ভূপৃষ্ঠে সূর্যালোক", unit: "kWh/m²/day", source: "CERES / GEWEX via NASA POWER", definition: "Solar energy reaching the ground after clouds and haze — dims when smoke or clouds increase.", bnDef: "মেঘ ও ধোঁয়াশা পেরিয়ে মাটিতে পৌঁছানো সূর্যের শক্তি।" },
+  AOD_55: { label: "Smoke & haze (aerosol optical depth)", bn: "ধোঁয়া ও ধোঁয়াশা (অ্যারোসল)", unit: "AOD", source: "MERRA-2 aerosol reanalysis (assimilates satellite AOD) via NASA POWER", definition: "How much smoke, dust and haze dim sunlight passing through the air. 0 is crystal clear; above 0.5 is very hazy.", bnDef: "ধোঁয়া, ধুলা ও ধোঁয়াশা সূর্যালোককে কতটা কমায়। ০ মানে পরিষ্কার; ০.৫-এর বেশি মানে খুব ঘোলা।" },
+  TO3: { label: "Total column ozone", bn: "মোট ওজোন স্তর", unit: "DU", source: "CERES SYN1deg satellite-derived ozone via NASA POWER (not raw OMI files)", definition: "All the ozone above one spot, in Dobson Units. Around 300 DU is typical; below 220 DU is an 'ozone hole'.", bnDef: "এক জায়গার উপরের সব ওজোন, ডবসন এককে। প্রায় ৩০০ DU স্বাভাবিক; ২২০-এর নিচে 'ওজোন গর্ত'।" },
   WS2M: { label: "Wind speed (2 m)", bn: "বাতাসের গতি (২ মি.)", unit: "m/s", source: "MERRA-2 via NASA POWER", definition: "Average wind speed near the ground.", bnDef: "মাটির কাছে বাতাসের গড় গতি।" },
 } as const;
 export type DetectiveVariable = keyof typeof DETECTIVE_VARIABLES;
@@ -49,12 +51,12 @@ export function seasonalSeries(monthly: Record<string, number>, months: number[]
 }
 
 export const ENVIRONMENTS = {
-  city: { label: "Big city", bn: "বড় শহর", suggest: ["T2M_MAX","T2M","RH2M"] as DetectiveVariable[], why: "Cities trap heat; daily maxima often reveal heat stress first." },
+  city: { label: "Big city", bn: "বড় শহর", suggest: ["T2M_MAX","AOD_55","RH2M"] as DetectiveVariable[], why: "Cities trap heat; daily maxima often reveal heat stress first." },
   desert: { label: "Desert", bn: "মরুভূমি", suggest: ["T2M_MAX","GWETROOT","PRECTOTCORR"] as DetectiveVariable[], why: "Deserts respond through heat extremes and the little soil moisture they hold." },
-  rainforest: { label: "Rainforest", bn: "রেইনফরেস্ট", suggest: ["PRECTOTCORR","GWETROOT","T2M"] as DetectiveVariable[], why: "Rainforests depend on steady rain and wet soils; drying shows up there." },
+  rainforest: { label: "Rainforest", bn: "রেইনফরেস্ট", suggest: ["PRECTOTCORR","GWETROOT","AOD_55"] as DetectiveVariable[], why: "Rainforests depend on steady rain and wet soils; drying shows up there." },
   farmland: { label: "Farmland", bn: "কৃষিজমি", suggest: ["GWETROOT","PRECTOTCORR","T2M_MAX"] as DetectiveVariable[], why: "Crops need root-zone water; soil wetness and rain matter most." },
   coast: { label: "Coast / estuary", bn: "উপকূল", suggest: ["RH2M","PRECTOTCORR","WS2M"] as DetectiveVariable[], why: "Coasts feel humidity, storms and wind changes." },
-  polar: { label: "Polar / mountain", bn: "মেরু / পাহাড়", suggest: ["T2M","ALLSKY_SFC_SW_DWN","PRECTOTCORR"] as DetectiveVariable[], why: "Cold regions often warm fastest; sunlight changes with snow and clouds." },
+  polar: { label: "Polar / mountain", bn: "মেরু / পাহাড়", suggest: ["T2M","TO3","ALLSKY_SFC_SW_DWN"] as DetectiveVariable[], why: "Cold regions often warm fastest; sunlight changes with snow and clouds." },
 } as const;
 export type Environment = keyof typeof ENVIRONMENTS;
 
@@ -72,4 +74,53 @@ export function trendSentence(opts: { label: string; unit: string; season: strin
     return `${opts.label} (${opts.season}) at ${opts.place} changed by about ${rate}, but the Mann-Kendall test is not significant (p = ${opts.p.toFixed(3)}, ${opts.n} years). A longer record may be needed before calling it a trend.`;
   }
   return `${opts.label} (${opts.season}) at ${opts.place} shows a statistically significant ${opts.direction} trend of about ${rate} (Mann-Kendall p = ${opts.p.toFixed(3)}, ${opts.n} years).`;
+}
+
+/* ---------- Region (state / country) sampling ---------- */
+type Ring = [number, number][];
+export type RegionGeometry = { type: "Polygon"; coordinates: Ring[] } | { type: "MultiPolygon"; coordinates: Ring[][] };
+
+/** Even-odd point-in-polygon across every ring (holes subtract naturally). Coordinates are [lon, lat]. */
+export function insideGeometry(lon: number, lat: number, geometry: RegionGeometry): boolean {
+  const polys = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
+  let inside = false;
+  for (const poly of polys) for (const ring of poly) {
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i]!, [xj, yj] = ring[j]!;
+      if ((yi > lat) !== (yj > lat) && lon < ((xj - xi) * (lat - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+  }
+  return inside;
+}
+
+/**
+ * Regular lat/lon grid of sample cells inside a boundary. Spacing starts at NASA POWER's 0.5°
+ * and widens until at most `max` cells remain, so large countries stay tractable.
+ */
+export function sampleRegion(geometry: RegionGeometry, bbox: { south: number; north: number; west: number; east: number }, max = 24) {
+  for (let step = 0.5; step <= 20; step *= 1.25) {
+    const pts: { lat: number; lon: number }[] = [];
+    for (let lat = bbox.south + step / 2; lat < bbox.north; lat += step)
+      for (let lon = bbox.west + step / 2; lon < bbox.east; lon += step)
+        if (insideGeometry(lon, lat, geometry)) pts.push({ lat: Number(lat.toFixed(3)), lon: Number(lon.toFixed(3)) });
+    if (pts.length <= max) return { points: pts, step };
+  }
+  return { points: [], step: 20 };
+}
+
+/* ---------- Guided detective questions ---------- */
+export const CURIOSITIES = {
+  heat: { label: "Heat & warming", bn: "তাপ ও উষ্ণতা", vars: ["T2M_MAX", "T2M"] as DetectiveVariable[] },
+  water: { label: "Rain, drought & soil", bn: "বৃষ্টি, খরা ও মাটি", vars: ["PRECTOTCORR", "GWETROOT", "RH2M"] as DetectiveVariable[] },
+  air: { label: "Smoke, haze & air", bn: "ধোঁয়া, ধোঁয়াশা ও বাতাস", vars: ["AOD_55", "ALLSKY_SFC_SW_DWN", "WS2M"] as DetectiveVariable[] },
+  ozone: { label: "Ozone & sunlight", bn: "ওজোন ও সূর্যালোক", vars: ["TO3", "ALLSKY_SFC_SW_DWN"] as DetectiveVariable[] },
+} as const;
+export type Curiosity = keyof typeof CURIOSITIES;
+
+/** Rank variables: those matching both the curiosity and the place type first, then curiosity, then place. */
+export function suggestVariables(curiosity: Curiosity | null, env: Environment | null): DetectiveVariable[] {
+  const a: DetectiveVariable[] = curiosity ? [...CURIOSITIES[curiosity].vars] : [];
+  const b: DetectiveVariable[] = env ? [...ENVIRONMENTS[env].suggest] : [];
+  const both = a.filter((v) => b.includes(v));
+  return [...new Set([...both, ...a, ...b])].slice(0, 4);
 }
