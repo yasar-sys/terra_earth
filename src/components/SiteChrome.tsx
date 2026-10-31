@@ -108,7 +108,7 @@ export function SiteFooter() {
   const { t, lang } = useLang();
   const L = (en: string, bn: string) => (lang === "bn" ? bn : en);
   return (
-    <footer className="relative z-10 mt-14 border-t border-border bg-elevated/92 backdrop-blur-xl">
+    <footer className="relative z-10 mt-14 pb-20 lg:pb-0 border-t border-border bg-elevated/92 backdrop-blur-xl">
       <div className="mx-auto grid max-w-7xl gap-8 px-3 py-9 sm:px-6 md:grid-cols-[1.25fr_0.75fr_0.75fr]">
         <div>
           <Brand />
