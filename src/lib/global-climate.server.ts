@@ -34,12 +34,13 @@ async function modis(location: GlobalLocation, key: 'ndvi' | 'lst'): Promise<Cac
  }
  const jobs: {year:number; dates:string[]}[] = [];
  for (const [year, dates] of byYear) for (let i=0;i<dates.length;i+=10) jobs.push({year,dates:dates.slice(i,i+10)});
- const values = new Map<number,number[]>(); let cursor = 0;
+ const values = new Map<number,number[]>(); let cursor = 0; const deadline = Date.now() + 40000;
  async function worker() {
   while (cursor < jobs.length) {
    const job = jobs[cursor++]; if (!job || !job.dates[0]) continue;
    const query = new URLSearchParams({...Object.fromEntries(coords),band:config.band,startDate:job.dates[0],endDate:job.dates[job.dates.length-1] ?? job.dates[0],kmAboveBelow:'0',kmLeftRight:'0'});
-   const data = await json(`${MODIS}/${config.product}/subset?${query}`);
+   if (Date.now() > deadline) return;
+   let data: any; try { data = await json(`${MODIS}/${config.product}/subset?${query}`); } catch { continue; }
    const collected = values.get(job.year) ?? [];
    for (const entry of data?.subset ?? []) for (const raw of entry.data ?? []) {
      if (typeof raw !== 'number' || !Number.isFinite(raw) || raw === config.fill) continue;
@@ -51,7 +52,7 @@ async function modis(location: GlobalLocation, key: 'ndvi' | 'lst'): Promise<Cac
    values.set(job.year,collected);
   }
  }
- await Promise.all(Array.from({length:4},worker));
+ await Promise.all(Array.from({length:10},worker));
  const annual: Record<string,number> = {};
  for (const [year,samples] of values) { const mean = annualComposites(samples); if (mean !== null) annual[String(year)] = mean; }
  return {unit:config.unit,label:config.label,annual,provenance:{dataset_id:`${config.product}.061`,source_url:`${MODIS}/${config.product}/subset?${coords}&band=${config.band}`,retrieved:new Date().toISOString(),mode:'cache'}};

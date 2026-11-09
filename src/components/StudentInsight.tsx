@@ -77,8 +77,8 @@ export function StudentInsight({
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
             {L(
-              "Describe what you see. Lovable AI will compare your idea with the displayed NASA statistics and suggest what to investigate next.",
-              "তুমি কী দেখছ তা লেখো। Lovable AI তোমার ধারণাকে দেখানো নাসা পরিসংখ্যানের সঙ্গে মিলিয়ে পরের অনুসন্ধান সাজেস্ট করবে।",
+              "Describe what you see. Terra Earth AI will compare your idea with the displayed NASA statistics and suggest what to investigate next.",
+              "তুমি কী দেখছ তা লেখো। Terra Earth AI তোমার ধারণাকে দেখানো নাসা পরিসংখ্যানের সঙ্গে মিলিয়ে পরের অনুসন্ধান সাজেস্ট করবে।",
             )}
           </p>
           <label className="mt-4 block text-sm font-medium text-foreground" htmlFor="student-observation">
