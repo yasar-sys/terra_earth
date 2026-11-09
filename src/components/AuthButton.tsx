@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { LogIn, LogOut, UserRound } from "lucide-react";
+import { LogOut, UserRound } from "lucide-react";
 import type { User } from "@supabase/supabase-js";
 import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
