@@ -59,7 +59,7 @@ export default function GlobeExplorer({ variable, onSelectDistrict, hexMode = fa
     const sun = new DirectionalLight(colors.light, night ? .7 : 2.1); sun.position.set(-100, 180, 300);
     g.lights([new AmbientLight(colors.light, night ? 1.1 : 1.6), sun]);
   }, [ready, night, colors.light]);
-  const points = useMemo(() => districts.filter(x => x.id.startsWith('g_') || ['bangladesh', 'india', 'pakistan', 'nepal', 'bhutan', 'sri-lanka', 'afghanistan', 'maldives', 'myanmar'].includes(x.id)).map(x => ({ id: x.id, lat: x.lat, lng: x.lon, name: lang === 'bn' ? x.bn : x.name, value: getSeries(x.id, variable).at(-1)?.value })), [variable, lang]);
+  const points = useMemo(() => districts.filter(x => x.id.startsWith('g_') || ['bangladesh', 'india', 'pakistan', 'nepal', 'bhutan', 'sri-lanka', 'afghanistan', 'maldives', 'myanmar'].includes(x.id)).map(x => ({ id: x.id, lat: x.lat, lng: x.lon, name: lang === 'bn' ? x.bn : x.name, value: getSeries(x.id, variable).at(-1)?.value })).filter((p, i, all) => all.findIndex(q => q.name.toLowerCase() === p.name.toLowerCase() || (Math.abs(q.lat - p.lat) < 1.5 && Math.abs(q.lng - p.lng) < 1.5)) === i), [variable, lang]);
   const selected = points.filter(p => p.id === selectedRegionalId);
   const bounds = useMemo(() => { const values = gridPoints.map(x => x.value); return values.length ? { min: Math.min(...values), max: Math.max(...values) } : { min: 0, max: 1 }; }, [gridPoints]);
   function select(lat: number, lon: number) { const location = coordinateLocation(lat, lon); registerEvidence(location, getCached(location.id) ?? { district: location.id, variables: {} }); onSelectDistrict(location.id); }
