@@ -7,8 +7,8 @@ const MODIS = 'https://modis.ornl.gov/rst/api/v1';
 const pending = new Map<string, Promise<EvidenceResponse>>();
 const loaded = new Map<string, { result: EvidenceResponse; time: number }>();
 export interface EvidenceResponse { location: GlobalLocation; document: CachedDistrict; warnings: string[] }
-async function json(url: string): Promise<any> {
-  const response = await fetch(url, { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(30000) });
+async function json(url: string, ms = 30000): Promise<any> {
+  const response = await fetch(url, { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(ms) });
   if (!response.ok) throw new Error(`NASA returned ${response.status}`);
   return response.json();
 }
@@ -26,21 +26,22 @@ const PRODUCTS = {
 } as const;
 async function modis(location: GlobalLocation, key: 'ndvi' | 'lst'): Promise<CachedVariable> {
  const config = PRODUCTS[key]; const coords = new URLSearchParams({latitude:String(location.lat),longitude:String(location.lon)});
- const datesPayload = await json(`${MODIS}/${config.product}/dates?${coords}`);
+ const datesPayload = await json(`${MODIS}/${config.product}/dates?${coords}`, 12000);
  const byYear = new Map<number,string[]>();
  for (const item of datesPayload?.dates ?? []) {
    const date = String(item.modis_date); const year = Number(date.slice(1,5));
    if (year >= START && year <= END) { const values = byYear.get(year) ?? []; values.push(date); byYear.set(year,values); }
  }
  const jobs: {year:number; dates:string[]}[] = [];
- for (const [year, dates] of byYear) for (let i=0;i<dates.length;i+=10) jobs.push({year,dates:dates.slice(i,i+10)});
- const values = new Map<number,number[]>(); let cursor = 0; const deadline = Date.now() + 40000;
+ // Single-date requests are ~2s; multi-date ranges take 15s+. Sample 6 evenly spread composites per year.
+ for (const [year, dates] of byYear) { const step = Math.max(1, Math.floor(dates.length/6)); for (let i=0;i<dates.length && jobs.filter(j=>j.year===year).length<6;i+=step) jobs.push({year,dates:[dates[i]!]}); }
+ const values = new Map<number,number[]>(); let cursor = 0; const deadline = Date.now() + 25000;
  async function worker() {
   while (cursor < jobs.length) {
    const job = jobs[cursor++]; if (!job || !job.dates[0]) continue;
    const query = new URLSearchParams({...Object.fromEntries(coords),band:config.band,startDate:job.dates[0],endDate:job.dates[job.dates.length-1] ?? job.dates[0],kmAboveBelow:'0',kmLeftRight:'0'});
    if (Date.now() > deadline) return;
-   let data: any; try { data = await json(`${MODIS}/${config.product}/subset?${query}`); } catch { continue; }
+   let data: any; try { data = await json(`${MODIS}/${config.product}/subset?${query}`, Math.max(2000, Math.min(10000, deadline-Date.now()))); } catch { continue; }
    const collected = values.get(job.year) ?? [];
    for (const entry of data?.subset ?? []) for (const raw of entry.data ?? []) {
      if (typeof raw !== 'number' || !Number.isFinite(raw) || raw === config.fill) continue;
@@ -52,10 +53,16 @@ async function modis(location: GlobalLocation, key: 'ndvi' | 'lst'): Promise<Cac
    values.set(job.year,collected);
   }
  }
- await Promise.all(Array.from({length:10},worker));
+ await Promise.all(Array.from({length:12},worker));
  const annual: Record<string,number> = {};
  for (const [year,samples] of values) { const mean = annualComposites(samples); if (mean !== null) annual[String(year)] = mean; }
  return {unit:config.unit,label:config.label,annual,provenance:{dataset_id:`${config.product}.061`,source_url:`${MODIS}/${config.product}/subset?${coords}&band=${config.band}`,retrieved:new Date().toISOString(),mode:'cache'}};
+}
+// Backup when MODIS LST is unreachable: NASA POWER earth skin temperature (TS), clearly labelled.
+async function powerSkinTemperature(location: GlobalLocation): Promise<CachedVariable> {
+  const query = new URLSearchParams({ parameters:'TS', community:'AG', latitude:String(location.lat), longitude:String(location.lon), start:String(START), end:String(END), format:'JSON' });
+  const url = `${POWER}?${query}`; const payload = await json(url, 20000);
+  return { unit:'°C', label:'Earth skin temperature (NASA POWER backup for MODIS LST)', annual: annualMonthly(payload?.properties?.parameter?.TS ?? {},START,END), provenance:{dataset_id:'NASA_POWER_MONTHLY_AG_TS',source_url:url,retrieved:new Date().toISOString(),mode:'cache'} };
 }
 export async function ensureGlobalEvidence(id: string, includeModis = false): Promise<EvidenceResponse> {
  const location = getDistrict(id); if (!location) throw new Error('Unknown location.');
@@ -69,7 +76,12 @@ export async function ensureGlobalEvidence(id: string, includeModis = false): Pr
    if (!document.variables.temperature) { try { Object.assign(document.variables,await power(location)); } catch { warnings.push('NASA POWER is temporarily unavailable for this point. No values were estimated.'); } }
    if (includeModis) await Promise.all((['ndvi','lst'] as const).map(async key => {
      if (document.variables[key]) return;
-     try { document.variables[key] = await modis(location,key); } catch { warnings.push(`NASA MODIS ${key.toUpperCase()} is unavailable for this point. No values were estimated.`); }
+     let result: CachedVariable | null = null;
+     try { result = await modis(location,key); } catch { result = null; }
+     if (result && Object.keys(result.annual).length >= 3) { document.variables[key] = result; return; }
+     if (key === 'lst') { try { const backup = await powerSkinTemperature(location); if (Object.keys(backup.annual).length) { document.variables.lst = backup; warnings.push('NASA MODIS land temperature was slow, so NASA POWER earth skin temperature is shown as a backup.'); return; } } catch { /* fall through */ } }
+     if (result && Object.keys(result.annual).length) { document.variables[key] = result; warnings.push(`NASA MODIS ${key.toUpperCase()} returned only some years.`); return; }
+     warnings.push(`NASA MODIS ${key.toUpperCase()} is unavailable for this point. No values were estimated.`);
    }));
    const result = {location,document,warnings}; registerEvidence(location,document);
    if (!warnings.length) { if (loaded.size > 128) loaded.delete(loaded.keys().next().value ?? ''); loaded.set(cacheKey,{result,time:Date.now()}); }
