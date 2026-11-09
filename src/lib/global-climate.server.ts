@@ -33,8 +33,8 @@ async function modis(location: GlobalLocation, key: 'ndvi' | 'lst'): Promise<Cac
    if (year >= START && year <= END) { const values = byYear.get(year) ?? []; values.push(date); byYear.set(year,values); }
  }
  const jobs: {year:number; dates:string[]}[] = [];
- // Single-date requests are ~2s; multi-date ranges take 15s+. Sample 6 evenly spread composites per year.
- for (const [year, dates] of byYear) { const step = Math.max(1, Math.floor(dates.length/6)); for (let i=0;i<dates.length && jobs.filter(j=>j.year===year).length<6;i+=step) jobs.push({year,dates:[dates[i]!]}); }
+ // Single-date requests are ~2s; multi-date ranges take 15s+. Sample 8 evenly spread composites per year.
+ for (const [year, dates] of byYear) { const step = Math.max(1, Math.floor(dates.length/8)); for (let i=0;i<dates.length && jobs.filter(j=>j.year===year).length<8;i+=step) jobs.push({year,dates:[dates[i]!]}); }
  const values = new Map<number,number[]>(); let cursor = 0; const deadline = Date.now() + 25000;
  async function worker() {
   while (cursor < jobs.length) {
@@ -53,7 +53,7 @@ async function modis(location: GlobalLocation, key: 'ndvi' | 'lst'): Promise<Cac
    values.set(job.year,collected);
   }
  }
- await Promise.all(Array.from({length:12},worker));
+ await Promise.all(Array.from({length:16},worker));
  const annual: Record<string,number> = {};
  for (const [year,samples] of values) { const mean = annualComposites(samples); if (mean !== null) annual[String(year)] = mean; }
  return {unit:config.unit,label:config.label,annual,provenance:{dataset_id:`${config.product}.061`,source_url:`${MODIS}/${config.product}/subset?${coords}&band=${config.band}`,retrieved:new Date().toISOString(),mode:'cache'}};
