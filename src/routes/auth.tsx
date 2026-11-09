@@ -1,10 +1,11 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { LogIn, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useLang } from "@/lib/i18n";
+import { GoogleLogo } from "@/components/GoogleLogo";
 import { safeAuthNext, usesLovableAuthBroker } from "@/lib/auth-host";
 
 export const Route = createFileRoute("/auth")({
@@ -66,7 +67,7 @@ function AuthPage() {
       <ShieldCheck className="mx-auto h-10 w-10 text-accent" aria-hidden />
       <h1 className="mt-4 font-display text-3xl text-foreground">Terra Earth</h1>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{lang === "bn" ? "আপনার জলবায়ু কথোপকথন নিরাপদে সংরক্ষণ করতে Google দিয়ে সাইন ইন করুন।" : "Sign in with Google to securely save and revisit your climate conversations."}</p>
-      <Button className="mt-6 w-full" onClick={signIn} disabled={busy}><LogIn aria-hidden />{busy ? (lang === "bn" ? "পরীক্ষা করছি…" : "Checking…") : (lang === "bn" ? "Google দিয়ে চালিয়ে যান" : "Continue with Google")}</Button>
+      <Button variant="outline" className="mt-6 w-full" onClick={signIn} disabled={busy}><GoogleLogo />{busy ? (lang === "bn" ? "পরীক্ষা করছি…" : "Checking…") : (lang === "bn" ? "Google দিয়ে চালিয়ে যান" : "Continue with Google")}</Button>
       {error ? <p role="alert" className="mt-3 text-sm text-destructive">{error}</p> : null}
     </section>
   </div>;

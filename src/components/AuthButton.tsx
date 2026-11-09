@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { LogIn, LogOut, UserRound } from "lucide-react";
+import { LogOut, UserRound } from "lucide-react";
 import type { User } from "@supabase/supabase-js";
 import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useLang } from "@/lib/i18n";
 import { Link } from "@tanstack/react-router";
+import { GoogleLogo } from "@/components/GoogleLogo";
 import { safeAuthNext, usesLovableAuthBroker } from "@/lib/auth-host";
 
 export function AuthButton() {
@@ -55,7 +56,7 @@ export function AuthButton() {
       <div className="flex items-center gap-1">
         {user.email?.toLowerCase() === "saminyasarsunny@gmail.com" ? <Button asChild variant="ghost" size="sm"><Link to="/admin">{lang === "bn" ? "অ্যাডমিন" : "Admin"}</Link></Button> : null}
         <Button asChild variant="ghost" size="sm"><Link to="/profile"><UserRound aria-hidden/>{lang === "bn" ? "প্রোফাইল" : "Profile"}</Link></Button>
-        <Button variant="outline" size="sm" onClick={() => void supabase.auth.signOut()} title={user.email ?? ""}>
+        <Button variant="outline" size="sm" onClick={async () => { await supabase.auth.signOut(); window.location.replace("/"); }} title={user.email ?? ""}>
           <LogOut aria-hidden /> {lang === "bn" ? "সাইন আউট" : "Sign out"}
         </Button>
       </div>
@@ -63,7 +64,7 @@ export function AuthButton() {
   }
   return (
     <Button variant="outline" size="sm" onClick={signIn} disabled={busy}>
-      <LogIn aria-hidden /> {busy ? (lang === "bn" ? "খুলছে…" : "Opening…") : (lang === "bn" ? "সাইন ইন" : "Sign in")}
+      <GoogleLogo /> {busy ? (lang === "bn" ? "খুলছে…" : "Opening…") : (lang === "bn" ? "Google দিয়ে সাইন ইন" : "Sign in with Google")}
     </Button>
   );
 }
