@@ -12,6 +12,8 @@ const LOVABLE_ZONES = [
 
 const LOVABLE_CUSTOM_HOSTS = new Set([
   "terrabangla.yasar.earth",
+  "terraearth.aizanbd.com",
+  "www.terraearth.aizanbd.com",
 ]);
 
 export function usesLovableAuthBroker(): boolean {
