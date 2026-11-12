@@ -115,12 +115,12 @@ export function DistrictLearning({ onMascotState, onContextChange, districtId: i
   useEffect(() => { void supabase.auth.getUser().then(async ({ data }) => { if (!data.user) return; try { setFavorite((await listFavorites()).includes(districtId)); } catch { setFavorite(false); } }); }, [districtId, listFavorites]);
 
   return <section className="learn-studio" aria-labelledby="learn-title">
-    <header className="learn-header scroll-reveal">
+    <header className="learn-header">
       <div><p className="learn-eyebrow"><Leaf /> {L("A guided Earth observation", "নির্দেশিত পৃথিবী পর্যবেক্ষণ")}</p><h1 id="learn-title">{L("Earth in My Hands", "আমার হাতে পৃথিবী")}</h1><p>{L("Explore measured change worldwide, one sampled location and one climate record at a time.", "একটি স্থান ও একটি জলবায়ু রেকর্ড ধরে পৃথিবীর পরিমাপ করা পরিবর্তন অনুসন্ধান করো।")}</p></div>
       <div className="learn-record"><span>{L("Evidence coverage", "উপাত্তের আওতা")}</span><strong>{lang === "bn" ? "বিশ্বব্যাপী অনুসন্ধান" : "Worldwide search"}</strong><small>{L("NASA Earth observations", "নাসা আর্থ অবজারভেশনস")}</small></div>
     </header>
 
-    <div className="learn-layout scroll-reveal">
+    <div className="learn-layout">
       <aside className="learn-picker" aria-label={L("District selector", "জেলা নির্বাচন")}>
         <div className="learn-picker-heading"><div><span>{L("Explore by place", "স্থান ধরে অনুসন্ধান")}</span><h2>{L("Choose a location", "স্থান বেছে নাও")}</h2></div><MapPin /></div>
         <LocationSearch onSelect={chooseDistrict} /><p className="mt-3 text-xs text-muted-foreground">{L("Observations describe a coordinate sample, not a country average.","পর্যবেক্ষণ একটি স্থানাঙ্কের নমুনা, দেশের গড় নয়।")}</p>
