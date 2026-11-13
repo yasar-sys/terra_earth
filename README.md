@@ -11,7 +11,7 @@
 
 ---
 
-## 📖 Overview
+## 📖 Overview:
 
 **Terra Earth** is an open-source, bilingual (English & বাংলা) planetary intelligence platform designed for the **2026 NASA Space Apps Challenge: Earth System Trend Detective**.
 
