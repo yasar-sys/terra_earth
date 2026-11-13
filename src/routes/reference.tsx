@@ -60,7 +60,7 @@ const RESEARCH_LINKS = [
   },
 ];
 
-const YOUTUBE_VIDEO_ID = "g3T5h9Zs05g";
+const YOUTUBE_VIDEO_ID = "qcgZDOvr2U4";
 const YOUTUBE_VIDEO_URL = `https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}`;
 const YOUTUBE_SUBMISSION_URL = `https://youtu.be/${YOUTUBE_VIDEO_ID}`;
 
