@@ -54,5 +54,5 @@ Instead of flattening massive geographic diversity into misleading country-wide 
 
 ---
 
-⭐ *Built with passion for open science and global climate resilience.*
+ *Built with passion for open science and global climate resilience.*
 
