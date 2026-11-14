@@ -1,4 +1,4 @@
-# 🌍 Terra Earth — Planetary Science for Every Citizen
+#  Terra Earth — Planetary Science for Every Citizen
 
 [![NASA Space Apps Challenge 2026](https://img.shields.io/badge/NASA%20Space%20Apps-2026-blue.svg)](https://www.spaceappschallenge.org/2026/challenges/earth-system-trend-detective/)
 [![Challenge](https://img.shields.io/badge/Challenge-Earth%20System%20Trend%20Detective-orange.svg)](https://www.spaceappschallenge.org/2026/challenges/earth-system-trend-detective/)
@@ -11,7 +11,7 @@
 
 ---
 
-## 📖 Overview:
+##  Overview:
 
 **Terra Earth** is an open-source, bilingual (English & বাংলা) planetary intelligence platform designed for the **2026 NASA Space Apps Challenge: Earth System Trend Detective**.
 
@@ -19,7 +19,7 @@ Instead of flattening massive geographic diversity into misleading country-wide 
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 - **Interactive 3D Earth Explorer:** Photorealistic day/night textures, city lights, topology bump maps, and real-time lighting without misleading raster approximations.
 - **Trend Detective Engine:** Guided curiosity inquiries across 6 biomes and custom seasons with OLS, Theil-Sen slopes, Mann-Kendall $p$-values, and sampled regional averages.
@@ -30,7 +30,7 @@ Instead of flattening massive geographic diversity into misleading country-wide 
 
 ---
 
-## 🛰️ NASA Telemetry & Datasets Used
+##  NASA Telemetry & Datasets Used
 
 | Dataset / Mission | Source | Parameters | Coverage |
 | :--- | :--- | :--- | :--- |
@@ -42,7 +42,7 @@ Instead of flattening massive geographic diversity into misleading country-wide 
 
 ---
 
-## 👥 Team MEC Terra_Detectors
+##  Team MEC Terra_Detectors
 
 - **SAMIN YASAR** — Team Lead & Full-Stack Developer
 - **MD MAHMUDUZZAMAN** — DATA SCIENTIST
